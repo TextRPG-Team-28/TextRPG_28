@@ -35,7 +35,7 @@ namespace TextRPG_28
             public int Attack { get; set; } = attack;
             public int Health { get; set; } = hp;
 
-            public List<Monster> Monsters { get; set; } = new List<Monster>();
+            public Monster[] monsters { get; set; }
 
         }
 

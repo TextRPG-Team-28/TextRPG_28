@@ -10,7 +10,6 @@ namespace TextRPG_28
 {
     internal class GameStart
     {
-        BattleStart battleStart =  new BattleStart();
         public void StartScene(Warrior warrior)
         {
             Console.Clear();
@@ -38,7 +37,8 @@ namespace TextRPG_28
                             ShowStatus(warrior);
                             break;
                         case 2:
-                            battleStart.Battle();
+                            BattleStart battleStart = new BattleStart();
+                            battleStart.Battle(warrior);
                             break;
                         
                     }
@@ -57,15 +57,15 @@ namespace TextRPG_28
 
             //나중에 아이템 만들면 착용 장비 리스트 만들어서 추가되게 만들어줘야함.
 
-            string pulsAttackMark = (pulsAttack > 0) ? $"{pulsAttack}" : "";
-            string pulsDefenseMark = (pulsDefense > 0) ? $"{pulsDefense}" : "";
-            string pulsHealthMark = (pulsHealth > 0) ? $"{pulsHealth}" : "";
+            string pulsAttackMark = (pulsAttack > 0) ? $"(+ {pulsAttack})" : "";
+            string pulsDefenseMark = (pulsDefense > 0) ? $"(+ {pulsDefense})" : "";
+            string pulsHealthMark = (pulsHealth > 0) ? $"(+ {pulsHealth})" : "";
 
             Console.WriteLine($"Lv. {warrior.Level}");
             Console.WriteLine($"{warrior.Name} ( 전사 )");
-            Console.WriteLine($"공격력: {warrior.Attack + pulsAttack} (+{pulsAttackMark})");
-            Console.WriteLine($"방어력: {warrior.Defend + pulsDefense} (+{pulsDefense})");
-            Console.WriteLine($"체력: {warrior.Health + pulsHealth} (+{pulsHealth})");
+            Console.WriteLine($"공격력: {warrior.Attack + pulsAttack}  {pulsAttackMark}");
+            Console.WriteLine($"방어력: {warrior.Defend + pulsDefense}  {pulsDefenseMark}");
+            Console.WriteLine($"체력: {warrior.Health + pulsHealth}  {pulsHealthMark}");
             Console.WriteLine($"Gold: {warrior.Gold} G\n");
             Console.WriteLine();
             Console.WriteLine("0. 나가기");
