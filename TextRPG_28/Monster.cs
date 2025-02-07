@@ -23,10 +23,5 @@ namespace TextRPG_28
             MaxHp = maxHp;
             Attack = attack;
         }
-
-        public void MonsterSpown()
-        {
-            
-        }
     }
 }

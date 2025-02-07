@@ -17,11 +17,16 @@ namespace TextRPG_28
         public int Hp { get; }
         public int MaxHp { get; }
 
-        public Player(int level, string name, int attak, int defense, int maxHp, int gold)          // 생성시 플레이어 초기 설정, 직업은 추가 예정이 아직 없기때문에 아직은 고정
+        public Player(string name)
+        {
+            Name = name;
+        }
+
+        public Player(int level, string name, string job, int attak, int defense, int maxHp, int gold)          // 생성시 플레이어 초기 설정, 직업은 추가 예정이 아직 없기때문에 아직은 고정
         {
             Level = level;
             Name = name;
-            Job = "전사";
+            Job = job;
             Attack = attak;
             Defense = defense;
             Gold = gold;
@@ -29,14 +34,20 @@ namespace TextRPG_28
             MaxHp = maxHp;
         }
 
-        public void PlayerInfo()            // 플레이어 정보 화면 메서드
+        public void PlayerStats()            // 플레이어 정보 화면 메서드
         {
+            Console.Clear();
+            Console.WriteLine("상태 보기");
+            Console.WriteLine("캐릭터의 정보가 표시됩니다.");
+            Console.WriteLine();
             Console.WriteLine($"Lv. {Level.ToString("00")}");
             Console.WriteLine($"{Name} ( {Job} )");
             Console.WriteLine($"공격력 : {Attack}");
             Console.WriteLine($"방어력 : {Defense}");
             Console.WriteLine($"체력 : {Hp} / {MaxHp}");
             Console.WriteLine($"Gold : {Gold} gold");
+            Console.WriteLine();
+            Console.WriteLine("0. 나가기");
         }
     }
 }
