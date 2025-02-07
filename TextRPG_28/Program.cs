@@ -15,6 +15,7 @@ namespace TextRPG_28
     {
         Player player;
         List <Monster> monsters;
+        Random random = new Random();
 
         public GameManager()            // 생성시 플레이어 이름 받아옴
         {
@@ -82,15 +83,14 @@ namespace TextRPG_28
             Console.WriteLine("Battle!!");
             Console.WriteLine();
 
-            Random random = new Random();
-            int a = random.Next(monsters.Count);
-            int b = random.Next(monsters.Count);
-            int c = random.Next(monsters.Count);
+            // 대충 랜덤 수의 몬스터 출현
+            int a = random.Next(1, 4);
 
-            // 대충 랜덤 몬스터 출현, Monster클래스 만들어서 할 것 같음
-            Console.WriteLine($"Lv. {monsters[a].Level} {monsters[a].Name}  Hp {monsters[a].MaxHp}");
-            Console.WriteLine($"Lv. {monsters[b].Level} {monsters[b].Name}  Hp {monsters[b].MaxHp}");
-            Console.WriteLine($"Lv. {monsters[c].Level} {monsters[c].Name}  Hp {monsters[c].MaxHp}");
+            for (int i = 0; i < a; i++)
+            {
+                Console.WriteLine($"Lv. {monsters[i].Level} {monsters[i].Name}  Hp {monsters[i].MaxHp}");
+            }
+
             Console.WriteLine();
 
             Console.WriteLine("[내 정보]");
@@ -107,7 +107,7 @@ namespace TextRPG_28
         public void PlayerAttackScene()         // 플레이어 공격 화면
         {
             Console.WriteLine("대충 플레이어 공격");
-            // 몬스터 번호 입력 후 공격 행동 후 몬스터 공격씬으로 이동, 아마 Player클래스에 메서드 만들어서 하는게 좋지 않을까 생각 중
+            // 몬스터 번호 입력 후 공격 행동 후 몬스터 공격씬으로 이동
             MonsterAttackScene();
             // 만약 몬스터 다 잡았을때 승리 결과창으로 이동
             ResultVitory();
@@ -116,7 +116,7 @@ namespace TextRPG_28
         public void MonsterAttackScene()            // 몬스터 공격 화면
         {
             Console.WriteLine("대충 몬스터 공격");
-            //살아있는 몬스터 위에서부터 플레이어한테 공격 후 다시 배틀씬으로 이동, Monster클래스에 메서드 만들어서 하는게 좋지 않을까 생각 중
+            //살아있는 몬스터 위에서부터 플레이어한테 공격 후 다시 배틀씬으로 이동
             BattleScene();
             //만약 플레이어 체력이 0일때 패배 결과창으로 이동
             ResultDefeat();
@@ -141,7 +141,7 @@ namespace TextRPG_28
             Console.WriteLine("Battle!! - Result");
             Console.WriteLine();
             Console.WriteLine("You die...");
-            // 대충 개발렸다 결과창
+            // 대충 개발렸다는 결과창
             Console.WriteLine("0. 다음");
 
             Input.GetInput(0, 0);           // 0 입력시 시작화면으로
