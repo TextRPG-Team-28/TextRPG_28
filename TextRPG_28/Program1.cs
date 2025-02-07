@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 namespace TextRPG_28;
 class Program
 {
@@ -18,6 +19,8 @@ class GameManager
     private int Defense = 5;
     private int Hp = 100;
     private int Gold = 50;
+
+    private Random random = new Random();
 
     public void StartGame()
     {
@@ -78,14 +81,32 @@ class GameManager
     private void Battle()
     {
         Console.Clear();
+        Console.WriteLine("");
+        Console.WriteLine(" [전투 시작] ");
+        Console.WriteLine("");
 
-
-
-
+        int MonsterCont = random.Next(1, 5);
+        List<Monster> monsters = new List<Monster>();
     }
+}
+class Monster
+{
+    public string Name { get; }
+    public int Level { get; }
+    public int Hp { get; }
+    public int Attack { get; }
+      
+    public Monster(string name, int level, int hp, int attack)
+    {
+        Name = name;
+        Level = level;
+        Hp = hp;
+        Attack = attack;
+    }
+    
 }
 
 
 
-  
+
 
