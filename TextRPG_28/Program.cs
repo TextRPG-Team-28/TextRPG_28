@@ -14,6 +14,7 @@ namespace TextRPG_28
     public class GameManager            // static Main에서 쓰기 위해 만든 겜매니저(튜터님 해설영상보고 좋아보여서 써봄)
     {
         Player player;
+        Monster monster;
 
         public GameManager()            // 생성시 플레이어 이름 받아옴
         {
