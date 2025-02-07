@@ -6,8 +6,6 @@ namespace TextRPG_28
     public class Program
     {
         Player player;
-        
-
         public void Intro()//처음시작 이름 입력
         {
             Console.Clear();
@@ -115,7 +113,7 @@ namespace TextRPG_28
             switch (input)
             {
                 case 0:
-                    Intro();
+                    Start();
                     break;
             }
         }
