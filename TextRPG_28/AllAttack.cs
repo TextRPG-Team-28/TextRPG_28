@@ -10,7 +10,7 @@ namespace TextRPG_28
 {
     internal class AllAttack
     {
-        public void Attack(Character character)
+        public void Attack()
         {
            
 

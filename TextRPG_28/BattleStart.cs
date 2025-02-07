@@ -36,7 +36,7 @@ namespace TextRPG_28
                 }
                 else
                 {
-                    Attack(warrior);
+                    AttackScene(warrior);
                     break;
                 }
             }
@@ -60,11 +60,9 @@ namespace TextRPG_28
                 currentMonsters.Add(monsterArray[stageMonster]);
             }
 
-            
-
         }
 
-        public void Attack(Warrior warrior)
+        public void AttackScene(Warrior warrior)
         {
             Console.Clear();
 
@@ -96,6 +94,11 @@ namespace TextRPG_28
                     GameStart gameStart = new GameStart();
                     gameStart.StartScene(warrior);
                     break;
+                }
+                else
+                {
+                    AllAttack allAttack = new AllAttack();
+                    allAttack.Attack();
                 }
             }
         }

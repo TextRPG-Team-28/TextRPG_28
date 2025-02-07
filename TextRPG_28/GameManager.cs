@@ -4,9 +4,7 @@ namespace TextRPG_28
 {
     public class GameManager()
     {
-        delegate void MonsterArray();
-
-        
+                
         static public void Main(string[] args)
         {
             Warrior warrior = new Warrior();
@@ -23,12 +21,12 @@ namespace TextRPG_28
             GameStart gameStart = new GameStart();
             gameStart.StartScene(warrior);
 
-            BattleStart battleStart = new BattleStart();
+            
 
 
-            AllAttack allAttack = new AllAttack();
 
-           
+
+
 
         }
     }
