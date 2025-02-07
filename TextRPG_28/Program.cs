@@ -11,6 +11,7 @@ namespace TextRPG_28
         static void Main(string[] args)
         {
             GameManeger gm = new GameManeger();
+
             gm.MonsterSetting();
             gm.IntroScene();
         }

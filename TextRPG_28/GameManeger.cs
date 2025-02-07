@@ -123,7 +123,66 @@ namespace TextRPG_28
 
         public void BattleScene()           // 전투 화면
         {
-            
+            bool Clear = false;
+            int randomA = random.Next(1, 4);
+            int[] randomB = new int[3];
+
+            for (int i = 0; i < randomA; i++)
+            {
+                randomB[i] = random.Next(0, 3);
+            }
+
+            while (!Clear)           // 대충 랜덤 수의 몬스터 출현
+            {
+                Console.Clear();
+                Console.WriteLine("Battle!!");
+                Console.WriteLine();
+
+                if (player.IsAttack == false)
+                {
+                    for (int i = 0; i < randomA; i++)
+                    {
+                        Console.WriteLine($"Lv. {monsters[randomB[i]].Level} {monsters[randomB[i]].Name}  Hp {monsters[randomB[i]].MaxHp}");
+                    }
+
+                    player.PlayerAttackText();
+                    Console.WriteLine("1. 공격");
+                    Console.WriteLine("0. 마을로 돌아가기");
+                    Console.WriteLine();
+
+                    int atkNum = Select.Input(0, 1);
+
+                    switch (atkNum)
+                    {
+                        case 1:
+                            player.IsAttack = true;
+                            break;
+                        case 0:
+                            StartScene();
+                            break;
+                    }
+                }
+                else if (player.IsAttack == true)
+                {
+                    for (int i = 0; i < randomA; i++)
+                    {
+                        Console.WriteLine($"{i + 1}. Lv. {monsters[randomB[i]].Level} {monsters[randomB[i]].Name}  Hp {monsters[randomB[i]].MaxHp}");
+                    }
+
+                    player.PlayerAttackText();
+                    Console.WriteLine("0. 취소");
+                    Console.WriteLine();
+
+                    int attackNum = Select.Input(0, randomA);
+
+                    switch (attackNum)
+                    {
+                        case 0:
+                            player.IsAttack = false;
+                            break;
+                    }
+                }
+            }
         }
 
         public void ResultScene()
