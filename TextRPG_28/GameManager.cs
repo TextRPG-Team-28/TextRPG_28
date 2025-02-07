@@ -23,6 +23,7 @@ namespace TextRPG_28
                 new Monster("공허충", 3, 9, 10);
                 new Monster("대포 미니언", 5, 8, 25);
             }
+
             GameStart gameStart = new GameStart();
             gameStart.StartScene(warrior);
 
