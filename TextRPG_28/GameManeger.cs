@@ -65,10 +65,10 @@ namespace TextRPG_28
             switch (jobNum)
             {
                 case 1:
-                    player = new Player(1, player.Name, "전사", 10, 10, 150, 1000);
+                    player = new Player(1, player.Name, "전사", 10, 10, 150, 1000, false);
                     break;
                 case 2:
-                    player = new Player(1, player.Name, "도적", 15, 5, 100, 1500);
+                    player = new Player(1, player.Name, "도적", 15, 5, 100, 1500, false);
                     break;
             }
 
@@ -123,29 +123,12 @@ namespace TextRPG_28
 
         public void BattleScene()           // 전투 화면
         {
-            Console.Clear();
-            Console.WriteLine("Battle!!");
-            Console.WriteLine();
+            
+        }
 
-            // 대충 랜덤 수의 몬스터 출현
-            int a = random.Next(1, 4);
+        public void ResultScene()
+        {
 
-            for (int i = 0; i < a; i++)
-            {
-                Console.WriteLine($"Lv. {monsters[i].Level} {monsters[i].Name}  Hp {monsters[i].MaxHp}");
-            }
-
-            Console.WriteLine();
-
-            Console.WriteLine("[내 정보]");
-            Console.WriteLine($"Lv. {player.Level}  {player.Name} ({player.Job})");
-            Console.WriteLine($"HP {player.Hp}/{player.MaxHp}");
-            Console.WriteLine();
-            Console.WriteLine("1. 공격");
-            Console.WriteLine();
-
-            Select.Input(1, 1);           // 1 입력시 플레이어 공격 화면으로 이동, 아니면 계속 반복
-            StartScene();
         }
     }
 }
