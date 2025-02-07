@@ -14,7 +14,7 @@ class Player// 플레이어 스텟입력
         public int Hp { get; }
         public int Gold { get; set; }
        
-        public Player(int levle, string name,string job, int atk, int def, int hp, int gold)
+        public Player(int levle, string name,string job, int atk, int def, int hp, int mp ,int gold)
         {
             Levle = levle;
             Name = name;
@@ -55,13 +55,21 @@ class Player// 플레이어 스텟입력
             Console.WriteLine($"HP {Hp}");   
             Console.WriteLine();
             Console.WriteLine("1. 공격");
-
+            
             int input = Selec.Input(1, 1);
             switch (input)
             {
                 case 1:
-                
+                    
                     break;
             }
+
+
+        }
+
+
+        public void InventoryItem()
+        {
+            Console.Clear();
         }
 }

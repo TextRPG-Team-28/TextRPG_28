@@ -11,7 +11,7 @@ namespace TextRPG_28
         public void Intro()//처음시작 이름 입력
         {
             Console.Clear();
-            player = new Player(1,"" ,"", 6, 7, 100, 1500);
+            player = new Player(1,"" ,"", 10, 5, 100, 50,1500);
             
             Console.WriteLine("플레이어 이름을 입력해주세요 ");
             
@@ -78,21 +78,30 @@ namespace TextRPG_28
             Console.Clear();
             Console.WriteLine("스파르타 던전에 오신 여러분 환영합니다 .");
             Console.WriteLine("이제 전투를 시작할 수 있습니다.");
-            Console.WriteLine("1. 상태 보기");
-            Console.WriteLine("2. 전투 시작");
+            Console.WriteLine("1. 상태보기");
+            Console.WriteLine("2. 인벤토리");
+            Console.WriteLine("3. 상점 ");
+            Console.WriteLine("4. 전투 시작");
+            Console.WriteLine("5. 회복 아이템");
             Console.WriteLine();
             
-            int input = Selec.Input(1, 2);
+            int input = Selec.Input(1, 5);
             switch (input)
             {
                 case 1:
                     StatsDis();
                     break;
                 case 2:
+                    Inventory();
+                    break;
+                case 3:
+                    Shop();
+                    break;
+                case 4:
                     BattleStage();
                     break;
-                default:
-                    Intro();
+                case 5:
+                    Posion();
                     break;
             }
                 
@@ -109,23 +118,36 @@ namespace TextRPG_28
             }
         }
 
+
+
+        public void Inventory() //인벤토리
+        {
+            player.InventoryItem();
+        }
+
+        public void Shop()
+        {
+            
+        }
         public void BattleStage()// 배틀 스테이지
         {
             player.BattleDis();
-            int input = Selec.Input(1, 1);
-            switch (input)
-            {
-                case 1:
-                    
-                    break;
-            }
+
         }
+
+        public void Posion()
+        {
+            
+        }
+        
+        
+        
         static void Main(string[] args)
         {
             Program intro = new Program();
             intro.Intro();
         }
-        }
+    }
   
     
     
