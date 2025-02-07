@@ -6,19 +6,17 @@ using System.Threading.Tasks;
 
 namespace TextRPG_28
 {
-    internal class Character
+    public interface ICharacter
     {
-        public interface ICharacter
-        {
-            string Name { get; set; }
-            int Level { get; set; }
-            int Attack { get; set; }
-            int Health { get; set; }
-            int Defend { get; set; }
-            int Gold { get; set; }
+        string Name { get; set; }
+        int Level { get; set; }
+        int Attack { get; set; }
+        int Health { get; set; }
 
-        }
+    }
 
+    public class Character
+    {
         public class Warrior : ICharacter
         {
             public string Name { get; set; }
@@ -28,11 +26,19 @@ namespace TextRPG_28
             public int Defend { get; set; }
             public int Gold { get; set; }
 
+        }
+
+        public class Monster : ICharacter
+        {
+            public string Name { get; set; }
+            public int Level { get; set; }
+            public int Attack { get; set; }
+            public int Health { get; set; }
 
         }
 
 
-       
+    }   
 
-    }
+    
 }
