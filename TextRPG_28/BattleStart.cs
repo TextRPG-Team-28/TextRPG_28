@@ -23,7 +23,22 @@ namespace TextRPG_28
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("1. 공격\n\n");
-            Console.WriteLine("원하시는 행동을 입력해주세요.\n>>");            
+            Console.WriteLine("원하시는 행동을 입력해주세요.\n>>");
+            while (true)
+            {
+                string Choice = Console.ReadLine();
+
+                if (!int.TryParse(Choice, out int yourChoice) || (yourChoice != 1))
+                {
+
+                    Console.WriteLine("잘못된 입력입니다.");
+                }
+                else
+                {
+                    //공격 함수 만들고 실행
+                    break;
+                }
+            }
         }
         public void NumberOfMonsters(int count)
         {
