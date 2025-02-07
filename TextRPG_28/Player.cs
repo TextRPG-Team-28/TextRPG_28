@@ -6,6 +6,7 @@ namespace TextRPG_28;
 
 class Player// 플레이어 스텟입력
 {
+    Battle battle;
         public int Levle { get; }
         public string Name { get; set; }
         public string Job { get; set; }
@@ -46,9 +47,11 @@ class Player// 플레이어 스텟입력
         
         public void BattleDis()
         {
+            battle = new Battle();
             Console.Clear();
             Console.WriteLine("Battle");
             Console.WriteLine();
+            
             
             Console.WriteLine("[내정보]");
             Console.WriteLine($"Lv . {Levle} {Name} ({Job})");
