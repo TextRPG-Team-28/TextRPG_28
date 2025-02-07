@@ -14,7 +14,7 @@ namespace TextRPG_28
     public class GameManager            // static Main에서 쓰기 위해 만든 겜매니저(튜터님 해설영상보고 좋아보여서 써봄)
     {
         Player player;
-        Monster monster;
+        List <Monster> monsters;
 
         public GameManager()            // 생성시 플레이어 이름 받아옴
         {
@@ -24,6 +24,13 @@ namespace TextRPG_28
             string name = Console.ReadLine();
 
             player = new Player(1, name, 10, 5, 100, 1500);
+
+            monsters = new List<Monster>
+            {
+                new Monster(2, "미니언", 15, 5),
+                new Monster(3, "공허충", 10, 9),
+                new Monster(5, "대포미니언", 25, 8)
+            };    
         }
 
         public void StartScene()            // 시작 화면
@@ -47,7 +54,6 @@ namespace TextRPG_28
                 case 2:
                     BattleScene();          // 전투 화면으로 이동
                     break;
-
             }
         }
 
@@ -76,13 +82,23 @@ namespace TextRPG_28
             Console.WriteLine("Battle!!");
             Console.WriteLine();
 
+            Random random = new Random();
+            int a = random.Next(monsters.Count);
+            int b = random.Next(monsters.Count);
+            int c = random.Next(monsters.Count);
+
             // 대충 랜덤 몬스터 출현, Monster클래스 만들어서 할 것 같음
+            Console.WriteLine($"Lv. {monsters[a].Level} {monsters[a].Name}  Hp {monsters[a].MaxHp}");
+            Console.WriteLine($"Lv. {monsters[b].Level} {monsters[b].Name}  Hp {monsters[b].MaxHp}");
+            Console.WriteLine($"Lv. {monsters[c].Level} {monsters[c].Name}  Hp {monsters[c].MaxHp}");
+            Console.WriteLine();
 
             Console.WriteLine("[내 정보]");
             Console.WriteLine($"Lv. {player.Level}  {player.Name} ({player.Job})");
             Console.WriteLine($"HP {player.Hp}/{player.MaxHp}");
             Console.WriteLine();
             Console.WriteLine("1. 공격");
+            Console.WriteLine();
 
             Input.GetInput(1, 1);           // 1 입력시 플레이어 공격 화면으로 이동, 아니면 계속 반복
             PlayerAttackScene();
