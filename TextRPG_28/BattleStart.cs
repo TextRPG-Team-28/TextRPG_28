@@ -10,6 +10,7 @@ namespace TextRPG_28
 {
     internal class BattleStart 
     {
+        List<Monster> currentMonsters = new List<Monster>();
         public void Battle(Warrior warrior)
         {       
             Console.Clear();
@@ -35,7 +36,7 @@ namespace TextRPG_28
                 }
                 else
                 {
-                    //공격 함수 만들고 실행
+                    Attack(warrior);
                     break;
                 }
             }
@@ -49,15 +50,55 @@ namespace TextRPG_28
 
             Random ramdom1 = new Random();
             int number = ramdom1.Next(1, count);
+            
 
             for (int i = 0; i < number; i++)
             {
                 Random ramdon = new Random();
                 int stageMonster = ramdon.Next(0, 3);
                 Console.WriteLine($"Lv.{monsterArray[stageMonster].Level}  {monsterArray[stageMonster].Name}  HP {monsterArray[stageMonster].Health}");
+                currentMonsters.Add(monsterArray[stageMonster]);
             }
+
+            
+
         }
 
+        public void Attack(Warrior warrior)
+        {
+            Console.Clear();
+
+            Console.WriteLine("Battle!!\n\n");
+            for (int i = 0;i < currentMonsters.Count;i++)
+            {
+                Console.WriteLine($"{i+1}  Lv.{currentMonsters[i].Level} {currentMonsters[i].Name}  HP {currentMonsters[i].Health} ");
+            }
+
+            Console.WriteLine("\n\n\n[내 정보]");
+            Console.WriteLine($"Lv.{warrior.Level}   {warrior.Name} (전사)");
+            Console.WriteLine($"HP {warrior.Health} / {warrior.Health}");  
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("0. 취소\n\n");
+            Console.WriteLine("대상을 선택해주세요\n>>");
+
+            while (true)
+            {
+                string Choice = Console.ReadLine();
+
+                if (!int.TryParse(Choice, out int yourChoice) || (yourChoice < 0 || yourChoice > currentMonsters.Count))
+                {
+
+                    Console.WriteLine("잘못된 입력입니다.");
+                }
+                else if (yourChoice == 0)
+                {
+                    GameStart gameStart = new GameStart();
+                    gameStart.StartScene(warrior);
+                    break;
+                }
+            }
+        }
 
 
     }

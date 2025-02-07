@@ -25,6 +25,9 @@ namespace TextRPG_28
 
             BattleStart battleStart = new BattleStart();
 
+
+            AllAttack allAttack = new AllAttack();
+
            
 
         }
