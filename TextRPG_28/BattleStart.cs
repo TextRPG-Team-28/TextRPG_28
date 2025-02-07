@@ -15,7 +15,7 @@ namespace TextRPG_28
             Console.Clear();
             Console.WriteLine("Battle!!\n\n");
 
-            NumberOfMonsters();
+            NumberOfMonsters(4);
             
             Console.WriteLine("\n\n\n[내 정보]");
             Console.WriteLine($"Lv.{warrior.Level}   {warrior.Name} (전사)");
@@ -25,7 +25,7 @@ namespace TextRPG_28
             Console.WriteLine("1. 공격\n\n");
             Console.WriteLine("원하시는 행동을 입력해주세요.\n>>");            
         }
-        public void NumberOfMonsters()
+        public void NumberOfMonsters(int count)
         {
             Monster[] monsterArray = new Monster[3];
             monsterArray[0] = new Monster("미니언", 2, 5, 15);
@@ -33,7 +33,7 @@ namespace TextRPG_28
             monsterArray[2] = new Monster("대포 미니언", 5, 8, 25);
 
             Random ramdom1 = new Random();
-            int number = ramdom1.Next(1, 5);
+            int number = ramdom1.Next(1, count);
 
             for (int i = 0; i < number; i++)
             {
