@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TextRPG_28
 {
-    internal class Fortest
+    internal class Character
     {
         public interface ICharacter
         {
@@ -32,17 +32,7 @@ namespace TextRPG_28
         }
 
 
-        static void Main(string[] args)
-        {
-            Warrior warrior = new Warrior();
-            {
-                warrior.Attack = 10;
-                warrior.Health = 100;
-                warrior.Defend = 5;
-                warrior.Gold = 1500;
-                warrior.Level = 1;
-            }
-        }
+       
 
     }
 }
