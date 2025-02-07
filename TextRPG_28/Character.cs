@@ -28,12 +28,14 @@ namespace TextRPG_28
 
         }
 
-        public class Monster : ICharacter
+        public class Monster(string name, int level, int attack, int hp) : ICharacter
         {
-            public string Name { get; set; }
-            public int Level { get; set; }
-            public int Attack { get; set; }
-            public int Health { get; set; }
+            public string Name { get; set; } = name;
+            public int Level { get; set; } = level;
+            public int Attack { get; set; } = attack;
+            public int Health { get; set; } = hp;
+
+            public List<Monster> Monsters { get; set; } = new List<Monster>();
 
         }
 
