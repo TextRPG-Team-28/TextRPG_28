@@ -55,6 +55,7 @@ class Player// 플레이어 스텟입력
             
             Console.WriteLine("[내정보]");
             Console.WriteLine($"Lv . {Levle} {Name} ({Job})");
+            Console.WriteLine($"Atk . {Atk}");
             Console.WriteLine($"HP {Hp}");   
             Console.WriteLine();
             Console.WriteLine("1. 공격");
