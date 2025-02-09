@@ -1,4 +1,4 @@
-using System.Dynamic;
+﻿using System.Dynamic;
 using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks.Dataflow;
 
@@ -67,8 +67,6 @@ class Player// 플레이어 스텟입력
                     
                     break;
             }
-
-
         }
 
 
