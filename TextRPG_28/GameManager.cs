@@ -9,7 +9,7 @@ namespace TextRPG_28
         {
             Warrior warrior = new Warrior();
             {
-                warrior.Name = "Chad"; // 나중에 사용자 입력으로 바꾸기~
+                warrior.Name = "Chad";
                 warrior.Attack = 10;
                 warrior.Health = 100;
                 warrior.Defend = 5;
@@ -19,14 +19,9 @@ namespace TextRPG_28
 
 
             GameStart gameStart = new GameStart();
-            gameStart.StartScene(warrior);
+            gameStart.StartScene(warrior);                   
 
-            
-
-
-
-
-
+            AllAttack allAttack = new AllAttack();
 
         }
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using static TextRPG_28.Character;
@@ -10,7 +11,7 @@ namespace TextRPG_28
 {
     internal class BattleStart 
     {
-        List<Monster> currentMonsters = new List<Monster>();
+        public List<Monster> currentMonsters = new List<Monster>();
         public void Battle(Warrior warrior)
         {       
             Console.Clear();
@@ -24,7 +25,7 @@ namespace TextRPG_28
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("1. 공격\n\n");
-            Console.WriteLine("원하시는 행동을 입력해주세요.\n>>");
+            Console.Write("원하시는 행동을 입력해주세요.\n>>");
             while (true)
             {
                 string Choice = Console.ReadLine();
@@ -46,7 +47,7 @@ namespace TextRPG_28
             Monster[] monsterArray = new Monster[3];
             monsterArray[0] = new Monster("미니언", 2, 5, 15);
             monsterArray[1] = new Monster("공허충", 3, 9, 10);
-            monsterArray[2] = new Monster("대포 미니언", 5, 8, 25);
+            monsterArray[2] = new Monster("대포 미니언", 5, 8, 25); 
 
             Random ramdom1 = new Random();
             int number = ramdom1.Next(1, count);
@@ -78,15 +79,15 @@ namespace TextRPG_28
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("0. 취소\n\n");
-            Console.WriteLine("대상을 선택해주세요\n>>");
+            Console.Write("대상을 선택해주세요\n>>");
 
             while (true)
             {
                 string Choice = Console.ReadLine();
-
+                
+                
                 if (!int.TryParse(Choice, out int yourChoice) || (yourChoice < 0 || yourChoice > currentMonsters.Count))
                 {
-
                     Console.WriteLine("잘못된 입력입니다.");
                 }
                 else if (yourChoice == 0)
@@ -98,7 +99,7 @@ namespace TextRPG_28
                 else
                 {
                     AllAttack allAttack = new AllAttack();
-                    allAttack.Attack();
+                    allAttack.SceneAttack(warrior, currentMonsters, yourChoice);
                 }
             }
         }

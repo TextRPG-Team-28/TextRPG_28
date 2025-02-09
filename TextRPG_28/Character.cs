@@ -35,6 +35,7 @@ namespace TextRPG_28
             public int Attack { get; set; } = attack;
             public int Health { get; set; } = hp;
 
+            
         }
 
 
