@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace TextRPG_28
 {
-    internal class Fortest
+    internal class Monster
     {
-        string test = "테스트중";
+        
         
     }
 }
