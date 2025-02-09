@@ -26,16 +26,26 @@ namespace TextRPG_28
             public int Defend { get; set; }
             public int Gold { get; set; }
 
+          
+
         }
 
-        public class Monster(string name, int level, int attack, int hp) : ICharacter
+        public class Monster : ICharacter
         {
-            public string Name { get; set; } = name;
-            public int Level { get; set; } = level;
-            public int Attack { get; set; } = attack;
-            public int Health { get; set; } = hp;
+            public string Name { get; set; } 
+            public int Level { get; set; } 
+            public int Attack { get; set; } 
+            public int Health { get; set; } 
 
-            
+            public Monster(string name, int level, int attack, int hp)
+            {
+                Name = name;
+                Level = level;
+                Attack = attack;
+                Health = hp;
+            }
+
+
         }
 
 

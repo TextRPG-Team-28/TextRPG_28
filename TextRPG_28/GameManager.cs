@@ -2,26 +2,34 @@
 
 namespace TextRPG_28
 {
-    public class GameManager()
+    public class GameManager
     {
-                
-        static public void Main(string[] args)
+        public List<Character.Monster> monsterList = new List<Character.Monster>
         {
-            Warrior warrior = new Warrior();
+            new Character.Monster("미니언", 2, 5, 15),
+            new Character.Monster("공허충", 3, 9, 10),
+            new Character.Monster("대포 미니언", 5, 8, 25)
+        };
+
+        
+ 
+        public static void Main(string[] args)
+        {
+            Character.Warrior warrior = new Character.Warrior
             {
-                warrior.Name = "Chad";
-                warrior.Attack = 10;
-                warrior.Health = 100;
-                warrior.Defend = 5;
-                warrior.Gold = 1500;
-                warrior.Level = 1;
-            }
+                Name = "Chad",
+                Attack = 10,
+                Health = 100,
+                Defend = 5,
+                Gold = 1500,
+                Level = 1
+            };
 
-
+            GameManager gameManager = new GameManager();
             GameStart gameStart = new GameStart();
-            gameStart.StartScene(warrior);                   
+            gameStart.StartScene(warrior, gameManager.monsterList);
 
-            AllAttack allAttack = new AllAttack();
+
 
         }
     }

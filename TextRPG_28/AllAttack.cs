@@ -9,28 +9,43 @@ using static TextRPG_28.Character;
 
 namespace TextRPG_28
 {
-    internal class AllAttack : BattleStart
+    internal class AllAttack 
     {
-        public void SceneAttack(Warrior warrior, List<Monster> monsters, int monsterNumber)
+        public void AttackStart(Character.Warrior warrior, List<Character.Monster> monsters, int monsterNumber)
         {
 
-            for ( int i = 0; i < monsters.Count; i++ )
-            {
-                Console.WriteLine($"");
-            }
             Console.Clear();
             Console.WriteLine("Battle!!\n\n");
             Console.WriteLine($"{warrior.Name} 의 공격!");
-            Console.WriteLine($"Lv.{monsters[monsterNumber -1].Level} {monsters[monsterNumber -1].Name} 을(를) 맞췄습니다. [데미지 : {warrior.Attack}]");
+
+            Character.Monster targetMonster = monsters[monsterNumber - 1];
+            int damage = WarriorAttack(targetMonster, warrior);
+            
+
+            Console.WriteLine($"Lv.{targetMonster.Level} {targetMonster.Name} 을(를) 맞췄습니다. [데미지 : {warrior.Attack}]");
             Console.WriteLine("\n");
-            Console.WriteLine($"Lv. {monsters[monsterNumber - 1].Level} {monsters[monsterNumber - 1].Name}");
-            Console.WriteLine($"HP {monsters[monsterNumber - 1].Health}  ->  ");
+            Console.WriteLine($"Lv. {targetMonster.Level} {targetMonster.Name}");
+            Console.WriteLine($"HP {targetMonster.Health}  ->  ");
 
-            
 
-            
 
-            
+        }
+
+        public int WarriorAttack(Character.Monster monster, Character.Warrior warrior)
+        {
+            int max;
+            int min;
+            float x = warrior.Attack * 0.9f;
+            float y = warrior.Attack * 1.1f;
+
+            min = (int)(x + 0.5f);
+            max = (int)(y + 0.5f);
+
+            Random random = new Random();
+            int currentAttack = random.Next(min, max+1);
+            return currentAttack;
+
+
         }
     }
 }

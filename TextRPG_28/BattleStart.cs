@@ -11,13 +11,13 @@ namespace TextRPG_28
 {
     internal class BattleStart 
     {
-        public List<Monster> currentMonsters = new List<Monster>();
-        public void Battle(Warrior warrior)
-        {       
+        public List<Character.Monster> currentMonsters = new List<Character.Monster>();
+        public void Battle(Character.Warrior warrior, List<Character.Monster> monsterList)
+        {
             Console.Clear();
             Console.WriteLine("Battle!!\n\n");
 
-            NumberOfMonsters(4);
+            NumberOfMonsters(monsterList, 4);
             
             Console.WriteLine("\n\n\n[내 정보]");
             Console.WriteLine($"Lv.{warrior.Level}   {warrior.Name} (전사)");
@@ -26,6 +26,7 @@ namespace TextRPG_28
             Console.WriteLine();
             Console.WriteLine("1. 공격\n\n");
             Console.Write("원하시는 행동을 입력해주세요.\n>>");
+
             while (true)
             {
                 string Choice = Console.ReadLine();
@@ -42,28 +43,31 @@ namespace TextRPG_28
                 }
             }
         }
-        public void NumberOfMonsters(int count)
+        public void NumberOfMonsters(List<Monster> monsterList, int count)
         {
-            Monster[] monsterArray = new Monster[3];
-            monsterArray[0] = new Monster("미니언", 2, 5, 15);
-            monsterArray[1] = new Monster("공허충", 3, 9, 10);
-            monsterArray[2] = new Monster("대포 미니언", 5, 8, 25); 
+            Random random = new Random();
+            int number = random.Next(1, count + 1);  
 
-            Random ramdom1 = new Random();
-            int number = ramdom1.Next(1, count);
             
+            currentMonsters.Clear();
 
-            for (int i = 0; i < number; i++)
+            
+            if (monsterList.Count == 0)
             {
-                Random ramdon = new Random();
-                int stageMonster = ramdon.Next(0, 3);
-                Console.WriteLine($"Lv.{monsterArray[stageMonster].Level}  {monsterArray[stageMonster].Name}  HP {monsterArray[stageMonster].Health}");
-                currentMonsters.Add(monsterArray[stageMonster]);
+                Console.WriteLine("몬스터 목록이 비어있습니다!");
+                return;
             }
 
+            
+            for (int i = 0; i < number; i++)
+            {
+                int stageMonster = random.Next(0, monsterList.Count);  
+                Console.WriteLine($"Lv.{monsterList[stageMonster].Level}  {monsterList[stageMonster].Name}  HP {monsterList[stageMonster].Health}");
+                currentMonsters.Add(monsterList[stageMonster]);  
+            }
         }
 
-        public void AttackScene(Warrior warrior)
+        public void AttackScene(Character.Warrior warrior)
         {
             Console.Clear();
 
@@ -93,13 +97,13 @@ namespace TextRPG_28
                 else if (yourChoice == 0)
                 {
                     GameStart gameStart = new GameStart();
-                    gameStart.StartScene(warrior);
+                    gameStart.StartScene(warrior, new List<Character.Monster>());
                     break;
                 }
                 else
                 {
                     AllAttack allAttack = new AllAttack();
-                    allAttack.SceneAttack(warrior, currentMonsters, yourChoice);
+                    allAttack.AttackStart(warrior, currentMonsters, yourChoice);
                 }
             }
         }

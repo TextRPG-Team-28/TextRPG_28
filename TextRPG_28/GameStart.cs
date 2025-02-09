@@ -10,7 +10,7 @@ namespace TextRPG_28
 {
     internal class GameStart
     {
-        public void StartScene(Warrior warrior)
+        public void StartScene(Warrior warrior, List<Character.Monster> monsterList)
         {
             Console.Clear();
             Console.WriteLine("스파르타 던전에 오신 여러분 환영합니다.");
@@ -38,7 +38,7 @@ namespace TextRPG_28
                             break;
                         case 2:
                             BattleStart battleStart = new BattleStart();
-                            battleStart.Battle(warrior);
+                            battleStart.Battle(warrior, monsterList);
                             break;
                         
                     }
@@ -48,24 +48,16 @@ namespace TextRPG_28
             }            
         }
 
-        public void ShowStatus(Warrior warrior)
+        public void ShowStatus(Character.Warrior warrior)
         {
             Console.Clear();
             Console.WriteLine("--상태 보기--");
             Console.WriteLine("캐릭터의 정보가 표시됩니다.\n");
-            int pulsAttack = 0, pulsDefense = 0, pulsHealth = 0;
-
-            //나중에 아이템 만들면 착용 장비 리스트 만들어서 추가되게 만들어줘야함.
-
-            string pulsAttackMark = (pulsAttack > 0) ? $"(+ {pulsAttack})" : "";
-            string pulsDefenseMark = (pulsDefense > 0) ? $"(+ {pulsDefense})" : "";
-            string pulsHealthMark = (pulsHealth > 0) ? $"(+ {pulsHealth})" : "";
-
             Console.WriteLine($"Lv. {warrior.Level}");
             Console.WriteLine($"{warrior.Name} ( 전사 )");
-            Console.WriteLine($"공격력: {warrior.Attack + pulsAttack}  {pulsAttackMark}");
-            Console.WriteLine($"방어력: {warrior.Defend + pulsDefense}  {pulsDefenseMark}");
-            Console.WriteLine($"체력: {warrior.Health + pulsHealth}  {pulsHealthMark}");
+            Console.WriteLine($"공격력: {warrior.Attack}");
+            Console.WriteLine($"방어력: {warrior.Defend}");
+            Console.WriteLine($"체력: {warrior.Health}");
             Console.WriteLine($"Gold: {warrior.Gold} G\n");
             Console.WriteLine();
             Console.WriteLine("0. 나가기");
@@ -84,7 +76,7 @@ namespace TextRPG_28
                 }
                 else if (yourInput == 0)
                 {
-                    StartScene(warrior);
+                    StartScene(warrior, new List<Character.Monster>());
                     break;
                 }
             }
