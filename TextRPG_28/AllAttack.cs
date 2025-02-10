@@ -18,7 +18,7 @@ namespace TextRPG_28
             Console.WriteLine($"{player.Name} 의 공격!");
 
             Character.Monster targetMonster = monsters[monsterNumber - 1];
-            int damage = WarriorAttack(targetMonster, player);
+            int damage = PlayerAttack(targetMonster, player);
 
             if(targetMonster.Health - damage <= 0)
             {
@@ -33,7 +33,7 @@ namespace TextRPG_28
             Console.WriteLine($"HP {targetMonster.Health}  -> {deadMark}");
         }
 
-        public int WarriorAttack(Character.Monster monster, Character.Player player)
+        public int PlayerAttack(Character.Monster monster, Character.Player player)
         {
             int max;
             int min;
@@ -46,6 +46,11 @@ namespace TextRPG_28
             Random random = new Random();
             int currentAttack = random.Next(min, max+1);
             return currentAttack;
+        }
+
+        public int MonsterAttack()
+        {
+            return 1;
         }
     }
 }

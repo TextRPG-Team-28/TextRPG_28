@@ -12,6 +12,7 @@ namespace TextRPG_28
     internal class BattleStart 
     {
         public List<Character.Monster> currentMonsters = new List<Character.Monster>();
+
         public void Battle(Character.Player player, List<Character.Monster> monsterList)
         {
             Console.Clear();
@@ -24,25 +25,15 @@ namespace TextRPG_28
             Console.WriteLine($"HP {player.Health} / {player.Health}"); // 현재 체력 / 원래 체력 전투할 때 나눠줘야 함. 
             Console.WriteLine();
             Console.WriteLine();
-            Console.WriteLine("1. 공격\n\n");
-            Console.Write("원하시는 행동을 입력해주세요.\n>>");
+            Console.WriteLine("1. 공격\n");
+            Console.WriteLine();
+            Console.WriteLine("원하시는 행동을 입력해주세요.");
+            Console.Write(">> ");
 
-            while (true)
-            {
-                string Choice = Console.ReadLine();
-
-                if (!int.TryParse(Choice, out int yourChoice) || (yourChoice != 1))
-                {
-
-                    Console.WriteLine("잘못된 입력입니다.");
-                }
-                else
-                {
-                    AttackScene(player);
-                    break;
-                }
-            }
+            Select.GetInput(1, 1);
+            AttackScene(player);
         }
+
         public void NumberOfMonsters(List<Monster> monsterList, int count)
         {
             Random random = new Random();
@@ -74,13 +65,27 @@ namespace TextRPG_28
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("0. 취소\n\n");
-            Console.Write("대상을 선택해주세요\n>>");
+            Console.Write("대상을 선택해주세요\n>> ");
+
+            //int yourChoice = Select.GetInput(0, currentMonsters.Count);
+
+            //switch (yourChoice)
+            //{
+            //    case 0:
+            //        Scene scene = new Scene();
+            //        scene.StartScene(player, new List<Character.Monster>());
+            //        break;
+            //    default:
+            //        AllAttack allAttack = new AllAttack();
+            //        allAttack.AttackStart(player, currentMonsters, yourChoice);
+            //        break;
+            //}
 
             while (true)
             {
                 string Choice = Console.ReadLine();
-                
-                
+
+
                 if (!int.TryParse(Choice, out int yourChoice) || (yourChoice < 0 || yourChoice > currentMonsters.Count))
                 {
                     Console.WriteLine("잘못된 입력입니다.");

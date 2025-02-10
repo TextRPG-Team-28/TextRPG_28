@@ -19,10 +19,13 @@ namespace TextRPG_28
             Console.WriteLine();
             Console.WriteLine("1. 전사   ->   공격력  10   방어력  10   체력  150   기초자금  1000 gold");
             Console.WriteLine("2. 도적   ->   공격력  15   방어력  05   체력  100   기초자금  1500 gold");
+            Console.WriteLine();
+            Console.WriteLine("원하시는 행동을 입력해주세요.");
+            Console.Write(">> ");
 
-            int jobNum = Select.GetInput(1, 2);
+            int yourChoice1 = Select.GetInput(1, 2);
 
-            switch (jobNum)
+            switch (yourChoice1)
             {
                 case 1:
                     player = new Player(player.Name, "전사", 1, 10, 10, 150, 1000);
@@ -37,10 +40,13 @@ namespace TextRPG_28
             Console.WriteLine();
             Console.WriteLine("1. 결정 하기");
             Console.WriteLine("2. 다시 선택");
+            Console.WriteLine();
+            Console.WriteLine("원하시는 행동을 입력해주세요.");
+            Console.Write(">> ");
 
-            int selectNum = Select.GetInput(1, 2);
+            int yourChoice2 = Select.GetInput(1, 2);
 
-            switch (selectNum)
+            switch (yourChoice2)
             {
                 case 1:
                     StartScene(player, gameManager.monsterList);
@@ -59,32 +65,21 @@ namespace TextRPG_28
             Console.WriteLine("1. 상태 보기");
             Console.WriteLine("2. 전투 시작");
             Console.WriteLine();
-            Console.Write("원하시는 행동을 입력해주세요 \n>>");
+            Console.WriteLine("원하시는 행동을 입력해주세요.");
+            Console.Write(">> ");
 
-            while (true)
+            int yourChoice = Select.GetInput(1, 2);
+
+            switch (yourChoice)
             {
-                string Choice = Console.ReadLine();
-
-                if (!int.TryParse(Choice, out int yourChoice) || (yourChoice > 3 || yourChoice < 1))
-                {
-
-                    Console.WriteLine("잘못된 입력입니다.");
-                }
-                else
-                {
-                    switch (yourChoice)
-                    {
-                        case 1:
-                            ShowStatus(player);
-                            break;
-                        case 2:
-                            BattleStart battleStart = new BattleStart();
-                            battleStart.Battle(player, gameManager.monsterList);
-                            break;                        
-                    }
+                case 1:
+                    ShowStatus(player);
                     break;
-                }                
-            }            
+                case 2:
+                    BattleStart battleStart = new BattleStart();
+                    battleStart.Battle(player, gameManager.monsterList);
+                    break;                        
+            }          
         }
 
         public void ShowStatus(Character.Player player)
@@ -101,22 +96,11 @@ namespace TextRPG_28
             Console.WriteLine();
             Console.WriteLine("0. 나가기");
             Console.WriteLine();
-            Console.Write("원하시는 행동을 입력해주세요 \n>>");
+            Console.WriteLine("원하시는 행동을 입력해주세요.");
+            Console.Write(">> ");
 
-            while (true)
-            {
-                string input = Console.ReadLine();
-
-                if (!int.TryParse(input, out int yourInput) || yourInput != 0)
-                {
-                    Console.WriteLine("0을 누르세요.");
-                }
-                else if (yourInput == 0)
-                {
-                    StartScene(player, new List<Character.Monster>());
-                    break;
-                }
-            }
+            Select.GetInput(0, 0);
+            StartScene(player, new List<Character.Monster>());
         }
     }   
 }

@@ -16,6 +16,7 @@ namespace TextRPG_28
         {
             GameManager gameManager = new GameManager();
             Scene scene = new Scene();
+
             while (true)
             {
                 Console.Clear();
@@ -31,6 +32,9 @@ namespace TextRPG_28
                 Console.WriteLine();
                 Console.WriteLine("1. 결정 하기");
                 Console.WriteLine("2. 다시 입력");
+                Console.WriteLine();
+                Console.WriteLine("원하시는 행동을 입력해주세요.");
+                Console.Write(">> ");
 
                 int nameNum = Select.GetInput(1, 2);
 
