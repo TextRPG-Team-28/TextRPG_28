@@ -18,7 +18,7 @@ namespace TextRPG_28
             Console.WriteLine("원하시는 이름을 설정해주세요.");
             Console.Write(">> ");
             string name = Console.ReadLine();
-            player = new Player(1, name, 10, 5, 100, 1500);
+            Player player = new Player(name, "전사", 1, 10, 5, 100, 1500);
 
             GameManager gameManager = new GameManager();
             GameStart gameStart = new GameStart();
