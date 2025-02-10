@@ -19,6 +19,7 @@ namespace TextRPG_28
         public class Player : ICharacter
         {
             public string Name { get; set; }
+            public string Job { get; set; }
             public int Level { get; set; }
             public int Attack { get; set; }
             public int Health { get; set; }

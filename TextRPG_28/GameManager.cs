@@ -14,15 +14,18 @@ namespace TextRPG_28
 
         public static void Main(string[] args)
         {
+            Player player;
+            player = new Player();
             Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다.");
             Console.WriteLine("원하시는 이름을 설정해주세요.");
             Console.Write(">> ");
-            string name = Console.ReadLine();
-            player = new Player(1, name, 10, 5, 100, 1500);
+            player.Name = Console.ReadLine();
 
             GameManager gameManager = new GameManager();
             GameStart gameStart = new GameStart();
             gameStart.StartScene(player, gameManager.monsterList);
         }
+
+
     }
 }

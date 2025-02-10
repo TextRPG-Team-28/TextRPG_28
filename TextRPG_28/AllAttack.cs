@@ -31,10 +31,6 @@ namespace TextRPG_28
             Console.WriteLine("\n");
             Console.WriteLine($"Lv. {targetMonster.Level} {targetMonster.Name}");
             Console.WriteLine($"HP {targetMonster.Health}  -> {deadMark}");
-<<<<<<< HEAD
-            
-=======
->>>>>>> ccbad4f ([Refactor] 이름 수정)
         }
 
         public int WarriorAttack(Character.Monster monster, Character.Player player)
@@ -52,33 +48,30 @@ namespace TextRPG_28
             return currentAttack;
         }
 
-        public void Monsterattack(Character.Monster monster, Character.Warrior warrior)
+        public void Monsterattack(Character.Monster monster, Character.Player player)
         {
                 Console.Clear();
                 Console.WriteLine("Battle!!\n\n");
-                Console.WriteLine($"{warrior.Name} 의 공격!");
+                Console.WriteLine($"{player.Name} 의 공격!");
 
-                Character.Monster targetMonster = warrior[monsterNumber - 1];
-                int damage = WarriorAttack(targetMonster, warrior);
+               
+                int damage = WarriorAttack(monster, player);
 
-                if(targetMonster.Health - damage <= 0)
+                if(monster.Health - damage <= 0)
                 {
-                    monsters.Remove(targetMonster); //Remove가 아니라 다른 걸로 바꿔야,, 리스트를 하나 만들까?
+                   
                 }
-
-                string deadMark = targetMonster.Health - damage <= 0 ? "Dead" : $"{targetMonster.Health - damage}";
-
-                Console.WriteLine($"Lv.{targetMonster.Name} 이 {warrior}  을(를) 맞췄습니다. [데미지 : {damage}]");
+                Console.WriteLine($"Lv.{monster.Name} 이 {player.Name}  을(를) 맞췄습니다. [데미지 : {damage}]");
                 Console.WriteLine("\n");
-                Console.WriteLine($"Lv. {targetMonster.Level} {targetMonster.Name}");
-                Console.WriteLine($"HP {targetMonster.Health}  -> {deadMark}");
+                Console.WriteLine($"Lv. {player.Level} {player.Name}");
+                Console.WriteLine($"HP {player.Health}");
         }
-        public int MonsterDamge(Character.Monster monster, Character.Warrior warrior)
+        public int MonsterDamge(Character.Monster monster, Character.Player player)
         {
             int max;
             int min;
-            float x = monster.Attack * 0.9f;
-            float y = warrior.Attack * 1.1f;
+            float x = monster.Attack * 0.9f - player.Defend *0.1f;
+            float y = monster.Attack * 1.1f - player.Defend *0.1f;
 
             min = (int)(x + 0.5f);
             max = (int)(y + 0.5f);

@@ -99,15 +99,8 @@ namespace TextRPG_28
             }
             
         }
-<<<<<<< HEAD
         
-
-
     }
+}    
 
- 
-    
-=======
-    }    
->>>>>>> ccbad4f ([Refactor] 이름 수정)
-}
+
