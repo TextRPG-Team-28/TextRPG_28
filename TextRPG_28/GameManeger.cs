@@ -30,8 +30,10 @@ namespace TextRPG_28
             for (int i = 0; i < number; i++)
             {
                 int stageMonster = random.Next(0, monsters.Count);
-                Console.WriteLine($"Lv.{monsters[stageMonster].Level}  {monsters[stageMonster].Name}  HP {monsters[stageMonster].Hp}");
-                currentMonsters.Add(monsters[stageMonster]);
+                Monster newMonster = new Monster(monsters[stageMonster].Level, monsters[stageMonster].Name, monsters[stageMonster].Hp, monsters[stageMonster].Attack, false);
+                Console.WriteLine($"Lv.{newMonster.Level}  {newMonster.Name}  HP {newMonster.Hp}");
+                currentMonsters.Add(newMonster);
+                //Console.WriteLine($"{currentMonsters[i].Name} {i}");
             }
 
         }

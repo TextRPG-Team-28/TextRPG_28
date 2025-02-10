@@ -16,9 +16,11 @@ namespace TextRPG_28
 
             Monster targetMonster = monsters[monsterNumber - 1];
             int damage = isAttack(targetMonster, player);
-
+            int maxHp = targetMonster.Hp; 
             string deadMark = targetMonster.Hp - damage <= 0 ? "Dead" : $"{targetMonster.Hp - damage}";
+
             monsters[monsterNumber - 1].Hp = targetMonster.Hp - damage;
+
             if(monsters[monsterNumber - 1].Hp <= 0)
             {
                 monsters[monsterNumber - 1].isDead = true;
@@ -27,7 +29,7 @@ namespace TextRPG_28
             Console.WriteLine($"Lv.{targetMonster.Level} {targetMonster.Name} 을(를) 맞췄습니다. [데미지 : {damage}]");
             Console.WriteLine("\n");
             Console.WriteLine($"Lv. {targetMonster.Level} {targetMonster.Name}");
-            Console.WriteLine($"HP {targetMonster.Hp}  -> {deadMark}");
+            Console.WriteLine($"HP {maxHp}  -> {deadMark}");
             Console.WriteLine("\n");
             Console.WriteLine("0. 다음");
             Console.Write(">> ");
