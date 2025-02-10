@@ -65,7 +65,7 @@ namespace TextRPG_28
             Console.WriteLine("Battle!!\n\n");
             for (int i = 0;i < currentMonsters.Count;i++)
             {
-                Console.WriteLine($" {i+1}  Lv.{currentMonsters[i].Level} {currentMonsters[i].Name}  HP {currentMonsters[i].Health} ");
+                Console.WriteLine($"{i+1}  Lv.{currentMonsters[i].Level} {currentMonsters[i].Name}  HP {currentMonsters[i].Health} ");
             }
 
             Console.WriteLine("\n\n\n[내 정보]");
@@ -75,6 +75,7 @@ namespace TextRPG_28
             Console.WriteLine();
             Console.WriteLine("0. 취소\n\n");
             Console.Write("대상을 선택해주세요\n>>");
+
 
             while (true)
             {

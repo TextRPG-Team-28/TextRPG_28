@@ -55,16 +55,16 @@ namespace TextRPG_28
                 Console.WriteLine($"{player.Name} 의 공격!");
 
                
-                int damage = WarriorAttack(monster, player);
+                int damage = MonsterDamge(monster, player);
 
-                if(monster.Health - damage <= 0)
+                if(player.Health - damage <= 0)
                 {
-                   
+                   // 패배 화면
                 }
                 Console.WriteLine($"Lv.{monster.Name} 이 {player.Name}  을(를) 맞췄습니다. [데미지 : {damage}]");
                 Console.WriteLine("\n");
                 Console.WriteLine($"Lv. {player.Level} {player.Name}");
-                Console.WriteLine($"HP {player.Health}");
+                Console.WriteLine($"HP {player.Health}"); // 최대 hp 현재 hp가 나오게 
         }
         public int MonsterDamge(Character.Monster monster, Character.Player player)
         {
@@ -79,11 +79,7 @@ namespace TextRPG_28
             Random random = new Random();
             int currentAttack = random.Next(min, max+1);
             return currentAttack;
-
-
         }
-
-     
     }
     
 }
