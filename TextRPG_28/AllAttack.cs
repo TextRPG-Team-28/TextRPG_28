@@ -31,6 +31,24 @@ namespace TextRPG_28
             Console.WriteLine("\n");
             Console.WriteLine($"Lv. {targetMonster.Level} {targetMonster.Name}");
             Console.WriteLine($"HP {targetMonster.Health}  -> {deadMark}");
+            Console.WriteLine("\n");
+            Console.Write("0. 다음 \n\n>>");
+
+            while (true)
+            {
+                string Choice = Console.ReadLine();
+
+                if (!int.TryParse(Choice, out int yourChoice) || (yourChoice != 0))
+                {
+
+                    Console.WriteLine("잘못된 입력입니다.");
+                }
+                else
+                {
+                    //Enemy Phase
+                    break;
+                }
+            }
         }
 
         public int WarriorAttack(Character.Monster monster, Character.Player player)
