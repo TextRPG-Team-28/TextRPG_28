@@ -12,7 +12,6 @@ namespace TextRPG_28
         {
             GameManeger gm = new GameManeger();
 
-            gm.MonsterSetting();
             gm.IntroScene();
         }
     }
