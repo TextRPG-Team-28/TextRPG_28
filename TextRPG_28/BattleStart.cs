@@ -12,7 +12,7 @@ namespace TextRPG_28
     internal class BattleStart 
     {
         public List<Character.Monster> currentMonsters = new List<Character.Monster>();
-        public void Battle(Character.Warrior warrior, List<Character.Monster> monsterList)
+        public void Battle(Character.Player player, List<Character.Monster> monsterList)
         {
             Console.Clear();
             Console.WriteLine("Battle!!\n\n");
@@ -20,8 +20,8 @@ namespace TextRPG_28
             NumberOfMonsters(monsterList, 4);
             
             Console.WriteLine("\n\n\n[내 정보]");
-            Console.WriteLine($"Lv.{warrior.Level}   {warrior.Name} (전사)");
-            Console.WriteLine($"HP {warrior.Health} / {warrior.Health}"); // 현재 체력 / 원래 체력 전투할 때 나눠줘야 함. 
+            Console.WriteLine($"Lv.{player.Level}   {player.Name} (전사)");
+            Console.WriteLine($"HP {player.Health} / {player.Health}"); // 현재 체력 / 원래 체력 전투할 때 나눠줘야 함. 
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("1. 공격\n\n");
@@ -38,7 +38,7 @@ namespace TextRPG_28
                 }
                 else
                 {
-                    AttackScene(warrior);
+                    AttackScene(player);
                     break;
                 }
             }
@@ -47,10 +47,8 @@ namespace TextRPG_28
         {
             Random random = new Random();
             int number = random.Next(1, count + 1);  
-
             
             currentMonsters.Clear();
-
             
             for (int i = 0; i < number; i++)
             {
@@ -60,7 +58,7 @@ namespace TextRPG_28
             }
         }
 
-        public void AttackScene(Character.Warrior warrior)
+        public void AttackScene(Character.Player player)
         {
             Console.Clear();
 
@@ -71,8 +69,8 @@ namespace TextRPG_28
             }
 
             Console.WriteLine("\n\n\n[내 정보]");
-            Console.WriteLine($"Lv.{warrior.Level}   {warrior.Name} (전사)");
-            Console.WriteLine($"HP {warrior.Health} / {warrior.Health}");  
+            Console.WriteLine($"Lv.{player.Level}   {player.Name} (전사)");
+            Console.WriteLine($"HP {player.Health} / {player.Health}");  
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("0. 취소\n\n");
@@ -90,17 +88,18 @@ namespace TextRPG_28
                 else if (yourChoice == 0)
                 {
                     GameStart gameStart = new GameStart();
-                    gameStart.StartScene(warrior, new List<Character.Monster>());
+                    gameStart.StartScene(player, new List<Character.Monster>());
                     break;
                 }
                 else
                 {
                     AllAttack allAttack = new AllAttack();
-                    allAttack.AttackStart(warrior, currentMonsters, yourChoice);
+                    allAttack.AttackStart(player, currentMonsters, yourChoice);
                 }
             }
             
         }
+<<<<<<< HEAD
         
 
 
@@ -108,4 +107,7 @@ namespace TextRPG_28
 
  
     
+=======
+    }    
+>>>>>>> ccbad4f ([Refactor] 이름 수정)
 }

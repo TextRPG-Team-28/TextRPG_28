@@ -11,15 +11,14 @@ namespace TextRPG_28
 {
     internal class AllAttack 
     {
-        public void AttackStart(Character.Warrior warrior, List<Character.Monster> monsters, int monsterNumber)
+        public void AttackStart(Character.Player player, List<Character.Monster> monsters, int monsterNumber)
         {
-
             Console.Clear();
             Console.WriteLine("Battle!!\n\n");
-            Console.WriteLine($"{warrior.Name} 의 공격!");
+            Console.WriteLine($"{player.Name} 의 공격!");
 
             Character.Monster targetMonster = monsters[monsterNumber - 1];
-            int damage = WarriorAttack(targetMonster, warrior);
+            int damage = WarriorAttack(targetMonster, player);
 
             if(targetMonster.Health - damage <= 0)
             {
@@ -32,15 +31,18 @@ namespace TextRPG_28
             Console.WriteLine("\n");
             Console.WriteLine($"Lv. {targetMonster.Level} {targetMonster.Name}");
             Console.WriteLine($"HP {targetMonster.Health}  -> {deadMark}");
+<<<<<<< HEAD
             
+=======
+>>>>>>> ccbad4f ([Refactor] 이름 수정)
         }
 
-        public int WarriorAttack(Character.Monster monster, Character.Warrior warrior)
+        public int WarriorAttack(Character.Monster monster, Character.Player player)
         {
             int max;
             int min;
-            float x = warrior.Attack * 0.9f;
-            float y = warrior.Attack * 1.1f;
+            float x = player.Attack * 0.9f;
+            float y = player.Attack * 1.1f;
 
             min = (int)(x + 0.5f);
             max = (int)(y + 0.5f);
@@ -48,8 +50,6 @@ namespace TextRPG_28
             Random random = new Random();
             int currentAttack = random.Next(min, max+1);
             return currentAttack;
-
-
         }
 
         public void Monsterattack(Character.Monster monster, Character.Warrior warrior)
