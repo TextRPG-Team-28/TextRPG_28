@@ -99,7 +99,9 @@ namespace TextRPG_28
                     allAttack.AttackStart(warrior, currentMonsters, yourChoice);
                 }
             }
+            
         }
+        
 
 
     }
