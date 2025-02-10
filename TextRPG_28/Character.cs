@@ -19,11 +19,23 @@ namespace TextRPG_28
         public class Player : ICharacter
         {
             public string Name { get; set; }
+            public string Job { get; set; }
             public int Level { get; set; }
             public int Attack { get; set; }
             public int Health { get; set; }
             public int Defend { get; set; }
             public int Gold { get; set; }
+
+            public Player(string name,string job, int level, int atk, int def, int health, int gold)
+            {
+                Name = name;
+                Job = job;
+                Level = level;
+                Attack = atk;
+                Defend = def;
+                Gold = gold;
+                Health = health;
+            }
         }
 
         public class Monster : ICharacter
