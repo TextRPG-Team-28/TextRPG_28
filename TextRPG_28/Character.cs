@@ -12,12 +12,11 @@ namespace TextRPG_28
         int Level { get; set; }
         int Attack { get; set; }
         int Health { get; set; }
-
     }
 
     public class Character
     {
-        public class Warrior : ICharacter
+        public class Player : ICharacter
         {
             public string Name { get; set; }
             public int Level { get; set; }
@@ -25,9 +24,6 @@ namespace TextRPG_28
             public int Health { get; set; }
             public int Defend { get; set; }
             public int Gold { get; set; }
-
-          
-
         }
 
         public class Monster : ICharacter
@@ -44,12 +40,6 @@ namespace TextRPG_28
                 Attack = attack;
                 Health = hp;
             }
-
-
         }
-
-
-    }   
-
-    
+    }     
 }
