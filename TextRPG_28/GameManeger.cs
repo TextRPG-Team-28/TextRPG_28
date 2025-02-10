@@ -187,9 +187,10 @@ namespace TextRPG_28
                         StartScene();
                         break;
                     default:
-                        attack.PlayerAttack(player, currentMonsters, yourChoice);
+                        attack.PlayerAttack(player, currentMonsters, yourChoice, this);
                         break;
                 }
+
                 Select.Input(0, 0);
                 attack.MonsterAttack(player, currentMonsters);
 
