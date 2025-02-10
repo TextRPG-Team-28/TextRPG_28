@@ -14,8 +14,10 @@ namespace TextRPG_28
 
         public static void Main(string[] args)
         {
+            Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다.");
             Console.WriteLine("원하시는 이름을 설정해주세요.");
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.Write(">> ");
             string name = Console.ReadLine();
             Player player = new Player(name, "전사", 1, 10, 5, 100, 1500);
