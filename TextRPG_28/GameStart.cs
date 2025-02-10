@@ -14,7 +14,7 @@ namespace TextRPG_28
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("스파르타 던전에 오신 여러분 환영합니다.");
+            Console.WriteLine("전쟁 협회에 오신 여러분 환영합니다.");
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine("1. 상태 보기");

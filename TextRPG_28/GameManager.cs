@@ -9,14 +9,14 @@ namespace TextRPG_28
         {
             new Character.Monster("미니언", 2, 5, 15),
             new Character.Monster("공허충", 3, 9, 10),
-            new Character.Monster("대포 미니언", 5, 8, 25)
+            new Character.Monster("공성 미니언", 5, 8, 25)
         };
 
         public static void Main(string[] args)
         {
             Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다.");
-            Console.WriteLine("원하시는 이름을 설정해주세요.");
+            Console.WriteLine("전쟁 협회에 오신 여러분 환영합니다.");
+            Console.WriteLine("당신의 이름을 입력해주세요.");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write(">> ");
             Console.ResetColor(); 
