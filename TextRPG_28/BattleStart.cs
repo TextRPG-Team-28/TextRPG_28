@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 using static TextRPG_28.Character;
 
 namespace TextRPG_28
@@ -12,7 +13,7 @@ namespace TextRPG_28
     internal class BattleStart 
     {
         public List<Character.Monster> currentMonsters = new List<Character.Monster>();
-        public void Battle(Character.Player player, List<Character.Monster> monsterList)
+        public void Battle(Character.Player player, List<Character.Monster> monsterList) // 여기도 total damage 추가,,
         {
             Console.Clear();
             Console.WriteLine("Battle!!\n\n");
@@ -38,7 +39,7 @@ namespace TextRPG_28
                 }
                 else
                 {
-                    AttackScene(player);
+                    AttackScene(player); // 나중에 int 반환값 추가 total damage
                     break;
                 }
             }
@@ -48,7 +49,6 @@ namespace TextRPG_28
             Random random = new Random();
             int number = random.Next(1, count + 1);  
             
-            currentMonsters.Clear();
             
             for (int i = 0; i < number; i++)
             {
@@ -58,19 +58,25 @@ namespace TextRPG_28
             }
         }
 
-        public void AttackScene(Character.Player player)
+        public void AttackScene(Character.Player player) // Enemy Phase를 int 반환 값 추가 total damage
         {
             Console.Clear();
 
             Console.WriteLine("Battle!!\n\n");
+
             for (int i = 0;i < currentMonsters.Count;i++)
             {
+                if (currentMonsters[i].Health <= 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"{i + 1}  Lv.{currentMonsters[i].Level} {currentMonsters[i].Name}  Dead ");
+                }
                 Console.WriteLine($"{i+1}  Lv.{currentMonsters[i].Level} {currentMonsters[i].Name}  HP {currentMonsters[i].Health} ");
             }
 
             Console.WriteLine("\n\n\n[내 정보]");
             Console.WriteLine($"Lv.{player.Level}   {player.Name} (전사)");
-            Console.WriteLine($"HP {player.Health} / {player.Health}");  
+            Console.WriteLine($"HP {player.Health} / {player.Health}");  // player.Health - total damage 추가하기
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("0. 취소\n\n");

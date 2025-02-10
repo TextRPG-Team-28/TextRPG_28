@@ -20,10 +20,7 @@ namespace TextRPG_28
             Character.Monster targetMonster = monsters[monsterNumber - 1];
             int damage = WarriorAttack(targetMonster, player);
 
-            if(targetMonster.Health - damage <= 0)
-            {
-                monsters.Remove(targetMonster); //Remove가 아니라 다른 걸로 바꿔야,, 리스트를 하나 만들까?
-            }
+            
 
             string deadMark = targetMonster.Health - damage <= 0 ? "Dead" : $"{targetMonster.Health - damage}";
 
@@ -45,10 +42,57 @@ namespace TextRPG_28
                 }
                 else
                 {
-                    //Enemy Phase
+                    EnemyPhase(player, monsters);
                     break;
                 }
             }
+        }
+
+        public void EnemyPhase(Character.Player player, List<Character.Monster> monsters)
+        {
+            Console.Clear();
+            Console.WriteLine("Battle!!\n\n");
+
+            int currentPlayerHP = player.Health;
+            
+            for (int i = 0; i < monsters.Count; i++)
+            {
+                if (monsters[i].Health > 0)
+                {
+                    Console.WriteLine($"Lv.{monsters[i].Level} {monsters[i].Name}의 공격!");
+                    Console.WriteLine($"{player.Name} 을(를) 맞췄습니다.  [데미지 : {monsters[i].Attack}]");
+                    Console.WriteLine("\n");
+
+                    Console.WriteLine($"Lv.{player.Level} {player.Name}");
+                    currentPlayerHP -= monsters[i].Attack;
+                    Console.WriteLine($"HP {player.Health} -> {currentPlayerHP}");
+                    Console.WriteLine("\n");
+
+                }
+                
+            }
+
+            Console.WriteLine("\n\n");
+            Console.WriteLine("0. 다음\n\n");
+            Console.WriteLine("대상을 선택해주세요. \n\n>>");
+
+            while (true)
+            {
+                string Choice = Console.ReadLine();
+
+                if (!int.TryParse(Choice, out int yourChoice) || (yourChoice != 0))
+                {
+
+                    Console.WriteLine("잘못된 입력입니다.");
+                }
+                else
+                {
+                    BattleStart battleStart = new BattleStart();
+                    battleStart.AttackScene(player);
+                    break;
+                }
+            }
+
         }
 
         public int WarriorAttack(Character.Monster monster, Character.Player player)
@@ -65,5 +109,6 @@ namespace TextRPG_28
             int currentAttack = random.Next(min, max+1);
             return currentAttack;
         }
+
     }
 }
