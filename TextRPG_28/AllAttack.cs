@@ -20,12 +20,18 @@ namespace TextRPG_28
 
             Character.Monster targetMonster = monsters[monsterNumber - 1];
             int damage = WarriorAttack(targetMonster, warrior);
-            
 
-            Console.WriteLine($"Lv.{targetMonster.Level} {targetMonster.Name} 을(를) 맞췄습니다. [데미지 : {warrior.Attack}]");
+            if(targetMonster.Health - damage <= 0)
+            {
+                monsters.Remove(targetMonster); //Remove가 아니라 다른 걸로 바꿔야,, 리스트를 하나 만들까?
+            }
+
+            string deadMark = targetMonster.Health - damage <= 0 ? "Dead" : $"{targetMonster.Health - damage}";
+
+            Console.WriteLine($"Lv.{targetMonster.Level} {targetMonster.Name} 을(를) 맞췄습니다. [데미지 : {damage}]");
             Console.WriteLine("\n");
             Console.WriteLine($"Lv. {targetMonster.Level} {targetMonster.Name}");
-            Console.WriteLine($"HP {targetMonster.Health}  ->  ");
+            Console.WriteLine($"HP {targetMonster.Health}  -> {deadMark}");
 
 
 

@@ -52,13 +52,6 @@ namespace TextRPG_28
             currentMonsters.Clear();
 
             
-            if (monsterList.Count == 0)
-            {
-                Console.WriteLine("몬스터 목록이 비어있습니다!");
-                return;
-            }
-
-            
             for (int i = 0; i < number; i++)
             {
                 int stageMonster = random.Next(0, monsterList.Count);  
