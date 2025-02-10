@@ -25,6 +25,7 @@ namespace TextRPG_28
             public int Level { get; set; }
             public int Attack { get; set; }
             public int Health { get; set; }
+            public int MaxHealth { get; set; }
             public int Defend { get; set; }
             public int Gold { get; set; }
             public bool isDead { get; set; }
@@ -34,7 +35,7 @@ namespace TextRPG_28
                 Name = name;
             }
 
-            public Player(string name,string job, int level, int atk, int def, int health, int gold, bool dead)
+            public Player(string name,string job, int level, int atk, int def, int maxhp, int gold, bool dead)
             {
                 Name = name;
                 Job = job;
@@ -42,7 +43,8 @@ namespace TextRPG_28
                 Attack = atk;
                 Defend = def;
                 Gold = gold;
-                Health = health;
+                Health = maxhp;
+                MaxHealth = maxhp;
                 isDead = dead;
             }
         }

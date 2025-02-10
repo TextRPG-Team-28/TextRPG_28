@@ -91,7 +91,7 @@ namespace TextRPG_28
             Console.WriteLine($"{player.Name} ( {player.Job} )");
             Console.WriteLine($"공격력: {player.Attack}");
             Console.WriteLine($"방어력: {player.Defend}");
-            Console.WriteLine($"체력: {player.Health}");
+            Console.WriteLine($"체력: {player.Health} / {player.MaxHealth}");
             Console.WriteLine($"Gold: {player.Gold} G\n");
             Console.WriteLine();
             Console.WriteLine("0. 나가기");

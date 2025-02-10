@@ -24,7 +24,7 @@ namespace TextRPG_28
             
             Console.WriteLine("\n\n\n[내 정보]");
             Console.WriteLine($"Lv.{player.Level}   {player.Name} ({player.Job})");
-            Console.WriteLine($"HP {player.Health} / {player.Health}"); // 현재 체력 / 원래 체력 전투할 때 나눠줘야 함. 
+            Console.WriteLine($"HP {player.Health} / {player.MaxHealth}"); // 현재 체력 / 원래 체력 전투할 때 나눠줘야 함. 
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("1. 공격\n0. 마을로 돌아가기");
@@ -63,7 +63,6 @@ namespace TextRPG_28
 
         public void AttackScene(Character.Player player)
         {
-            BattleStart battle = new BattleStart();
 
             Console.Clear();
             Console.WriteLine("Battle!!\n\n");
@@ -74,7 +73,7 @@ namespace TextRPG_28
 
             Console.WriteLine("\n\n\n[내 정보]");
             Console.WriteLine($"Lv.{player.Level}   {player.Name} ({player.Job})");
-            Console.WriteLine($"HP {player.Health} / {player.Health}");  
+            Console.WriteLine($"HP {player.Health} / {player.MaxHealth}");
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("0. 도망치기\n\n");
@@ -82,15 +81,18 @@ namespace TextRPG_28
 
             int yourChoice = Select.GetInput(0, currentMonsters.Count);
 
-            switch (yourChoice) 
+            switch (yourChoice)
             {
                 case 0:
                     scene.StartScene(player, new List<Character.Monster>());
                     break;
                 default:
-                    allAttack.AttackStart(player, currentMonsters, yourChoice);
+                    allAttack.AttackStart(player, currentMonsters, yourChoice);                   
                     break;
             }
+
+            Select.GetInput(0, 0);
+            allAttack.EnemyPhase(player, currentMonsters);
 
             //while (true)
             //{
@@ -110,6 +112,7 @@ namespace TextRPG_28
             //    {
             //        AllAttack allAttack = new AllAttack();
             //        allAttack.AttackStart(player, currentMonsters, yourChoice);
+            //        allAttack.EnemyPhase(player, currentMonsters);
             //    }
             //}
         }
