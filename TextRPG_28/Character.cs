@@ -26,6 +26,11 @@ namespace TextRPG_28
             public int Defend { get; set; }
             public int Gold { get; set; }
 
+            public Player(string name)
+            {
+                Name = name;
+            }
+
             public Player(string name,string job, int level, int atk, int def, int health, int gold)
             {
                 Name = name;

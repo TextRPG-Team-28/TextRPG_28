@@ -14,15 +14,35 @@ namespace TextRPG_28
 
         public static void Main(string[] args)
         {
-            Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다.");
-            Console.WriteLine("원하시는 이름을 설정해주세요.");
-            Console.Write(">> ");
-            string name = Console.ReadLine();
-            Player player = new Player(name, "전사", 1, 10, 5, 100, 1500);
-
             GameManager gameManager = new GameManager();
-            GameStart gameStart = new GameStart();
-            gameStart.StartScene(player, gameManager.monsterList);
+            Scene scene = new Scene();
+            while (true)
+            {
+                Console.Clear();
+
+                Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다.");
+                Console.WriteLine("원하시는 이름을 설정해주세요.");
+                Console.Write(">> ");
+                string name = Console.ReadLine();
+                Player player = new Player(name);
+
+                Console.WriteLine();
+                Console.WriteLine($"입력하신 이름은 '{player.Name}' 입니다.");
+                Console.WriteLine();
+                Console.WriteLine("1. 결정 하기");
+                Console.WriteLine("2. 다시 입력");
+
+                int nameNum = Select.GetInput(1, 2);
+
+                switch (nameNum)
+                {
+                    case 1:
+                        scene.SelectJob(player);
+                        break;
+                    case 2:
+                        break;
+                }
+            }
         }
     }
 }

@@ -20,7 +20,7 @@ namespace TextRPG_28
             NumberOfMonsters(monsterList, 4);
             
             Console.WriteLine("\n\n\n[내 정보]");
-            Console.WriteLine($"Lv.{player.Level}   {player.Name} (전사)");
+            Console.WriteLine($"Lv.{player.Level}   {player.Name} ({player.Job})");
             Console.WriteLine($"HP {player.Health} / {player.Health}"); // 현재 체력 / 원래 체력 전투할 때 나눠줘야 함. 
             Console.WriteLine();
             Console.WriteLine();
@@ -69,7 +69,7 @@ namespace TextRPG_28
             }
 
             Console.WriteLine("\n\n\n[내 정보]");
-            Console.WriteLine($"Lv.{player.Level}   {player.Name} (전사)");
+            Console.WriteLine($"Lv.{player.Level}   {player.Name} ({player.Job})");
             Console.WriteLine($"HP {player.Health} / {player.Health}");  
             Console.WriteLine();
             Console.WriteLine();
@@ -87,8 +87,8 @@ namespace TextRPG_28
                 }
                 else if (yourChoice == 0)
                 {
-                    GameStart gameStart = new GameStart();
-                    gameStart.StartScene(player, new List<Character.Monster>());
+                    Scene scene = new Scene();
+                    scene.StartScene(player, new List<Character.Monster>());
                     break;
                 }
                 else
