@@ -16,7 +16,7 @@ namespace TextRPG_28
             Character.Warrior warrior = new Character.Warrior
             {
                 Name = "Chad",
-                Attack = 10,
+                Attack = 50,
                 Health = 100,
                 Defend = 5,
                 Gold = 1500,

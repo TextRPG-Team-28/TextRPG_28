@@ -35,7 +35,8 @@ namespace TextRPG_28
             public string Name { get; set; } 
             public int Level { get; set; } 
             public int Attack { get; set; } 
-            public int Health { get; set; } 
+            public int Health { get; set; }
+          
 
             public Monster(string name, int level, int attack, int hp)
             {

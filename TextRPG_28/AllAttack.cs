@@ -21,10 +21,7 @@ namespace TextRPG_28
             Character.Monster targetMonster = monsters[monsterNumber - 1];
             int damage = WarriorAttack(targetMonster, warrior);
 
-            if(targetMonster.Health - damage <= 0)
-            {
-                monsters.Remove(targetMonster); //Remove가 아니라 다른 걸로 바꿔야,, 리스트를 하나 만들까?
-            }
+            
 
             string deadMark = targetMonster.Health - damage <= 0 ? "Dead" : $"{targetMonster.Health - damage}";
 
@@ -34,7 +31,11 @@ namespace TextRPG_28
             Console.WriteLine($"HP {targetMonster.Health}  -> {deadMark}");
 
 
-
+            if (warrior.Health <= 0 || monsters.Count == 0)
+            {
+                Result.ShowBattleResult(warrior, monsters);
+                return; 
+            }
         }
 
         public int WarriorAttack(Character.Monster monster, Character.Warrior warrior)
