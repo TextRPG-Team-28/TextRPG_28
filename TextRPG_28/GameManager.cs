@@ -19,6 +19,7 @@ namespace TextRPG_28
             Console.WriteLine("원하시는 이름을 설정해주세요.");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write(">> ");
+            Console.ResetColor(); 
             string name = Console.ReadLine();
             Player player = new Player(name, "전사", 1, 10, 5, 100, 1500);
 
