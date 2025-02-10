@@ -15,7 +15,7 @@ namespace TextRPG_28
 
 
             Console.WriteLine("플레이어 이름을 입력해주세요 ");
-            player = new Player(0, "", "", 0, 0, 0, 0, 0);
+            player = new Player(0, "", "", 0, 0, 0, 0, 0, 0);
             player.Name = (Console.ReadLine());
 
             Console.WriteLine("입력하신 이름은 " + player.Name + "입니다 .");
@@ -48,11 +48,11 @@ namespace TextRPG_28
             switch (injob)
             {
                 case 1:
-                    player = new Player(1, player.Name, "", 10, 10, 150, 50, 1500);
+                    player = new Player(1, player.Name, "", 10, 10, 150, 50, 150 ,1500);
                     player.Job = "전사";
                     break;
                 case 2:
-                    player = new Player(1, player.Name, "", 15, 5, 100, 50, 1500);
+                    player = new Player(1, player.Name, "", 15, 5, 100, 50, 150 ,1500);
                     player.Job = "도적";
                     break;
             }
