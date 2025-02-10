@@ -11,8 +11,6 @@ namespace TextRPG_28
             new Character.Monster("대포 미니언", 5, 8, 25)
         };
 
-        
- 
         public static void Main(string[] args)
         {
             Character.Warrior warrior = new Character.Warrior
@@ -28,9 +26,6 @@ namespace TextRPG_28
             GameManager gameManager = new GameManager();
             GameStart gameStart = new GameStart();
             gameStart.StartScene(warrior, gameManager.monsterList);
-
-
-
         }
     }
 }
