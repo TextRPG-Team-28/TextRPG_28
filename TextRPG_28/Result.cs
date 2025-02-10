@@ -8,7 +8,7 @@ namespace TextRPG_28
 {
     internal class Result
     {
-        public static void  ShowBattleResult(Character.Warrior warrior, List<Character.Monster> monsters)
+        public static void  ShowBattleResult(Character.Player warrior, List<Character.Monster> monsters)
         {
             Console.Clear();
             Console.WriteLine("Battle!! - Result\n");
@@ -39,7 +39,7 @@ namespace TextRPG_28
             Console.ReadLine(); // 사용자가 다음으로 진행하도록 대기
         }
 
-        static public bool CheckBattleEnd(Character.Warrior warrior, List<Character.Monster> monsters)
+        static public bool CheckBattleEnd(Character.Player warrior, List<Character.Monster> monsters)
         {
             return warrior.Health <= 0 || monsters.Count == 0;
         }
