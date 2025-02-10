@@ -65,11 +65,11 @@ namespace TextRPG_28
             Console.WriteLine("Battle!!\n\n");
             for (int i = 0;i < currentMonsters.Count;i++)
             {
-                Console.WriteLine($"{i+1}  Lv.{currentMonsters[i].Level} {currentMonsters[i].Name}  HP {currentMonsters[i].Health} ");
+                Console.WriteLine($" {i+1}  Lv.{currentMonsters[i].Level} {currentMonsters[i].Name}  HP {currentMonsters[i].Health} ");
             }
 
             Console.WriteLine("\n\n\n[내 정보]");
-            Console.WriteLine($"Lv.{player.Level}   {player.Name} (전사)");
+            Console.WriteLine($"Lv.{player.Level}   {player.Name} ({player.Job})");
             Console.WriteLine($"HP {player.Health} / {player.Health}");  
             Console.WriteLine();
             Console.WriteLine();

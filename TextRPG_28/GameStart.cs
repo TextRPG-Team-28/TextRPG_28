@@ -53,7 +53,7 @@ namespace TextRPG_28
             Console.WriteLine("캐릭터의 정보가 표시됩니다.\n");
             Console.WriteLine($"Lv. {player.Level}");
             Console.WriteLine($"{player.Name} ( 전사 )");
-            Console.WriteLine($"공격력: {player.Attack}");
+            Console.WriteLine($"공격력: {player.Attack}" );
             Console.WriteLine($"방어력: {player.Defend}");
             Console.WriteLine($"체력: {player.Health}");
             Console.WriteLine($"Gold: {player.Gold} G\n");
