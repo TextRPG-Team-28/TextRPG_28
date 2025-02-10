@@ -15,7 +15,7 @@ namespace TextRPG_28
         public int MaxHp { get; }
         public bool isDead { get; set; }
 
-        public Monster(int level, string name, int maxHp, int attack, bool isdead)
+        public Monster(int level, string name, int maxHp, int attack, bool dead)
         {
             Level = level;
             Name = name;
@@ -23,7 +23,7 @@ namespace TextRPG_28
             Hp = maxHp;
             MaxHp = maxHp;
             Attack = attack;
-            isDead = isdead;
+            isDead = dead;
         }
     }
 }

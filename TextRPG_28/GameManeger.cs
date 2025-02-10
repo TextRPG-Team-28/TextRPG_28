@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Dynamic;
 using System.Security.Cryptography.X509Certificates;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace TextRPG_28
 {
@@ -8,8 +9,9 @@ namespace TextRPG_28
     {
         Player player;
         List<Monster> monsters;
-        Random random = new Random();
+        public List<Monster> currentMonsters = new List<Monster>();
         Battle battle = new Battle();
+        Attack attack = new Attack();
         
         public void MonsterSetting()
         {
@@ -19,12 +21,24 @@ namespace TextRPG_28
                 new Monster(3, "공허충", 10, 9, false),
                 new Monster(5, "대포미니언", 25, 8, false)
             };
+
+            Random random = new Random();
+            int number = random.Next(1, 4);
+
+            currentMonsters.Clear();
+
+            for (int i = 0; i < number; i++)
+            {
+                int stageMonster = random.Next(0, monsters.Count);
+                Console.WriteLine($"Lv.{monsters[stageMonster].Level}  {monsters[stageMonster].Name}  HP {monsters[stageMonster].Hp}");
+                currentMonsters.Add(monsters[stageMonster]);
+            }
+
         }
 
         public void IntroScene()            // 이름 입력 화면
         {
             Console.Clear();
-
 
             Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다.");
             Console.WriteLine("원하시는 이름을 설정해주세요.");
@@ -39,6 +53,9 @@ namespace TextRPG_28
             Console.WriteLine();
             Console.WriteLine("1. 결정 하기");
             Console.WriteLine("2. 다시 입력");
+            Console.WriteLine();
+            Console.WriteLine("원하시는 행동을 입력해주세요.");
+            Console.Write(">> ");
 
             int nameNum = Select.Input(1, 2);
 
@@ -60,6 +77,9 @@ namespace TextRPG_28
             Console.WriteLine();
             Console.WriteLine("1. 전사   ->   공격력  10   방어력  10   체력  150   기초자금  1000 gold");
             Console.WriteLine("2. 도적   ->   공격력  15   방어력  05   체력  100   기초자금  1500 gold");
+            Console.WriteLine();
+            Console.WriteLine("원하시는 행동을 입력해주세요.");
+            Console.Write(">> ");
 
             int jobNum = Select.Input(1, 2);
 
@@ -78,6 +98,9 @@ namespace TextRPG_28
             Console.WriteLine();
             Console.WriteLine("1. 결정 하기");
             Console.WriteLine("2. 다시 선택");
+            Console.WriteLine();
+            Console.WriteLine("원하시는 행동을 입력해주세요.");
+            Console.Write(">> ");
 
             int selectNum = Select.Input(1, 2);
 
@@ -100,6 +123,9 @@ namespace TextRPG_28
             Console.WriteLine();
             Console.WriteLine("1. 상태 보기");
             Console.WriteLine("2. 전투 시작");
+            Console.WriteLine();
+            Console.WriteLine("원하시는 행동을 입력해주세요.");
+            Console.Write(">> ");
 
             int startNum = Select.Input(1, 2);
 
@@ -118,30 +144,69 @@ namespace TextRPG_28
         {
             player.PlayerStats();
 
+            Console.WriteLine();
+            Console.WriteLine("원하시는 행동을 입력해주세요.");
+            Console.Write(">> ");
+
             Select.Input(0, 0);
             StartScene();
         }
 
         public void BattleScene()           // 전투 화면
         {
-            MonsterSetting();
+            //MonsterSetting();
 
-            bool b = false;
+            battle.BattelField(player, monsters, this);
 
-            if (b == false)
+            int yourChoice = Select.Input(0, 1);
+
+            switch (yourChoice)
             {
-                bool s = battle.BattelInfo(player, monsters, b);
-
-                if (s == true)
-                {
+                case 0:
                     StartScene();
+                    break;
+                case 1:
+                    AttackScene(currentMonsters.Count);
+                    break;
+            }
+        }
+
+        public void AttackScene(int count)
+        {
+            while (player.isDead == false)
+            {
+                battle.AttackField(player, this);
+
+                int yourChoice = Select.Input(0, count);
+
+                switch (yourChoice)
+                {
+                    case 0:
+                        StartScene();
+                        break;
+                    default:
+                        attack.PlayerAttack(player, currentMonsters, yourChoice);
+                        break;
                 }
+                Select.Input(0, 0);
+                attack.MonsterAttack(player, currentMonsters);
+
+                Console.WriteLine();
+                Console.WriteLine("원하시는 행동을 입력해주세요.");
+                Console.Write(">> ");
+
+                Select.Input(0, 0);
             } 
+
+            if(player.isDead == true)
+            {
+                ResultScene();
+            }
         }
 
         public void ResultScene()
         {
-
+            Console.WriteLine("die");
         }
     }
 }

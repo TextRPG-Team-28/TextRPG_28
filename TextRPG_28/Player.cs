@@ -15,16 +15,16 @@ namespace TextRPG_28
         public int Attack { get; }
         public int Defense { get; }
         public int Gold { get; set; }
-        public int Hp { get; }
+        public int Hp { get; set; }
         public int MaxHp { get; }
-        public bool IsAttack { get; set; }
+        public bool isDead { get; set; }
 
         public Player(string name)
         {
             Name = name;
         }
 
-        public Player(int level, string name, string job, int attak, int defense, int maxHp, int gold, bool isAttack)          // 생성시 플레이어 초기 설정, 직업은 추가 예정이 아직 없기때문에 아직은 고정
+        public Player(int level, string name, string job, int attak, int defense, int maxHp, int gold, bool dead)          // 생성시 플레이어 초기 설정, 직업은 추가 예정이 아직 없기때문에 아직은 고정
         {
             Level = level;
             Name = name;
@@ -34,7 +34,7 @@ namespace TextRPG_28
             Gold = gold;
             Hp = maxHp;
             MaxHp = maxHp;
-            IsAttack = isAttack;
+            isDead = dead;
         }
 
         public void PlayerStats()            // 플레이어 정보 화면 메서드
@@ -51,15 +51,6 @@ namespace TextRPG_28
             Console.WriteLine($"Gold : {Gold} gold");
             Console.WriteLine();
             Console.WriteLine("0. 나가기");
-        }
-
-        public void PlayerAttackText()
-        {
-            Console.WriteLine();
-            Console.WriteLine("[내 정보]");
-            Console.WriteLine($"Lv. {Level}  {Name} ({Job})");
-            Console.WriteLine($"HP {Hp}/{MaxHp}");
-            Console.WriteLine();
         }
     }
 }

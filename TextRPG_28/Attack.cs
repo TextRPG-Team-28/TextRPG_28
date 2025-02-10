@@ -8,66 +8,68 @@ namespace TextRPG_28
 {
     public class Attack
     {
-        public void PlayerAttack(Player player, List<Monster> monsters, int attackNum)
+        public void PlayerAttack(Player player, List<Monster> monsters, int monsterNumber)
         {
-            switch (attackNum)
+            Console.Clear();
+            Console.WriteLine("Battle!!\n\n");
+            Console.WriteLine($"{player.Name} 의 공격!");
+
+            Monster targetMonster = monsters[monsterNumber - 1];
+            int damage = isAttack(targetMonster, player);
+
+            string deadMark = targetMonster.Hp - damage <= 0 ? "Dead" : $"{targetMonster.Hp - damage}";
+            monsters[monsterNumber - 1].Hp = targetMonster.Hp - damage;
+            if(monsters[monsterNumber - 1].Hp <= 0)
             {
-                case 0:
-                    player.IsAttack = false;
-                    break;
-                case 1:
-                    if (monsters[0].isDead == false)
-                    {
-                        monsters[0].Hp -= player.Attack;
-
-                        if (monsters[0].Hp <= 0)
-                        {
-                            monsters[0].isDead = true;
-                        }       
-                    }
-                    break;
-                case 2:
-                    if (monsters[1].isDead == false)
-                    {
-                        monsters[1].Hp -= player.Attack;
-
-                        if (monsters[1].Hp <= 0)
-                        {
-                            monsters[1].isDead = true;
-                        }
-                    }
-                    break;
-                case 3:
-                    if (monsters[2].isDead == false)
-                    {
-                        monsters[2].Hp -= player.Attack;
-
-                        if (monsters[2].Hp <= 0)
-                        {
-                            monsters[2].isDead = true;
-                        }
-                    }
-                    break;
-                case 4:
-                    if (monsters[3].isDead == false)
-                    {
-                        monsters[3].Hp -= player.Attack;
-
-                        if (monsters[3].Hp <= 0)
-                        {
-                            monsters[3].isDead = true;
-                        }
-                    }
-                    break;
-                default:
-                    Console.WriteLine("잘못된 입력입니다.");
-                    break;
+                monsters[monsterNumber - 1].isDead = true;
             }
+
+            Console.WriteLine($"Lv.{targetMonster.Level} {targetMonster.Name} 을(를) 맞췄습니다. [데미지 : {damage}]");
+            Console.WriteLine("\n");
+            Console.WriteLine($"Lv. {targetMonster.Level} {targetMonster.Name}");
+            Console.WriteLine($"HP {targetMonster.Hp}  -> {deadMark}");
+            Console.WriteLine("\n");
+            Console.WriteLine("0. 다음");
+            Console.Write(">> ");
         }
 
         public void MonsterAttack(Player player, List<Monster> monsters)
         {
+            Console.Clear();
+            Console.WriteLine("Battle!!\n\n");
 
+            int currentPlayerHP = player.Hp;
+
+            for (int i = 0; i < monsters.Count; i++)
+            {
+                if (monsters[i].Hp > 0)
+                {
+                    Console.WriteLine($"Lv.{monsters[i].Level} {monsters[i].Name}의 공격!");
+                    Console.WriteLine($"{player.Name} 을(를) 맞췄습니다.  [데미지 : {monsters[i].Attack}]");
+                    Console.WriteLine("\n");
+
+                    Console.WriteLine($"Lv.{player.Level} {player.Name}");
+                    player.Hp -= monsters[i].Attack;
+                    Console.WriteLine($"HP {currentPlayerHP} -> {player.Hp}");
+                    Console.WriteLine("\n");
+                }
+            }
+            Console.WriteLine("0. 다음");
+        }
+
+        public int isAttack(Monster monster, Player player)
+        {
+            int max;
+            int min;
+            float x = player.Attack * 0.9f;
+            float y = player.Attack * 1.1f;
+
+            min = (int)(x + 0.5f);
+            max = (int)(y + 0.5f);
+
+            Random random = new Random();
+            int currentAttack = random.Next(min, max + 1);
+            return currentAttack;
         }
     }
 }
