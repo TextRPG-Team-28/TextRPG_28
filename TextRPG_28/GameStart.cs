@@ -13,12 +13,15 @@ namespace TextRPG_28
         public void StartScene(Player player, List<Character.Monster> monsterList)
         {
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("스파르타 던전에 오신 여러분 환영합니다.");
             Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine("1. 상태 보기");
             Console.WriteLine("2. 전투 시작");
             Console.WriteLine();
             Console.Write("원하시는 행동을 입력해주세요 \n>>");
+            Console.ResetColor();
 
             while (true)
             {
@@ -49,14 +52,18 @@ namespace TextRPG_28
         public void ShowStatus(Character.Player player)
         {
             Console.Clear();
+            Console.ForegroundColor= ConsoleColor.Cyan;
             Console.WriteLine("--상태 보기--");
             Console.WriteLine("캐릭터의 정보가 표시됩니다.\n");
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine($"Lv. {player.Level}");
             Console.WriteLine($"{player.Name} ( 전사 )");
             Console.WriteLine($"공격력: {player.Attack}");
             Console.WriteLine($"방어력: {player.Defend}");
             Console.WriteLine($"체력: {player.Health}");
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine($"Gold: {player.Gold} G\n");
+            Console.ResetColor();
             Console.WriteLine();
             Console.WriteLine("0. 나가기");
             Console.WriteLine();
