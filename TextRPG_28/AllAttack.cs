@@ -31,6 +31,9 @@ namespace TextRPG_28
             Console.WriteLine("\n");
             Console.WriteLine($"Lv. {targetMonster.Level} {targetMonster.Name}");
             Console.WriteLine($"HP {targetMonster.Health}  -> {deadMark}");
+
+            //Scene scene = new Scene();
+            //scene.StartScene(player, monsters);
         }
 
         public int PlayerAttack(Character.Monster monster, Character.Player player)
@@ -46,11 +49,6 @@ namespace TextRPG_28
             Random random = new Random();
             int currentAttack = random.Next(min, max+1);
             return currentAttack;
-        }
-
-        public int MonsterAttack()
-        {
-            return 1;
         }
     }
 }

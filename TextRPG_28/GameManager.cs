@@ -19,7 +19,7 @@ namespace TextRPG_28
 
             while (true)
             {
-                Console.Clear();
+                //Console.Clear();
 
                 Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다.");
                 Console.WriteLine("원하시는 이름을 설정해주세요.");

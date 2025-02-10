@@ -14,7 +14,6 @@ namespace TextRPG_28
             {
                 if (int.TryParse(Console.ReadLine(), out int input) && (input >= min) && (input <= max))
                 {
-                    //Console.WriteLine(input);
                     return input;
                 }
 
