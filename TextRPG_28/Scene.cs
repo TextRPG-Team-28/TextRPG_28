@@ -28,10 +28,10 @@ namespace TextRPG_28
             switch (yourChoice1)
             {
                 case 1:
-                    player = new Player(player.Name, "전사", 1, 10, 10, 150, 1000);
+                    player = new Player(player.Name, "전사", 1, 10, 10, 150, 1000, false);
                     break;
                 case 2:
-                    player = new Player(player.Name, "도적", 1, 15, 5, 100, 1500);
+                    player = new Player(player.Name, "도적", 1, 15, 5, 100, 1500, false);
                     break;
             }
 

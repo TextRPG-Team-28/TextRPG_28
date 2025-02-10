@@ -12,6 +12,8 @@ namespace TextRPG_28
         int Level { get; set; }
         int Attack { get; set; }
         int Health { get; set; }
+        bool isDead { get; set; }
+
     }
 
     public class Character
@@ -25,13 +27,14 @@ namespace TextRPG_28
             public int Health { get; set; }
             public int Defend { get; set; }
             public int Gold { get; set; }
+            public bool isDead { get; set; }
 
             public Player(string name)
             {
                 Name = name;
             }
 
-            public Player(string name,string job, int level, int atk, int def, int health, int gold)
+            public Player(string name,string job, int level, int atk, int def, int health, int gold, bool dead)
             {
                 Name = name;
                 Job = job;
@@ -40,6 +43,7 @@ namespace TextRPG_28
                 Defend = def;
                 Gold = gold;
                 Health = health;
+                isDead = dead;
             }
         }
 
@@ -48,14 +52,16 @@ namespace TextRPG_28
             public string Name { get; set; } 
             public int Level { get; set; } 
             public int Attack { get; set; } 
-            public int Health { get; set; } 
+            public int Health { get; set; }
+            public bool isDead { get; set; }
 
-            public Monster(string name, int level, int attack, int hp)
+            public Monster(string name, int level, int attack, int hp, bool dead)
             {
                 Name = name;
                 Level = level;
                 Attack = attack;
                 Health = hp;
+                isDead = dead;
             }
         }
     }     

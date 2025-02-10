@@ -77,15 +77,15 @@ namespace TextRPG_28
             Console.WriteLine($"HP {player.Health} / {player.Health}");  
             Console.WriteLine();
             Console.WriteLine();
-            Console.WriteLine("0. 취소\n\n");
+            Console.WriteLine("0. 도망치기\n\n");
             Console.Write("대상을 선택해주세요\n>> ");
 
             int yourChoice = Select.GetInput(0, currentMonsters.Count);
 
             switch (yourChoice) 
             {
-                case 0:                   
-                    battle.Battle(player, currentMonsters);
+                case 0:
+                    scene.StartScene(player, new List<Character.Monster>());
                     break;
                 default:
                     allAttack.AttackStart(player, currentMonsters, yourChoice);
