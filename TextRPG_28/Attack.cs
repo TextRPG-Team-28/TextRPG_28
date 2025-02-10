@@ -9,7 +9,7 @@ namespace TextRPG_28
 {
     public class Attack
     {
-        public void PlayerAttack(Player player, List<Monster> monsters, int monsterNumber, GameManeger gm)
+        public bool PlayerAttack(Player player, List<Monster> monsters, int monsterNumber, bool b)
         {
             Monster targetMonster = monsters[monsterNumber - 1];
 
@@ -37,24 +37,15 @@ namespace TextRPG_28
                 Console.WriteLine("\n");
                 Console.WriteLine("0. 다음");
                 Console.Write(">> ");
+                b = false;
             }
             else
-            {
+            {  
                 Console.WriteLine("이미 죽엇음");
-                Console.Write("다시 선택해주세요 >> ");
-
-                int yourChoice = Select.Input(0, gm.currentMonsters.Count);
-
-                switch (yourChoice)
-                {
-                    case 0:
-                        gm.StartScene();
-                        break;
-                    default:
-
-                        break;
-                }
+                Console.WriteLine("다시 선택해주세요");
+                Console.Write(">> ");
             }
+            return b;
         }
 
         public void MonsterAttack(Player player, List<Monster> monsters)

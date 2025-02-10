@@ -33,9 +33,7 @@ namespace TextRPG_28
                 Monster newMonster = new Monster(monsters[stageMonster].Level, monsters[stageMonster].Name, monsters[stageMonster].Hp, monsters[stageMonster].Attack, false);
                 Console.WriteLine($"Lv.{newMonster.Level}  {newMonster.Name}  HP {newMonster.Hp}");
                 currentMonsters.Add(newMonster);
-                //Console.WriteLine($"{currentMonsters[i].Name} {i}");
             }
-
         }
 
         public void IntroScene()            // 이름 입력 화면
@@ -156,8 +154,6 @@ namespace TextRPG_28
 
         public void BattleScene()           // 전투 화면
         {
-            //MonsterSetting();
-
             battle.BattelField(player, monsters, this);
 
             int yourChoice = Select.Input(0, 1);
@@ -179,16 +175,21 @@ namespace TextRPG_28
             {
                 battle.AttackField(player, this);
 
-                int yourChoice = Select.Input(0, count);
+                bool isMonsterLive = true;
 
-                switch (yourChoice)
+                while (isMonsterLive)
                 {
-                    case 0:
-                        StartScene();
-                        break;
-                    default:
-                        attack.PlayerAttack(player, currentMonsters, yourChoice, this);
-                        break;
+                    int yourChoice = Select.Input(0, count);
+
+                    switch (yourChoice)
+                    {
+                        case 0:
+                            StartScene();
+                            break;
+                        default:
+                            isMonsterLive = attack.PlayerAttack(player, currentMonsters, yourChoice, isMonsterLive);
+                            break;
+                    }
                 }
 
                 Select.Input(0, 0);
@@ -196,15 +197,10 @@ namespace TextRPG_28
 
                 Console.WriteLine();
                 Console.WriteLine("원하시는 행동을 입력해주세요.");
-                Console.Write(">> ");
-
-                Select.Input(0, 0);
-            } 
-
-            if(player.isDead == true)
-            {
-                ResultScene();
+                Console.Write(">> "); 
             }
+            Select.Input(0, 0);
+            ResultScene();
         }
 
         public void ResultScene()
