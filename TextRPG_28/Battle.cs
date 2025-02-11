@@ -7,15 +7,16 @@ namespace TextRPG_28;
 
 public class Battle
 {
-    public void BattelField(Player player, List<Monster> monsters, GameManeger gm)
+    public void BattelField(Player player, List<Monster> monsters, GameManeger gm)      // 던전의 필드
     {
         Console.ForegroundColor = ConsoleColor.Green;
         Console.Clear();
-        Console.WriteLine("Battle!!\n");
+        Console.WriteLine("던전\n");
         Console.ResetColor();
 
         gm.MonsterSetting();
 
+        Console.ForegroundColor = ConsoleColor.DarkYellow;
         Console.WriteLine("\n[내 정보]");
         Console.WriteLine($"Lv.{player.Level}   {player.Name} ({player.Job})");
         Console.WriteLine($"HP {player.Hp} / {player.MaxHp}");
@@ -29,11 +30,11 @@ public class Battle
         Console.Write(">> ");
     }
 
-    public void AttackField(Player player, GameManeger gm)
+    public void AttackField(Player player, GameManeger gm)      // 공격 시 필드
     {
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine("Battle!!\n");
+        Console.WriteLine("던전\n");
         for (int i = 0; i < gm.currentMonsters.Count; i++)
         {
             if (gm.currentMonsters[i].isDead == false)
@@ -47,7 +48,7 @@ public class Battle
                 Console.WriteLine($"{i + 1}.  Lv.{gm.currentMonsters[i].Level} {gm.currentMonsters[i].Name}  Dead ");
             }
         }
-        Console.ResetColor();
+        Console.ForegroundColor = ConsoleColor.DarkYellow;
         Console.WriteLine("\n[내 정보]");
         Console.WriteLine($"Lv.{player.Level}   {player.Name} ({player.Job})");
         Console.WriteLine($"HP {player.Hp} / {player.MaxHp}");

@@ -19,7 +19,7 @@ namespace TextRPG_28
         Attack attack = new Attack();
         Result result = new Result();
         
-        public void MonsterSetting()
+        public void MonsterSetting()    // 몬스터 세팅 및 랜덤하게 생성
         {
             monsters = new List<Monster>
             {
@@ -41,7 +41,7 @@ namespace TextRPG_28
             }
         }
 
-        public void ItemSetting()
+        public void ItemSetting()   // 아이템 세팅
         {
             itemList = new List<Item>
             {
@@ -54,29 +54,29 @@ namespace TextRPG_28
             };
         }
 
-        public void IntroScene()            // 이름 입력 화면
+        public void IntroScene()    // 이름 입력 화면
         {
             Console.Clear();
-
-            Select.ColorWrite("스파르타 마을에 오신 여러분 환영합니다.", ConsoleColor.Green);
-            Select.ColorWrite("원하시는 이름을 설정해주세요.", ConsoleColor.Green);
+            Utility.ColorWrite("원하시는 이름을 설정해주세요.", ConsoleColor.Green);
             Console.WriteLine();
             Console.Write(">> ");
             string name = Console.ReadLine();
 
             player = new Player(name);
 
+            Console.Clear();
+            Utility.ColorWrite("이름 설정", ConsoleColor.Green);
             Console.WriteLine();
             Console.WriteLine($"입력하신 이름은 '{player.Name}' 입니다.");
             Console.WriteLine();
-            Select.ColorWrite("1. 결정 하기", ConsoleColor.DarkCyan);
-            Select.ColorWrite("2. 다시 입력", ConsoleColor.DarkCyan);
+            Utility.ColorWrite("1. 결정 하기", ConsoleColor.DarkCyan);
+            Utility.ColorWrite("2. 다시 입력", ConsoleColor.DarkCyan);
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("원하시는 행동을 입력해주세요.");
             Console.Write(">> ");
 
-            int nameNum = Select.Input(1, 2);
+            int nameNum = Utility.Input(1, 2);
 
             switch (nameNum)
             {
@@ -89,21 +89,21 @@ namespace TextRPG_28
             }
         }
 
-        public void SelectJobScene()            // 직업 선택 화면
+        public void SelectJobScene()    // 직업 선택 화면
         {
-            Select.Loading("직업 목록 생성 중");
+            Utility.Loading("직업 목록 생성 중");
 
             Console.Clear();
-            Select.ColorWrite("직업을 선택해주세요.", ConsoleColor.Green);
+            Utility.ColorWrite("직업을 선택해주세요.", ConsoleColor.Green);
             Console.WriteLine();
-            Select.ColorWrite("1. 전사    :   체력과 방어력이 높고 밸런스가 좋습니다.", ConsoleColor.DarkCyan);
-            Select.ColorWrite("2. 도적    :   공격력이 높고 기초 자금이 많지만 낮은 체력, 방어력을 가지고 있습니다.", ConsoleColor.DarkCyan);
+            Utility.ColorWrite("1. 전사    :   체력과 방어력이 높고 밸런스가 좋습니다.", ConsoleColor.DarkCyan);
+            Utility.ColorWrite("2. 도적    :   공격력이 높고 기초 자금이 많지만 낮은 체력, 방어력을 가지고 있습니다.", ConsoleColor.DarkCyan);
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("원하시는 행동을 입력해주세요.");
             Console.Write(">> ");
 
-            int jobNum = Select.Input(1, 2);
+            int jobNum = Utility.Input(1, 2);
 
             switch (jobNum)
             {
@@ -116,18 +116,18 @@ namespace TextRPG_28
             }
 
             Console.Clear();
-            Select.ColorWrite("직업을 선택해주세요.", ConsoleColor.Green);
+            Utility.ColorWrite("직업 선택", ConsoleColor.Green);
             Console.WriteLine();
             Console.WriteLine($"선택하신 직업은 '{player.Job}' 입니다.");
             Console.WriteLine();
-            Select.ColorWrite("1. 결정 하기", ConsoleColor.DarkCyan);
-            Select.ColorWrite("2. 다시 선택", ConsoleColor.DarkCyan);
+            Utility.ColorWrite("1. 결정 하기", ConsoleColor.DarkCyan);
+            Utility.ColorWrite("2. 다시 선택", ConsoleColor.DarkCyan);
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("원하시는 행동을 입력해주세요.");
             Console.Write(">> ");
 
-            int selectNum = Select.Input(1, 2);
+            int selectNum = Utility.Input(1, 2);
 
             switch (selectNum)
             {
@@ -140,25 +140,24 @@ namespace TextRPG_28
             }
         }
 
-        public void StartScene()            // 처음 시작 화면
+        public void StartScene()    // 메인 화면
         {
-            Select.Loading("마을로 가는 중");
+            Utility.Loading("마을로 가는 중");
 
             Console.Clear();
-            Select.ColorWrite("스파르타 던전에 오신 여러분 환영합니다 .", ConsoleColor.Green);
-            Select.ColorWrite("이제 전투를 시작할 수 있습니다.", ConsoleColor.Green);
+            Utility.ColorWrite("마을", ConsoleColor.Green);
             Console.WriteLine();
-            Select.ColorWrite("1. 상태 보기", ConsoleColor.DarkCyan);
-            Select.ColorWrite("2. 인벤토리", ConsoleColor.DarkCyan);
-            Select.ColorWrite("3. 상점", ConsoleColor.DarkCyan);
-            Select.ColorWrite("4. 휴식 하기", ConsoleColor.DarkCyan);
-            Select.ColorWrite("5. 던전 입장", ConsoleColor.DarkCyan);
+            Utility.ColorWrite("1. 상태 보기", ConsoleColor.DarkCyan);
+            Utility.ColorWrite("2. 인벤토리", ConsoleColor.DarkCyan);
+            Utility.ColorWrite("3. 상점", ConsoleColor.DarkCyan);
+            Utility.ColorWrite("4. 휴식 하기", ConsoleColor.DarkCyan);
+            Utility.ColorWrite("5. 던전 입장", ConsoleColor.DarkCyan);
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("원하시는 행동을 입력해주세요.");
             Console.Write(">> ");
 
-            int startNum = Select.Input(1, 5);
+            int startNum = Utility.Input(1, 5);
 
             switch (startNum)
             {
@@ -180,9 +179,9 @@ namespace TextRPG_28
             }
         }
 
-        public void StatsScene ()           // 상태 보기 화면
+        public void StatsScene()    // 상태 보기 화면
         {
-            Select.Loading("상태 보기 활성화 중");
+            Utility.Loading("상태 보기 활성화 중");
 
             player.PlayerStats();
 
@@ -191,33 +190,37 @@ namespace TextRPG_28
             Console.WriteLine("원하시는 행동을 입력해주세요.");
             Console.Write(">> ");
 
-            Select.Input(0, 0);
+            Utility.Input(0, 0);
             StartScene();
         }
 
-        public void InventoryScene() //인벤토리 화면
+        public void InventoryScene()    //인벤토리 화면
         {
-            Select.Loading("인벤토리 여는 중");
+            Utility.Loading("인벤토리 여는 중");
 
             Console.Clear();
-            Select.ColorWrite("인벤토리", ConsoleColor.Green);
+            Utility.ColorWrite("인벤토리", ConsoleColor.Green);
             Console.WriteLine();
             Console.WriteLine("[아이템 목록]");
+            Console.WriteLine();
 
             for (int i = 0; i < inventory.Count; i++)
             {
-                Console.WriteLine(inventory[i].ItemDisplay());
+                if (inventory[i].IsEquip == true)
+                    Utility.ColorWrite($"{inventory[i].ItemDisplay()}", ConsoleColor.DarkYellow);
+                else
+                    Console.WriteLine($"{inventory[i].ItemDisplay()}");
             }
 
             Console.WriteLine();
-            Select.ColorWrite("1. 장착 관리", ConsoleColor.DarkCyan);
-            Select.ColorWrite("0. 마을로 돌아가기", ConsoleColor.DarkCyan);
+            Utility.ColorWrite("1. 장착 관리", ConsoleColor.DarkCyan);
+            Utility.ColorWrite("0. 마을로 돌아가기", ConsoleColor.DarkCyan);
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("원하시는 행동을 입력해주세요.");
             Console.Write(">> ");
 
-            int input = Select.Input(0, 1);
+            int input = Utility.Input(0, 1);
             switch (input)
             {
                 case 0:
@@ -229,26 +232,30 @@ namespace TextRPG_28
             }
         }
 
-        public void EquipScene() //장착 화면
+        public void EquipScene()    //장착 화면
         {
             Console.Clear();
-            Select.ColorWrite("인벤토리 - 장착 관리", ConsoleColor.Green);
+            Utility.ColorWrite("장착 관리", ConsoleColor.Green);
             Console.WriteLine();
             Console.WriteLine("[아이템 목록]");
+            Console.WriteLine();
 
             for (int i = 0; i < inventory.Count; i++)
             {
-                Select.ColorWrite($"{i + 1}. {inventory[i].ItemDisplay()}", ConsoleColor.DarkCyan);
+                if (inventory[i].IsEquip == true)
+                    Utility.ColorWrite($"{i + 1}. {inventory[i].ItemDisplay()}", ConsoleColor.Cyan);
+                else
+                    Utility.ColorWrite($"{i + 1}. {inventory[i].ItemDisplay()}", ConsoleColor.DarkCyan);
             }
 
             Console.WriteLine();
-            Select.ColorWrite("0. 마을로 돌아가기", ConsoleColor.DarkCyan);
+            Utility.ColorWrite("0. 마을로 돌아가기", ConsoleColor.DarkCyan);
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("원하시는 행동을 입력해주세요.");
             Console.Write(">> ");
 
-            int input = Select.Input(0, inventory.Count);
+            int input = Utility.Input(0, inventory.Count);
             switch (input)
             {
                 case 0:
@@ -260,7 +267,7 @@ namespace TextRPG_28
             }
         }
 
-        public void Equip(int input)
+        public void Equip(int input)    // 장착 관리
         {
             Item select = inventory[input - 1];
 
@@ -275,32 +282,34 @@ namespace TextRPG_28
             EquipScene();
         }
 
-        public void ShopScene() // 상점 화면 
+        public void ShopScene()     // 상점 화면 
         {
-            Select.Loading("상점 들어가는 중");
+            Utility.Loading("상점 들어가는 중");
 
             Console.Clear();
-            Select.ColorWrite("상점", ConsoleColor.Green);
-            Console.WriteLine();
-            Console.WriteLine($"소지금 : {player.Gold} gold");
+            Utility.ColorWrite("상점", ConsoleColor.Green);
             Console.WriteLine();
             Console.WriteLine("[아이템 목록]");
+            Console.WriteLine();
 
-            //초기에 설정한 아이템리스트들을 전부 표기
             for (int i = 0; i < itemList.Count; i++)
             {
-                Console.WriteLine($"{itemList[i].ItemDisplay()} | {itemList[i].GetPriceString()}");
+                if (itemList[i].IsPurchase == true)
+                    Utility.ColorWrite($"{itemList[i].ItemDisplay()} | {itemList[i].GetPriceString()}\n", ConsoleColor.DarkGray);
+                else
+                    Console.WriteLine($"{itemList[i].ItemDisplay()} | {itemList[i].GetPriceString()}\n");
             }
 
+            Utility.ColorWrite($"소지금 : {player.Gold} gold", ConsoleColor.Yellow);
             Console.WriteLine();
-            Select.ColorWrite("1. 아이템 구매", ConsoleColor.DarkCyan);
-            Select.ColorWrite("0. 나가기", ConsoleColor.DarkCyan);
+            Utility.ColorWrite("1. 아이템 구매", ConsoleColor.DarkCyan);
+            Utility.ColorWrite("0. 나가기", ConsoleColor.DarkCyan);
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("원하시는 행동을 입력해주세요.");
             Console.Write(">> ");
 
-            int input = Select.Input(0, 1);
+            int input = Utility.Input(0, 1);
             switch (input)
             {
                 case 0:
@@ -312,47 +321,50 @@ namespace TextRPG_28
             }
         }
 
-        public void BuyScreen(bool needGold = false, bool hasItem = false) // 구매 화면 
+        public void BuyScreen(bool needGold = false, bool hasItem = false)      // 구매 화면 
         {
             Console.Clear();
-            Select.ColorWrite("아이템 구매", ConsoleColor.Green);
-            Console.WriteLine();
-            Console.WriteLine($"소지금 : {player.Gold} gold");
+            Utility.ColorWrite("아이템 구매", ConsoleColor.Green);
             Console.WriteLine();
             Console.WriteLine("[아이템 목록]");
+            Console.WriteLine();
 
             for (int i = 0; i < itemList.Count; i++)
             {
-                Select.ColorWrite($"{i + 1}. {itemList[i].ItemDisplay()} | {itemList[i].GetPriceString()}", ConsoleColor.DarkCyan);
+                if (itemList[i].IsPurchase == true)
+                    Utility.ColorWrite($"{i + 1}. {itemList[i].ItemDisplay()} | {itemList[i].GetPriceString()}\n", ConsoleColor.DarkGray);
+                else
+                    Utility.ColorWrite($"{i + 1}. {itemList[i].ItemDisplay()} | {itemList[i].GetPriceString()}\n", ConsoleColor.DarkCyan);
             }
 
+            Utility.ColorWrite($"소지금 : {player.Gold} gold", ConsoleColor.Yellow);
             Console.WriteLine();
-            Select.ColorWrite("0. 나가기", ConsoleColor.DarkCyan);
+            Utility.ColorWrite("0. 나가기", ConsoleColor.DarkCyan);
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("원하시는 행동을 입력해주세요.");
             Console.Write(">> ");
 
-            if (needGold)
+            if (needGold)   // 소지금이 부족할때
             {
                 Console.WriteLine();
-                Select.ColorWrite("골드가 부족합니다!!", ConsoleColor.DarkRed);
+                Utility.ColorWrite("골드가 부족합니다!!", ConsoleColor.DarkRed);
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.DarkGreen;
                 Console.WriteLine("원하시는 행동을 입력해주세요.");
                 Console.Write(">> ");
             }
-            else if (hasItem)
+            else if (hasItem)   // 보유 아이템 일때
             {
                 Console.WriteLine();
-                Select.ColorWrite("이미 보유한 아이템입니다!!", ConsoleColor.DarkRed);
+                Utility.ColorWrite("이미 보유한 아이템입니다!!", ConsoleColor.DarkRed);
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.DarkGreen;
                 Console.WriteLine("원하시는 행동을 입력해주세요.");
                 Console.Write(">> ");
             }      
 
-            int input = Select.Input(0, itemList.Count);
+            int input = Utility.Input(0, itemList.Count);
             switch (input)
             {
                 case 0:
@@ -369,7 +381,7 @@ namespace TextRPG_28
             }
         }
 
-        public void Buy(Item item) // 아이템 구매
+        public void Buy(Item item)      // 아이템 구매
         {
             if (player.Gold >= item.Cost)
             {
@@ -384,27 +396,28 @@ namespace TextRPG_28
             }
         }
 
-        public void RestScene()
+        public void RestScene()     // 휴식 화면
         {
-            Select.Loading("휴식 하러 가는 중");
+            Utility.Loading("휴식 하러 가는 중");
 
             Console.Clear();
-            Select.ColorWrite("휴식 하기", ConsoleColor.Green);
+            Utility.ColorWrite("휴식 하기", ConsoleColor.Green);
             Console.WriteLine();
             Console.WriteLine("이곳에서 휴식을 취해 체력을 회복할 수 있습니다.");
             Console.WriteLine();
-            Select.ColorWrite("1. 짧은 휴식 하기 ( 300 gold 소모, 체력 30 회복 )", ConsoleColor.DarkCyan);
-            Select.ColorWrite("2. 충분한 휴식 하기 ( 500 gold 소모, 체력 60 회복 )", ConsoleColor.DarkCyan);
+            Utility.ColorWrite("1. 짧은 휴식 하기 ( 300 gold 소모, 체력 30 회복 )", ConsoleColor.DarkCyan);
+            Utility.ColorWrite("2. 충분한 휴식 하기 ( 600 gold 소모, 체력 60 회복 )", ConsoleColor.DarkCyan);
             Console.WriteLine();
             Console.WriteLine($"현재 체력 : {player.Hp}");
+            Console.WriteLine($"소지금 : {player.Gold}");
             Console.WriteLine();
-            Select.ColorWrite("0. 마을로 돌아가기", ConsoleColor.DarkCyan);
+            Utility.ColorWrite("0. 마을로 돌아가기", ConsoleColor.DarkCyan);
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("원하시는 행동을 입력해주세요.");
             Console.Write(">> ");
 
-            int yourChoice = Select.Input(0, 2);
+            int yourChoice = Utility.Input(0, 2);
             switch (yourChoice)
             {
                 case 0:
@@ -416,54 +429,92 @@ namespace TextRPG_28
             }
         }
 
-        public void Rest(int price)
+        public void Rest(int price)     // 휴식 관리
         {
-            int currentHp = player.Hp;
-            player.Hp += 30 * price;
-
-            if (player.Hp >= player.MaxHp) 
+            if (player.Hp != player.MaxHp && player.Gold >= 300 * price)
             {
-                player.Hp = player.MaxHp;
-            } 
+                int currentHp = player.Hp;
+                int currentGold = player.Gold;
 
-            for(int i = 0; i < price; i++)
-            {
-                Select.Loading("휴식하는 중");
+                player.Hp += 30 * price;
+                player.Gold -= 300 *price;
+
+                if (player.Hp >= player.MaxHp)
+                {
+                    player.Hp = player.MaxHp;
+                }
+
+                for (int i = 0; i < price; i++)
+                {
+                    Utility.Loading("휴식하는 중");
+                }
+
+                Console.Clear();
+                Utility.ColorWrite("휴식 완료!", ConsoleColor.Green);
+                Console.WriteLine();
+                Console.WriteLine($"{player.Name} 님의 체력이 회복 되었습니다.\n{currentHp} -> {player.Hp}");
+                Console.WriteLine();
+                Utility.ColorWrite("1. 한번 더 휴식 하기", ConsoleColor.DarkCyan);
+                Utility.ColorWrite("0. 마을로 돌아가기", ConsoleColor.DarkCyan);
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                Console.WriteLine("원하시는 행동을 입력해주세요.");
+                Console.Write(">> ");
+
+                int yourChoice = Utility.Input(0, 1);
+
+                switch (yourChoice)
+                {
+                    case 0:
+                        StartScene();
+                        break;
+                    case 1:
+                        RestScene();
+                        break;
+                }
             }
-
-            Console.Clear();
-            Select.ColorWrite("휴식 완료!", ConsoleColor.Green);
-            Console.WriteLine();
-            Console.WriteLine($"{player.Name} 님의 체력이 회복 되었습니다.\n{currentHp} -> {player.Hp}");
-            Console.WriteLine();
-            Select.ColorWrite("1. 한번 더 휴식 하기", ConsoleColor.DarkCyan);
-            Select.ColorWrite("0. 마을로 돌아가기", ConsoleColor.DarkCyan);
-            Console.WriteLine();
-            Console.ForegroundColor = ConsoleColor.DarkGreen;
-            Console.WriteLine("원하시는 행동을 입력해주세요.");
-            Console.Write(">> ");
-
-            int yourChoice = Select.Input(0, 1);
-
-            switch (yourChoice)
+            else if(player.Hp == player.MaxHp)
             {
-                case 0:
-                    StartScene();
-                    break;
-                case 1:
-                    RestScene();
-                    break;
+                Console.Clear();
+                Utility.ColorWrite("휴식 불가", ConsoleColor.Red);
+                Console.WriteLine();
+                Console.WriteLine("이미 체력이 가득 차있습니다.");
+                Console.WriteLine();
+                Utility.ColorWrite("0. 마을로 돌아가기", ConsoleColor.DarkCyan);
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                Console.WriteLine("원하시는 행동을 입력해주세요.");
+                Console.Write(">> ");
+
+                Utility.Input(0, 0);
+                StartScene();
+            }
+            else if(player.Gold < 300 * price)
+            {
+                Console.Clear();
+                Utility.ColorWrite("휴식 불가", ConsoleColor.Red);
+                Console.WriteLine();
+                Console.WriteLine("소지금이 부족합니다.");
+                Console.WriteLine();
+                Utility.ColorWrite("0. 마을로 돌아가기", ConsoleColor.DarkCyan);
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                Console.WriteLine("원하시는 행동을 입력해주세요.");
+                Console.Write(">> ");
+
+                Utility.Input(0, 0);
+                StartScene();
             }
         }
 
         public void BattleScene()           // 전투 화면
         {
-            Select.Loading("던전 입장 중");
+            Utility.Loading("던전 입장 중");
             if(player.Hp >= 20)
             {
                 battle.BattelField(player, monsters, this);
 
-                int yourChoice = Select.Input(0, 1);
+                int yourChoice = Utility.Input(0, 1);
 
                 switch (yourChoice)
                 {
@@ -478,21 +529,21 @@ namespace TextRPG_28
             else
             {
                 Console.Clear();
-                Select.ColorWrite($"던전 입장 조건 : 현재 체력 20 이상", ConsoleColor.Red);
+                Utility.ColorWrite($"던전 입장 조건 : 현재 체력 20 이상", ConsoleColor.Red);
                 Console.WriteLine();
                 Console.WriteLine($"{player.Name}님의 체력이 부족합니다.");
                 Console.WriteLine($"현재 체력 : {player.Hp}");
                 Console.WriteLine();
                 Console.WriteLine($"마을로 돌아가거나 휴식을 해서 체력을 채울 수 있습니다.");
                 Console.WriteLine();
-                Select.ColorWrite("1. 휴식하러 가기", ConsoleColor.DarkCyan);
-                Select.ColorWrite("0. 마을로 돌아가기", ConsoleColor.DarkCyan);
+                Utility.ColorWrite("1. 휴식하러 가기", ConsoleColor.DarkCyan);
+                Utility.ColorWrite("0. 마을로 돌아가기", ConsoleColor.DarkCyan);
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.DarkGreen;
                 Console.WriteLine("원하시는 행동을 입력해주세요.");
                 Console.Write(">> ");
 
-                int yourChoice = Select.Input(0, 1);
+                int yourChoice = Utility.Input(0, 1);
 
                 switch (yourChoice)
                 {
@@ -506,7 +557,7 @@ namespace TextRPG_28
             }
         }
 
-        public void AttackScene(int count)
+        public void AttackScene(int count)      // 공격 화면
         {
             while (player.isDead == false)
             {
@@ -516,7 +567,7 @@ namespace TextRPG_28
 
                 while (isMonsterDead)
                 {
-                    int yourChoice = Select.Input(0, count);
+                    int yourChoice = Utility.Input(0, count);
 
                     switch (yourChoice)
                     {
@@ -528,7 +579,7 @@ namespace TextRPG_28
                             break;
                     }
                 }
-                Select.Input(0, 0);
+                Utility.Input(0, 0);
                 monsterDeadCount = attack.MonsterAttack(player, currentMonsters, count);
 
                 if (monsterDeadCount <= 0 || player.isDead == true)
@@ -537,7 +588,7 @@ namespace TextRPG_28
                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                     Console.WriteLine("원하시는 행동을 입력해주세요.");
                     Console.Write(">> ");
-                    Select.Input(0, 0);
+                    Utility.Input(0, 0);
                     ResultScene();
                 }
                 else
@@ -546,14 +597,14 @@ namespace TextRPG_28
                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                     Console.WriteLine("원하시는 행동을 입력해주세요.");
                     Console.Write(">> ");
-                    Select.Input(0, 0);
+                    Utility.Input(0, 0);
                 }
             }
         }
 
-        public void ResultScene()
+        public void ResultScene()       // 결과 화면
         {
-            Select.Loading("결과 화면 생성 중");
+            Utility.Loading("결과 화면 생성 중");
 
             result.ShowBattleResult(player, currentMonsters);
 
@@ -564,7 +615,7 @@ namespace TextRPG_28
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("원하시는 행동을 입력해주세요.");
             Console.Write(">> ");
-            Select.Input(0, 0);
+            Utility.Input(0, 0);
             StartScene();
         }
     }

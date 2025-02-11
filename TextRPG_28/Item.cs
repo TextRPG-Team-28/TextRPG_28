@@ -35,7 +35,7 @@ namespace TextRPG_28
 
         public string ItemDisplay()
         {
-            string str = IsEquip ? "[E]" : "";
+            string str = IsEquip ? "[E] " : "";
             str += $"{Name} | {GetTypeString()} | {Descrip}";
             return str;
         }

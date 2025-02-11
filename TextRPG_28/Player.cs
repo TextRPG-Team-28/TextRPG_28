@@ -26,7 +26,7 @@ namespace TextRPG_28
             Name = name;
         }
 
-        public Player(int level, string name, string job, int attak, int defense, int maxHp, int gold, bool dead)          // 생성시 플레이어 초기 설정, 직업은 추가 예정이 아직 없기때문에 아직은 고정
+        public Player(int level, string name, string job, int attak, int defense, int maxHp, int gold, bool dead)
         {
             Level = level;
             Name = name;
@@ -41,7 +41,7 @@ namespace TextRPG_28
             isDead = dead;
         }
 
-        public void PlayerStats()            // 플레이어 정보 화면 메서드
+        public void PlayerStats()            // 플레이어 정보 화면
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
@@ -64,7 +64,7 @@ namespace TextRPG_28
             Console.ResetColor();
         }
 
-        public void EquipItem(Item item)
+        public void EquipItem(Item item)        // 장착 했을때
         {
             if (item.IsEquip)
             {
@@ -81,7 +81,7 @@ namespace TextRPG_28
             }
         }
 
-        public void UnEquip(Item item)
+        public void UnEquip(Item item)      // 장착 해제 할때
         {
             item.IsEquip = false;
 

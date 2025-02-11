@@ -8,11 +8,11 @@ namespace TextRPG_28
 {
     public class Result
     {
-        public void  ShowBattleResult(Player player, List<Monster> monsters)
+        public void  ShowBattleResult(Player player, List<Monster> monsters)    // 결과 화면
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Battle!! - Result\n");
+            Console.WriteLine("결과 보기\n");
 
             if (player.isDead == true)
             {
@@ -42,14 +42,9 @@ namespace TextRPG_28
 
                 Console.WriteLine($"{plusGold} gold를 획득하였습니다.");
             }
-            Console.WriteLine($"\nLv.{player.Level} {player.Name}");
-            Console.WriteLine($"HP {Math.Max(0, player.Hp)}");
+            Console.WriteLine($"\nLv.{player.Level} {player.Name} ({player.Job})");
+            Console.WriteLine($"남은 체력 : {Math.Max(0, player.Hp)}");
             Console.ResetColor ();
-        }
-
-        public bool CheckBattleEnd(Player player, List<Monster> monsters)
-        {
-            return player.Hp <= 0 || monsters.Count == 0;
         }
     }
 }

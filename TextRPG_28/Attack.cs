@@ -9,7 +9,7 @@ namespace TextRPG_28
 {
     public class Attack
     {
-        public bool PlayerAttack(Player player, List<Monster> monsters, int monsterNumber, bool b)
+        public bool PlayerAttack(Player player, List<Monster> monsters, int monsterNumber, bool b)      // 플레이어의 공격
         {
             Monster targetMonster = monsters[monsterNumber - 1];
 
@@ -17,7 +17,7 @@ namespace TextRPG_28
             {
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Battle!!\n\n");
+                Console.WriteLine("던전\n");
                 Console.ResetColor();
                 Console.WriteLine($"{player.Name} 의 공격!");
 
@@ -35,12 +35,13 @@ namespace TextRPG_28
 
                 if (damage > 0)
                 {
-                    string criticalMark = damage > 15 ? "-  치명타 공격!!" : "";
+                    string criticalMark = damage > 15 ? "- 치명타 공격!!" : "";
                     Console.WriteLine($"Lv.{targetMonster.Level} {targetMonster.Name} 을(를) 맞췄습니다. [데미지 : {damage}] {criticalMark}");
-                    Console.WriteLine("\n");
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
                     Console.WriteLine($"Lv. {targetMonster.Level} {targetMonster.Name}");
                     Console.WriteLine($"HP {maxHp}  -> {deadMark}");
-                    Console.WriteLine("\n");
+                    Console.WriteLine();
                     Console.ForegroundColor = ConsoleColor.DarkCyan;
                     Console.WriteLine("0. 다음");
                     Console.WriteLine();
@@ -51,7 +52,7 @@ namespace TextRPG_28
                 else
                 {
                     Console.WriteLine($"Lv.{targetMonster.Level} {targetMonster.Name} 을(를) 공격했지만 아무일도 일어나지 않았습니다.");
-                    Console.WriteLine("\n");
+                    Console.WriteLine();
                     Console.ForegroundColor = ConsoleColor.DarkCyan;
                     Console.WriteLine("0. 다음");
                     Console.WriteLine();
@@ -72,11 +73,11 @@ namespace TextRPG_28
             return b;
         }
 
-        public int MonsterAttack(Player player, List<Monster> monsters, int deadCount)
+        public int MonsterAttack(Player player, List<Monster> monsters, int deadCount)      // 몬스터의 공격
         {  
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Battle!!\n");
+            Console.WriteLine("던전\n");
             Console.ResetColor();
 
             int currentPlayerHP = player.Hp;
@@ -86,16 +87,18 @@ namespace TextRPG_28
                 if (monsters[i].Hp > 0)
                 {
                     Console.WriteLine($"Lv.{monsters[i].Level} {monsters[i].Name}의 공격!");
-                    Console.WriteLine($"{player.Name} 을(를) 맞췄습니다.  [데미지 : {monsters[i].Attack}]");
-                    Console.WriteLine("");
+                    Console.WriteLine($"{player.Name} 을(를) 맞췄습니다. [데미지 : {monsters[i].Attack}]");
+                    Console.WriteLine();
 
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
                     Console.WriteLine($"Lv.{player.Level} {player.Name}");
                     if(player.Hp > 0)
                         player.Hp -= monsters[i].Attack;
                     else
                         player.Hp = 0;
                     Console.WriteLine($"HP {currentPlayerHP} -> {player.Hp}");
-                    Console.WriteLine("");
+                    Console.WriteLine();
+                    Console.ResetColor();
                     if (player.Hp <= 0)
                     {
                         player.isDead = true;
@@ -115,8 +118,7 @@ namespace TextRPG_28
             else 
             {
                 Console.ResetColor();
-                Console.WriteLine("몬스터를 다 죽였습니다!!!");
-                Console.WriteLine();
+                Console.WriteLine("모든 몬스터를 죽였습니다!!!");
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.WriteLine("0. 다음");
@@ -124,7 +126,7 @@ namespace TextRPG_28
             return deadCount;
         }
 
-        public int isAttack(Monster monster, Player player)
+        public int isAttack(Monster monster, Player player)     // 공격 관리
         {
             int critical;
             Random criticalDamage = new Random();
