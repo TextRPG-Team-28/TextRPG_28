@@ -20,9 +20,10 @@ public class Battle
         Console.WriteLine("\n[내 정보]");
         Console.WriteLine($"Lv.{player.Level}   {player.Name} ({player.Job})");
         Console.WriteLine($"HP {player.Hp} / {player.MaxHp}");
+        Console.WriteLine($"MP {player.Mp} / {player.MaxMp}");
         Console.WriteLine();
         Console.ForegroundColor = ConsoleColor.DarkCyan;
-        Console.WriteLine("1. 공격\n0. 마을로 돌아가기");
+        Console.WriteLine("1. 공격\n2. 스킬\n0. 마을로 돌아가기");
         Console.ResetColor();
         Console.WriteLine();
         Console.ForegroundColor = ConsoleColor.DarkGreen;
@@ -52,9 +53,10 @@ public class Battle
         Console.WriteLine("\n[내 정보]");
         Console.WriteLine($"Lv.{player.Level}   {player.Name} ({player.Job})");
         Console.WriteLine($"HP {player.Hp} / {player.MaxHp}");
+        Console.WriteLine($"MP {player.Mp} / {player.MaxMp}");
         Console.WriteLine();
         Console.ForegroundColor = ConsoleColor.DarkCyan;
-        Console.WriteLine("0. 도망치기\n");
+        Console.WriteLine("0. 돌아가기\n");
         Console.ForegroundColor = ConsoleColor.DarkGreen;
         Console.Write("대상을 선택해주세요\n>> ");
     }
