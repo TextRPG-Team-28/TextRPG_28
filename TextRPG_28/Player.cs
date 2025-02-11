@@ -1,104 +1,56 @@
-﻿
-using System.Dynamic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
-using System.Runtime.InteropServices.ComTypes;
-using System.Threading.Tasks.Dataflow;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace TextRPG_28;
-
-public class Player// 플레이어 스텟입력
+namespace TextRPG_28
 {
-    
-        private List<Monster> monsters;
-        BattleLogic Battlelogic;
-    Player player;
-    Battle battle;
-    public int Level { get; }
-    public string Name { get; set; }
-    public string Job { get; set; }
-    public int Atk { get; }
-    public int Def { get; }
-    public int Hp { get; }
-    public int MaxHp { get; set; } 
-    public int Gold { get; set; }
-
-    public Player(int levle, string name, string job, int atk, int def, int hp, int mp, int Maxhp, int gold)
+    public class Player         // 플레이어 관련 클래스
     {
-        Level = Level;
-        Name = name;
-        Job = job;
-        Atk = atk;
-        Def = def;
-        Hp = hp;
-        Gold = gold;
-        MaxHp = Maxhp;
+        public int Level { get; }
+        public string Name { get; }
+        public string Job { get; }
+        public int Attack { get; }
+        public int Defense { get; }
+        public int Gold { get; set; }
+        public int Hp { get; set; }
+        public int MaxHp { get; }
+        public bool isDead { get; set; }
 
-        monsters = new List<Monster>();
-    }
-    public void Stats()
-    {
-
-        Console.Clear();
-        Console.WriteLine("상태 보기");
-        Console.WriteLine("캐릭터의 정보가 표시됩니다 .");
-        Console.WriteLine($"LV {Level}");
-        Console.WriteLine($"{Name}  ({Job})");
-        Console.WriteLine($"공격력 : {Atk}");
-        Console.WriteLine($"방어력 : {Def}");
-        Console.WriteLine($"HP : {Hp}");
-        Console.WriteLine($"Gold : {Gold} G");
-        Console.WriteLine("");
-        Console.WriteLine("0. 나가기");
-        Console.WriteLine("");
-        Console.Write(">>");
-    }
-
-
-
-    public void BattleDis()
-    {
-
-        battle = new Battle();
-        Console.Clear();
-        Console.WriteLine("Battle!!");
-        Console.WriteLine($"[내정보] Lv.{Level} {Name} ({Job}) HP {Hp}/{MaxHp}\n");
-        battle.StartBattle();
-        Console.WriteLine();
-        Console.WriteLine("[내정보]");
-        Console.WriteLine($"Lv . {Level} {Name} ({Job})");
-        Console.WriteLine($"Atk . {Atk}");
-        Console.WriteLine($"HP {Hp}");
-        Console.WriteLine();
-        Console.WriteLine("1. 공격");
-        int input = Selec.Input(1, 1);
-        switch (input)
+        public Player(string name)
         {
-            case 1:
-                BattleLogic.Attack(monsters, player);
-                break;
+            Name = name;
         }
 
+        public Player(int level, string name, string job, int attak, int defense, int maxHp, int gold, bool dead)          // 생성시 플레이어 초기 설정, 직업은 추가 예정이 아직 없기때문에 아직은 고정
+        {
+            Level = level;
+            Name = name;
+            Job = job;
+            Attack = attak;
+            Defense = defense;
+            Gold = gold;
+            Hp = maxHp;
+            MaxHp = maxHp;
+            isDead = dead;
+        }
 
-    }
-
-
-    public void InventoryItem()
-    {
-        Console.Clear();
-    }
-}
-public class Monster
-{
-    public int Level { get; set; }  
-    public string Name { get; set; }
-    public int Atk { get; set; }
-    public int Hp { get; set; }
-
-    public Monster(int level, string name, int atk, int hp)
-    {
-        Level = level;
-        Name = name;
-        Atk = atk;
-        Hp = hp;
+        public void PlayerStats()            // 플레이어 정보 화면 메서드
+        {
+            Console.Clear();
+            Console.WriteLine("상태 보기");
+            Console.WriteLine("캐릭터의 정보가 표시됩니다.");
+            Console.WriteLine();
+            Console.WriteLine($"Lv. {Level.ToString("00")}");
+            Console.WriteLine($"{Name} ( {Job} )");
+            Console.WriteLine($"공격력 : {Attack}");
+            Console.WriteLine($"방어력 : {Defense}");
+            Console.WriteLine($"체력 : {Hp} / {MaxHp}");
+            Console.WriteLine($"Gold : {Gold} gold");
+            Console.WriteLine();
+            Console.WriteLine("0. 나가기");
+        }
     }
 }

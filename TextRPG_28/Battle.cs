@@ -1,51 +1,73 @@
-ï»¿
+using System;
 using System.ComponentModel;
-
+using System.Numerics;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace TextRPG_28;
 
 public class Battle
 {
-    private List<Monster> monsterTemplates;
+    //public List<Monster> currentMonsters = new List<Monster>();
 
-    Player player;
-    public Battle()
-    { 
-        monsterTemplates = new List<Monster>
-        {
-            new Monster(2, "ë¯¸ë‹ˆì–¸", 5, 15),
-            new Monster(3, "ê³µí—ˆì¶©", 9, 10),
-            new Monster(5, "ëŒ€í¬ë¯¸ë‹ˆì–¸", 8, 25)
+    public void BattelField(Player player, List<Monster> monsters, GameManeger gm)
+    {
+        Console.Clear();
+        Console.WriteLine("Battle!!\n\n");
 
+        //NumberOfMonsters(monsters, 4);
+        gm.MonsterSetting();
 
-        };
+        Console.WriteLine("\n\n\n[³» Á¤º¸]");
+        Console.WriteLine($"Lv.{player.Level}   {player.Name} ({player.Job})");
+        Console.WriteLine($"HP {player.Hp} / {player.MaxHp}"); // ÇöÀç Ã¼·Â / ¿ø·¡ Ã¼·Â ÀüÅõÇÒ ¶§ ³ª´²Áà¾ß ÇÔ. 
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine("1. °ø°İ\n0. ¸¶À»·Î µ¹¾Æ°¡±â");
+        Console.WriteLine();
+        Console.WriteLine("¿øÇÏ½Ã´Â Çàµ¿À» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+        Console.Write(">> ");
+
+        //return currentMonsters.Count;
     }
 
-    public List<Monster> Genmonsters()
-    {
-        Random rand = new Random();
-        int monsterCount = rand.Next(1, 5); // 1~4ë§ˆë¦¬ ë“±ì¥
-        List<Monster> monsters = new List<Monster>();
+    //public void NumberOfMonsters(List<Monster> monsterList, int count)
+    //{
+    //    Random random = new Random();
+    //    int number = random.Next(1, count + 1);
 
-        for (int i = 0; i < monsterCount; i++)
+    //    currentMonsters.Clear();
+
+    //    for (int i = 0; i < number; i++)
+    //    {
+    //        int stageMonster = random.Next(0, monsterList.Count);
+    //        Console.WriteLine($"Lv.{monsterList[stageMonster].Level}  {monsterList[stageMonster].Name}  HP {monsterList[stageMonster].Hp}");
+    //        currentMonsters.Add(monsterList[stageMonster]);
+    //    }
+    //}
+
+    public void AttackField(Player player, GameManeger gm)
+    {
+        Console.Clear();
+        Console.WriteLine("Battle!!\n\n");
+        for (int i = 0; i < gm.currentMonsters.Count; i++)
         {
-            // ëœë¤ ëª¬ìŠ¤í„° ì„ íƒ (ì¤‘ë³µ ê°€ëŠ¥)
-            Monster randomMonster = monsterTemplates[rand.Next(monsterTemplates.Count)];
-            monsters.Add(new Monster(randomMonster.Level, randomMonster.Name, randomMonster.Atk, randomMonster.Hp));
+            if (gm.currentMonsters[i].isDead == false)
+            {
+                Console.WriteLine($"{i + 1}  Lv.{gm.currentMonsters[i].Level} {gm.currentMonsters[i].Name}  HP {gm.currentMonsters[i].Hp} ");
+            }
+            else
+            {
+                Console.WriteLine($"{i + 1}  Lv.{gm.currentMonsters[i].Level} {gm.currentMonsters[i].Name}  Dead ");
+            }
         }
 
-        return monsters.OrderBy(m => rand.Next()).ToList(); // ëª¬ìŠ¤í„° ìˆœì„œ ëœë¤í™”
-    }
-
-    public void StartBattle()
-    {
-
-
-        List<Monster> monsters = Genmonsters(); // ëª¬ìŠ¤í„° ìƒì„±
-
-        for (int i = 0; i < monsters.Count; i++)
-        {
-            Console.WriteLine($"{i + 1}. Lv.{monsters[i].Level} {monsters[i].Name} HP {monsters[i].Hp}");
-        }
+        Console.WriteLine("\n\n[³» Á¤º¸]");
+        Console.WriteLine($"Lv.{player.Level}   {player.Name} ({player.Job})");
+        Console.WriteLine($"HP {player.Hp} / {player.MaxHp}");
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine("0. µµ¸ÁÄ¡±â\n\n");
+        Console.Write("´ë»óÀ» ¼±ÅÃÇØÁÖ¼¼¿ä\n>> ");
     }
 }
+
