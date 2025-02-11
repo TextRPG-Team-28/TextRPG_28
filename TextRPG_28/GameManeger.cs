@@ -26,14 +26,23 @@ namespace TextRPG_28
             Random random = new Random();
             int number = random.Next(1, 4);
 
-            currentMonsters.Clear();
-
-            for (int i = 0; i < number; i++)
+            if (currentMonsters.Count  < 1)
             {
-                int stageMonster = random.Next(0, monsters.Count);
-                Monster newMonster = new Monster(monsters[stageMonster].Level, monsters[stageMonster].Name, monsters[stageMonster].Hp, monsters[stageMonster].Attack, false);
-                Console.WriteLine($"Lv.{newMonster.Level}  {newMonster.Name}  HP {newMonster.Hp}");
-                currentMonsters.Add(newMonster);
+                for (int i = 0; i < number; i++)
+                {
+                    int stageMonster = random.Next(0, monsters.Count);
+                    Monster newMonster = new Monster(monsters[stageMonster].Level, monsters[stageMonster].Name, monsters[stageMonster].Hp, monsters[stageMonster].Attack, false);
+                    Console.WriteLine($"Lv.{newMonster.Level}  {newMonster.Name}  HP {newMonster.Hp}");
+                    currentMonsters.Add(newMonster);
+                }
+            }
+            else
+            {
+                for(int i = 0; i < currentMonsters.Count;i++)
+                {
+                    Console.WriteLine($"Lv.{currentMonsters[i].Level}  {currentMonsters[i].Name}  HP {currentMonsters[i].Hp}");
+                }
+               
             }
         }
 
@@ -136,6 +145,7 @@ namespace TextRPG_28
                     StatsScene();
                     break;
                 case 2:
+                    currentMonsters.Clear();
                     BattleScene();
                     break;
             }
@@ -155,12 +165,14 @@ namespace TextRPG_28
 
         public void BattleScene()           // 전투 화면
         {
+            
   
              battle.BattelField(player, monsters, this);
             
            
 
             int yourChoice = Select.Input(0, 2);
+            Console.WriteLine("확인용 배틀신입니다.");
 
             switch (yourChoice)
             {
@@ -188,11 +200,12 @@ namespace TextRPG_28
                 while (isMonsterLive)
                 {
                     int yourChoice = Select.Input(0, count);
+                    Console.WriteLine("확인용 게임메니저어택신입니다.");
 
                     switch (yourChoice)
                     {
                         case 0:
-                            StartScene();
+                            battle.BattelField(player, monsters, this);
                             break;
                         default:
                             isMonsterLive = attack.PlayerAttack(player, currentMonsters, yourChoice, isMonsterLive);

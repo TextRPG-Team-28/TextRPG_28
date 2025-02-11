@@ -19,7 +19,7 @@ public class Battle
         Console.WriteLine($"HP {player.Hp} / {player.MaxHp}");
         Console.WriteLine();
         Console.WriteLine();
-        Console.WriteLine("1. 공격\n0. 마을로 돌아가기");
+        Console.WriteLine("1. 공격\n2. 스킬\n\n0. 마을로 돌아가기");
         Console.WriteLine();
         Console.WriteLine("원하시는 행동을 입력해주세요.");
         Console.Write(">> ");
@@ -46,7 +46,7 @@ public class Battle
         Console.WriteLine($"HP {player.Hp} / {player.MaxHp}");
         Console.WriteLine();
         Console.WriteLine();
-        Console.WriteLine("0. 도망치기\n\n");
+        Console.WriteLine("0. 이전으로 돌아가기\n\n"); //원래는 도망치기 해서 StartScene으로 돌아가는거.
         Console.Write("대상을 선택해주세요\n>> ");
     }
 }
