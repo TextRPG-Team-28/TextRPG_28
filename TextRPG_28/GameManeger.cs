@@ -18,14 +18,15 @@ namespace TextRPG_28
         Battle battle = new Battle();
         Attack attack = new Attack();
         Result result = new Result();
+        Skill skill = new Skill();
         
         public void MonsterSetting()    // 몬스터 세팅 및 랜덤하게 생성
         {
             monsters = new List<Monster>
             {
-                new Monster(1, "미니언", 15, 5, false),
-                new Monster(2, "공허충", 10, 9, false),
-                new Monster(3, "대포미니언", 25, 8, false)
+                new Monster(1, "미니언", 15, 3, false),
+                new Monster(2, "공허충", 10, 6, false),
+                new Monster(3, "대포미니언", 25, 7, false)
             };
 
             Random random = new Random();
@@ -117,10 +118,10 @@ namespace TextRPG_28
             switch (jobNum)
             {
                 case 1:
-                    player = new Player(1, player.Name, "전사", 8, 10, 150, 600, false, 0);
+                    player = new Player(1, player.Name, "전사", 10, 10, 150, 50, 500, false, 0);
                     break;
                 case 2:
-                    player = new Player(1, player.Name, "도적", 12, 5, 80, 1000, false, 0);
+                    player = new Player(1, player.Name, "도적", 12, 5, 100, 50, 800, false, 0);
                     break;
             }
 
@@ -525,7 +526,7 @@ namespace TextRPG_28
             {
                 battle.BattelField(player, monsters, this);
 
-                int yourChoice = Utility.Input(0, 1);
+                int yourChoice = Utility.Input(0, 2);
 
                 switch (yourChoice)
                 {
@@ -534,6 +535,9 @@ namespace TextRPG_28
                         break;
                     case 1:
                         AttackScene(currentMonsters.Count);
+                        break;
+                    case 2:
+                        SkillScene(currentMonsters.Count);
                         break;
                 }
             }
@@ -613,6 +617,41 @@ namespace TextRPG_28
                     Utility.Input(0, 0);
                 }
             }
+        }
+
+        public void SkillScene(int count)
+        {
+            while (player.isDead == false)
+            {
+                battle.AttackField(player, this);
+
+                bool isMonsterLive = true;
+
+                while (isMonsterLive)
+                {
+                    int yourChoice = Utility.Input(0, count);
+
+                    switch (yourChoice)
+                    {
+                        case 0:
+                            BattleScene();
+                            break;
+                        default:
+                            isMonsterLive = skill.Skill_1();
+                            break;
+
+                    }
+                }
+
+                Utility.Input(0, 1);
+                attack.MonsterAttack(player, currentMonsters, count);
+
+                Console.WriteLine();
+                Console.WriteLine("원하시는 행동을 입력해주세요.");
+                Console.Write(">> ");
+            }
+            Utility.Input(0, 0);
+            ResultScene();
         }
 
         public void ResultScene()       // 결과 화면
