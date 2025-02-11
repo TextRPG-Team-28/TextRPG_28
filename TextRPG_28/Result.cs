@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace TextRPG_28
 {
-    internal class Result
+    public class Result
     {
-        public static void  ShowBattleResult(Character.Player warrior, List<Character.Monster> monsters)
+        public void  ShowBattleResult(Player player, List<Monster> monsters)
         {
             Console.Clear();
             Console.WriteLine("Battle!! - Result\n");
 
-            if (warrior.Health <= 0)
+            if (player.Hp <= 0)
             {
                 Console.WriteLine("You Lose\n");
             }
@@ -33,15 +33,15 @@ namespace TextRPG_28
 
             }
 
-            Console.WriteLine($"\nLv.{warrior.Level} {warrior.Name}");
-            Console.WriteLine($"HP {Math.Max(0, warrior.Health)}\n");
+            Console.WriteLine($"\nLv.{player.Level} {player.Name}");
+            Console.WriteLine($"HP {Math.Max(0, player.Hp)}\n");
             Console.WriteLine("0. 다음\n>>");
             Console.ReadLine(); // 사용자가 다음으로 진행하도록 대기
         }
 
-        static public bool CheckBattleEnd(Character.Player warrior, List<Character.Monster> monsters)
+        public bool CheckBattleEnd(Player player, List<Monster> monsters)
         {
-            return warrior.Health <= 0 || monsters.Count == 0;
+            return player.Hp <= 0 || monsters.Count == 0;
         }
     }
 }
