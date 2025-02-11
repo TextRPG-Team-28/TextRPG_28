@@ -537,7 +537,7 @@ namespace TextRPG_28
                         AttackScene(currentMonsters.Count);
                         break;
                     case 2:
-                        SkillScene(currentMonsters.Count);
+                        SkillScene();
                         break;
                 }
             }
@@ -619,38 +619,30 @@ namespace TextRPG_28
             }
         }
 
-        public void SkillScene(int count)
+        public void SkillScene()
         {
             while (player.isDead == false)
             {
-                battle.AttackField(player, this); // skill필드로 변경할것
+                battle.SkillField(player, this);
 
-                bool isMonsterLive = true;
+                int yourChoice = Utility.Input(0, 3);
 
-                while (isMonsterLive)
+                switch (yourChoice)
                 {
-                    int yourChoice = Utility.Input(0, count);
-
-                    switch (yourChoice)
-                    {
-                        case 0:
-                            BattleScene();
-                            break;
-                        default:
-                            isMonsterLive = skill.Skill_1();    // 스킬선택    3개 예정
-                            break;
-                    }
+                    case 0:
+                        BattleScene();
+                        break;
+                    case 1:
+                        skill.Skill_1();    // 스킬1 
+                        break;
+                    case 2:
+                        skill.Skill_2();    // 스킬2
+                        break;
+                    case 3:
+                        skill.Skill_3();    // 스킬3
+                        break;
                 }
-
-                Utility.Input(0, 1);
-                attack.MonsterAttack(player, currentMonsters, count);
-
-                Console.WriteLine();
-                Console.WriteLine("원하시는 행동을 입력해주세요.");
-                Console.Write(">> ");
             }
-            Utility.Input(0, 0);
-            ResultScene();
         }
 
         public void ResultScene()       // 결과 화면
