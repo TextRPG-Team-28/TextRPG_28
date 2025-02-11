@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -59,7 +59,7 @@ namespace TextRPG_28
             Console.ResetColor();
             Console.WriteLine($"Lv. {Level.ToString("00")}");
             Console.WriteLine($"{Name} ( {Job} )");
-            Console.WriteLine($"경험치 : {Exp}/{ExpLevelUp[Level]}");
+            Console.WriteLine($"경험치 : {Exp} / {ExpLevelUp[Level]}");
 
             string str = EquipAttack == 0 ? $"공격력 : {Attack}" : $"공격력 : {Attack + EquipAttack} (+{EquipAttack})";
             Console.WriteLine(str);
