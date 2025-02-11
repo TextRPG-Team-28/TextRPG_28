@@ -25,12 +25,21 @@ namespace TextRPG_28
                 int Monsterscount = monsters.Count(monster => monster.isDead);
                 Console.WriteLine($"던전에서 {Monsterscount}마리의 몬스터를 처치했습니다.");
 
-                
+                Console.WriteLine("⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿");
+                Console.WriteLine("⣿⣿⣿⣿⣿⣿⡟⠏⠇⠇⠇⠫⡛⣿⣿⣿⣿⣿⣿");
+                Console.WriteLine("⣿⣿⣿⣿⣿⣿⣮⠐⠌⢌⠢⠳⢶⣿⣿⣿⣿⣿⣿");
+                Console.WriteLine("⣿⣿⣿⣿⣿⣿⠡⠡⠡⠡⠡⠡⡑⢹⣿⣿⣿⣿⣿");
+                Console.WriteLine("⣿⣿⡿⣛⢙⢛⠡⠡⡹⣥⢡⣡⡑⡸⡿⣿⣿⣿⣿");
+                Console.WriteLine("⣿⣿⣿⡬⠨⣴⣌⡂⢂⠪⢟⠯⠇⣤⣷⢸⣿⣿⣿");
+                Console.WriteLine("⣿⣿⣿⣿⣿⣿⣿⢇⢇⣧⣇⡕⢼⣿⣿⣿⣿⣿⣿");
+                Console.WriteLine("⣿⣿⣿⣿⣿⣿⣿⣸⣪⡯⢗⣛⣾⣿⣿⣿⣿⣿⣿");
+                Console.WriteLine("⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿");
+
+                Console.WriteLine($"\nLv.{player.Level} {player.Name}");
+                Console.WriteLine($"HP {Math.Max(0, player.Hp)}\n");
+                Console.WriteLine("0. 다음\n>>");
+                Console.ReadLine(); // 사용자가 다음으로 진행하도록 대기
             }
-            Console.WriteLine($"\nLv.{player.Level} {player.Name}");
-            Console.WriteLine($"HP {Math.Max(0, player.Hp)}\n");
-            Console.WriteLine("0. 다음\n>>");
-            Console.ReadLine(); // 사용자가 다음으로 진행하도록 대기
         }
 
         public static bool CheckBattleEnd(Player player, List<Monster> monsters)
