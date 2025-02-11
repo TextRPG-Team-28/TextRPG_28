@@ -9,6 +9,7 @@ namespace TextRPG_28
 {
     public class Attack
     {
+        LevelUp levelUp;
         public bool PlayerAttack(Player player, List<Monster> monsters, int monsterNumber, bool b)
         {
             Monster targetMonster = monsters[monsterNumber - 1];
@@ -21,7 +22,7 @@ namespace TextRPG_28
                 Console.WriteLine("Battle!!\n\n");
                 Console.WriteLine($"{player.Name} 의 공격!");
 
-                if (miss > 10)
+                if (miss < 10)
                 {
                     Console.WriteLine($"{targetMonster.Name} 을(를) 공격 했지만 아무도 일어나지 않았습니다.");
 
@@ -37,12 +38,12 @@ namespace TextRPG_28
                     {
                         monsters[monsterNumber - 1].isDead = true;
                     }
-
                     Console.WriteLine($"Lv.{targetMonster.Level} {targetMonster.Name} 을(를) 맞췄습니다. [데미지 : {damage}]");
                     Console.WriteLine("\n");
                     Console.WriteLine($"Lv. {targetMonster.Level} {targetMonster.Name}");
                     Console.WriteLine($"HP {maxHp}  -> {deadMark}");
                     Console.WriteLine("\n");
+                    player.Exp += targetMonster.Exp;
                 }
                 Console.WriteLine("0. 다음");
                 Console.Write(">> ");
@@ -72,7 +73,7 @@ namespace TextRPG_28
                     Console.WriteLine($"{player.Name} 을(를) 맞췄습니다.  [데미지 : {monsters[i].Attack}]");
                     Console.WriteLine("\n");
 
-                    Console.WriteLine($"Lv.{player.Level} {player.Name}");
+                    Console.WriteLine($"Lv.{levelUp.Level} {player.Name}");
                     player.Hp -= monsters[i].Attack;
                     Console.WriteLine($"HP {currentPlayerHP} -> {player.Hp}");
                     Console.WriteLine("\n");
