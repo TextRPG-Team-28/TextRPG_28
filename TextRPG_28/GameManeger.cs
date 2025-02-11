@@ -25,7 +25,7 @@ namespace TextRPG_28
             {
                 new Monster(2, "미니언", 15, 5, false),
                 new Monster(3, "공허충", 10, 9, false),
-                new Monster(5, "대포미니언", 25, 100, false)
+                new Monster(5, "대포미니언", 25, 8, false)
             };
 
             Random random = new Random();
@@ -108,10 +108,10 @@ namespace TextRPG_28
             switch (jobNum)
             {
                 case 1:
-                    player = new Player(1, player.Name, "전사", 10, 10, 150, 1000, false);
+                    player = new Player(1, player.Name, "전사", 10, 10, 150, 1000, false, 0);
                     break;
                 case 2:
-                    player = new Player(1, player.Name, "도적", 15, 5, 100, 1500, false);
+                    player = new Player(1, player.Name, "도적", 15, 5, 100, 1500, false, 0);
                     break;
             }
 
@@ -559,6 +559,8 @@ namespace TextRPG_28
 
         public void AttackScene(int count)      // 공격 화면
         {
+            player.isDead = false;
+
             while (player.isDead == false)
             {
                 battle.AttackField(player, this);

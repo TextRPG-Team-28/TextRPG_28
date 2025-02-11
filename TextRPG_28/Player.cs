@@ -30,26 +30,6 @@ namespace TextRPG_28
             Name = name;
         }
 
-        public void AddExp(int totalExp)
-        {
-            Exp += totalExp;
-            
-            while (Exp >= ExpLevelUp[Level])
-            {
-                LevelUp();
-            }
-        }
-
-        private void LevelUp()
-        {
-            Level++;
-            Attack = (int)(Attack + 0.5);
-            Defense += 1;
-            MaxHp += 10;
-            Hp = MaxHp;
-            Console.WriteLine($"레벨업! {Level}레벨이 되었습니다.");
-        }   
-
         public Player(int level, string name, string job, int attak, int defense, int maxHp, int gold, bool dead ,int exp)  
         {
             Level = level;
@@ -115,6 +95,25 @@ namespace TextRPG_28
             else
                 EquipDefense -= item.Value;
         }
-      
+
+        public void AddExp(int totalExp)        // 경험치 관리
+        {
+            Exp += totalExp;
+
+            while (Exp >= ExpLevelUp[Level])
+            {
+                LevelUp();
+            }
+        }
+
+        private void LevelUp()      // 레벨업 관리
+        {
+            Level++;
+            Attack = (int)(Attack + 0.5);
+            Defense += 1;
+            MaxHp += 10;
+            Hp = MaxHp;
+            Console.WriteLine($"레벨업! {Level}레벨이 되었습니다.");
+        }
     }
 }
