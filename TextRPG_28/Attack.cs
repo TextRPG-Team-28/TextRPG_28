@@ -30,13 +30,24 @@ namespace TextRPG_28
                     monsters[monsterNumber - 1].isDead = true;
                 }
 
-                Console.WriteLine($"Lv.{targetMonster.Level} {targetMonster.Name} 을(를) 맞췄습니다. [데미지 : {damage}]");
-                Console.WriteLine("\n");
-                Console.WriteLine($"Lv. {targetMonster.Level} {targetMonster.Name}");
-                Console.WriteLine($"HP {maxHp}  -> {deadMark}");
-                Console.WriteLine("\n");
-                Console.WriteLine("0. 다음");
-                Console.Write(">> ");
+                if (damage > 0)
+                {
+                    string criticalMark = damage > 15 ? "-  치명타 공격!!" : "";
+                    Console.WriteLine($"Lv.{targetMonster.Level} {targetMonster.Name} 을(를) 맞췄습니다. [데미지 : {damage}] {criticalMark}");
+                    Console.WriteLine("\n");
+                    Console.WriteLine($"Lv. {targetMonster.Level} {targetMonster.Name}");
+                    Console.WriteLine($"HP {maxHp}  -> {deadMark}");
+                    Console.WriteLine("\n");
+                    Console.WriteLine("0. 다음");
+                    Console.Write(">> ");
+                }
+                else
+                {
+                    Console.WriteLine($"Lv.{targetMonster.Level} {targetMonster.Name} 을(를) 공격했지만 아무일도 일어나지 않았습니다.");
+                    Console.WriteLine("\n");
+                    Console.WriteLine("0. 다음");
+                    Console.Write(">> ");
+                }
                 b = false;
             }
             else
@@ -74,17 +85,33 @@ namespace TextRPG_28
 
         public int isAttack(Monster monster, Player player)
         {
-            int max;
-            int min;
-            float x = player.Attack * 0.9f;
-            float y = player.Attack * 1.1f;
+            int critical;
+            Random criticalDamage = new Random();
+            critical = criticalDamage.Next(1, 101);
+            if (critical <= 15)
+            {
+                float criticalAttack = player.Attack * 1.6f;
+                int cA = (int)criticalAttack;
+                return cA;
+            }
+            else if (critical > 90)
+            {
+                return 0;
+            }
+            else
+            {
+                int max;
+                int min;
+                float x = player.Attack * 0.9f;
+                float y = player.Attack * 1.1f;
 
-            min = (int)(x + 0.5f);
-            max = (int)(y + 0.5f);
+                min = (int)(x + 0.5f);
+                max = (int)(y + 0.5f);
 
-            Random random = new Random();
-            int currentAttack = random.Next(min, max + 1);
-            return currentAttack;
+                Random random = new Random();
+                int currentAttack = random.Next(min, max + 1);
+                return currentAttack;
+            }
         }
     }
 }
