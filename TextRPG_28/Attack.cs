@@ -33,13 +33,32 @@ namespace TextRPG_28
                     b = true;
                 }
 
-                Console.WriteLine($"Lv.{targetMonster.Level} {targetMonster.Name} 을(를) 맞췄습니다. [데미지 : {damage}]");
-                Console.WriteLine("\n");
-                Console.WriteLine($"Lv. {targetMonster.Level} {targetMonster.Name}");
-                Console.WriteLine($"HP {maxHp}  -> {deadMark}");
-                Console.WriteLine("\n");
-                Console.WriteLine("0. 다음");
-                Console.Write(">> ");
+                if (damage > 0)
+                {
+                    string criticalMark = damage > 15 ? "-  치명타 공격!!" : "";
+                    Console.WriteLine($"Lv.{targetMonster.Level} {targetMonster.Name} 을(를) 맞췄습니다. [데미지 : {damage}] {criticalMark}");
+                    Console.WriteLine("\n");
+                    Console.WriteLine($"Lv. {targetMonster.Level} {targetMonster.Name}");
+                    Console.WriteLine($"HP {maxHp}  -> {deadMark}");
+                    Console.WriteLine("\n");
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    Console.WriteLine("0. 다음");
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("원하시는 행동을 입력해주세요.");
+                    Console.Write(">> ");
+                }
+                else
+                {
+                    Console.WriteLine($"Lv.{targetMonster.Level} {targetMonster.Name} 을(를) 공격했지만 아무일도 일어나지 않았습니다.");
+                    Console.WriteLine("\n");
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    Console.WriteLine("0. 다음");
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("원하시는 행동을 입력해주세요.");
+                    Console.Write(">> ");
+                }
                 b = false;
             }
             else
