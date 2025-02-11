@@ -13,7 +13,7 @@ namespace TextRPG_28
         Battle battle = new Battle();
         Attack attack = new Attack();
         Result result = new Result();
-
+        
         public void MonsterSetting()
         {
             monsters = new List<Monster>
@@ -25,7 +25,6 @@ namespace TextRPG_28
 
             Random random = new Random();
             int number = random.Next(1, 4);
-
             currentMonsters.Clear();
 
             for (int i = 0; i < number; i++)
@@ -41,8 +40,8 @@ namespace TextRPG_28
         {
             Console.Clear();
 
-            Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다.");
-            Console.WriteLine("원하시는 이름을 설정해주세요.");
+            Select.ColorWrite("스파르타 마을에 오신 여러분 환영합니다.", ConsoleColor.Green);
+            Select.ColorWrite("원하시는 이름을 설정해주세요.", ConsoleColor.Green);
             Console.WriteLine();
             Console.Write(">> ");
             string name = Console.ReadLine();
@@ -52,9 +51,10 @@ namespace TextRPG_28
             Console.WriteLine();
             Console.WriteLine($"입력하신 이름은 '{player.Name}' 입니다.");
             Console.WriteLine();
-            Console.WriteLine("1. 결정 하기");
-            Console.WriteLine("2. 다시 입력");
+            Select.ColorWrite("1. 결정 하기", ConsoleColor.DarkCyan);
+            Select.ColorWrite("2. 다시 입력", ConsoleColor.DarkCyan);
             Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("원하시는 행동을 입력해주세요.");
             Console.Write(">> ");
 
@@ -74,11 +74,12 @@ namespace TextRPG_28
         public void SelectJobScene()            // 직업 선택 화면
         {
             Console.Clear();
-            Console.WriteLine("직업을 선택해주세요.");
+            Select.ColorWrite("직업을 선택해주세요.", ConsoleColor.Green);
             Console.WriteLine();
-            Console.WriteLine("1. 전사   ->   공격력  10   방어력  10   체력  150   기초자금  1000 gold");
-            Console.WriteLine("2. 도적   ->   공격력  15   방어력  05   체력  100   기초자금  1500 gold");
+            Select.ColorWrite("1. 전사    :   체력과 방어력이 높고 밸런스가 좋습니다.", ConsoleColor.DarkCyan);
+            Select.ColorWrite("2. 도적    :   공격력이 높고 기초 자금이 많지만 낮은 체력, 방어력을 가지고 있습니다.", ConsoleColor.DarkCyan);
             Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("원하시는 행동을 입력해주세요.");
             Console.Write(">> ");
 
@@ -95,11 +96,14 @@ namespace TextRPG_28
             }
 
             Console.Clear();
+            Select.ColorWrite("직업을 선택해주세요.", ConsoleColor.Green);
+            Console.WriteLine();
             Console.WriteLine($"선택하신 직업은 '{player.Job}' 입니다.");
             Console.WriteLine();
-            Console.WriteLine("1. 결정 하기");
-            Console.WriteLine("2. 다시 선택");
+            Select.ColorWrite("1. 결정 하기", ConsoleColor.DarkCyan);
+            Select.ColorWrite("2. 다시 선택", ConsoleColor.DarkCyan);
             Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("원하시는 행동을 입력해주세요.");
             Console.Write(">> ");
 
@@ -119,16 +123,17 @@ namespace TextRPG_28
         public void StartScene()            // 처음 시작 화면
         {
             Console.Clear();
-            Console.WriteLine("스파르타 던전에 오신 여러분 환영합니다 .");
-            Console.WriteLine("이제 전투를 시작할 수 있습니다.");
+            Select.ColorWrite("스파르타 던전에 오신 여러분 환영합니다 .", ConsoleColor.Green);
+            Select.ColorWrite("이제 전투를 시작할 수 있습니다.", ConsoleColor.Green);
             Console.WriteLine();
-            Console.WriteLine("1. 상태 보기");
-            Console.WriteLine("2. 전투 시작");
+            Select.ColorWrite("1. 상태 보기", ConsoleColor.DarkCyan);
+            Select.ColorWrite("2. 전투 시작", ConsoleColor.DarkCyan);
             Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("원하시는 행동을 입력해주세요.");
             Console.Write(">> ");
 
-            int startNum = Select.Input(1, 2);
+            int startNum = Select.Input(1, 3);
 
             switch (startNum)
             {
@@ -138,6 +143,9 @@ namespace TextRPG_28
                 case 2:
                     BattleScene();
                     break;
+                case 3:
+                    RestScene();
+                    break;
             }
         }
 
@@ -146,11 +154,17 @@ namespace TextRPG_28
             player.PlayerStats();
 
             Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("원하시는 행동을 입력해주세요.");
             Console.Write(">> ");
 
             Select.Input(0, 0);
             StartScene();
+        }
+
+        public void RestScene()
+        {
+
         }
 
         public void BattleScene()           // 전투 화면
@@ -198,6 +212,7 @@ namespace TextRPG_28
                 if (monsterDeadCount <= 0 || player.isDead == true)
                 {
                     Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
                     Console.WriteLine("원하시는 행동을 입력해주세요.");
                     Console.Write(">> ");
                     Select.Input(0, 0);
@@ -206,6 +221,7 @@ namespace TextRPG_28
                 else
                 {
                     Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
                     Console.WriteLine("원하시는 행동을 입력해주세요.");
                     Console.Write(">> ");
                     Select.Input(0, 0);
@@ -218,7 +234,11 @@ namespace TextRPG_28
             result.ShowBattleResult(player, currentMonsters);
 
             Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine("0. 마을로 돌아가기.");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("원하시는 행동을 입력해주세요.");
             Console.Write(">> ");
             Select.Input(0, 0);
             StartScene();

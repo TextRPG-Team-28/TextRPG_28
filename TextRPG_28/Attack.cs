@@ -16,7 +16,9 @@ namespace TextRPG_28
             if (targetMonster.isDead == false)
             {
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Battle!!\n\n");
+                Console.ResetColor();
                 Console.WriteLine($"{player.Name} 의 공격!");
 
                 int damage = isAttack(targetMonster, player);
@@ -36,15 +38,20 @@ namespace TextRPG_28
                 Console.WriteLine($"Lv. {targetMonster.Level} {targetMonster.Name}");
                 Console.WriteLine($"HP {maxHp}  -> {deadMark}");
                 Console.WriteLine("\n");
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.WriteLine("0. 다음");
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                Console.WriteLine("원하시는 행동을 입력해주세요.");
                 Console.Write(">> ");
                 b = false;
             }
             else
             {
                 b = true;
-                Console.WriteLine("이미 죽엇음");
-                Console.WriteLine("다시 선택해주세요");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("이미 죽은 몬스터 입니다.");
+                Console.WriteLine("다시 선택해주세요.");
                 Console.Write(">> ");
             }
             return b;
@@ -53,7 +60,9 @@ namespace TextRPG_28
         public int MonsterAttack(Player player, List<Monster> monsters, int deadCount)
         {  
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Battle!!\n\n");
+            Console.ResetColor();
 
             int currentPlayerHP = player.Hp;
 
@@ -81,13 +90,16 @@ namespace TextRPG_28
             }
             if (deadCount > 0)
             {
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.WriteLine("0. 다음");
             }
             else 
             {
+                Console.ResetColor();
                 Console.WriteLine("몬스터를 다 죽였습니다!!!");
                 Console.WriteLine();
                 Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.WriteLine("0. 다음");
             }
             return deadCount;

@@ -40,9 +40,11 @@ namespace TextRPG_28
         public void PlayerStats()            // 플레이어 정보 화면 메서드
         {
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("상태 보기");
             Console.WriteLine("캐릭터의 정보가 표시됩니다.");
             Console.WriteLine();
+            Console.ResetColor();
             Console.WriteLine($"Lv. {Level.ToString("00")}");
             Console.WriteLine($"{Name} ( {Job} )");
             Console.WriteLine($"공격력 : {Attack}");
@@ -50,7 +52,9 @@ namespace TextRPG_28
             Console.WriteLine($"체력 : {Hp} / {MaxHp}");
             Console.WriteLine($"Gold : {Gold} gold");
             Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine("0. 나가기");
+            Console.ResetColor();
         }
     }
 }

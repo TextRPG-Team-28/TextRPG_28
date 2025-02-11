@@ -11,15 +11,22 @@ namespace TextRPG_28
         public void  ShowBattleResult(Player player, List<Monster> monsters)
         {
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Battle!! - Result\n\n");
 
             if (player.isDead == true)
             {
-                Console.WriteLine("You Lose\n");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("You Die\n");
+                Console.ResetColor();
+                Console.WriteLine($"마을로 돌아가 체력을 회복 하세요.");
+                Console.WriteLine($"(회복 하기 전까지 전투 불가능)\n");
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Victory\n\n");
+                Console.ResetColor();
                 Console.WriteLine($"던전에서 {monsters.Count}마리의 몬스터를 잡았습니다.\n");
                 Console.WriteLine("⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿");
                 Console.WriteLine("⣿⣿⣿⣿⣿⣿⡟⠏⠇⠇⠇⠫⡛⣿⣿⣿⣿⣿⣿");
@@ -37,6 +44,7 @@ namespace TextRPG_28
             }
             Console.WriteLine($"\nLv.{player.Level} {player.Name}");
             Console.WriteLine($"HP {Math.Max(0, player.Hp)}");
+            Console.ResetColor ();
         }
 
         public bool CheckBattleEnd(Player player, List<Monster> monsters)
