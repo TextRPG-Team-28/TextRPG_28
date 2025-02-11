@@ -12,6 +12,8 @@ namespace TextRPG_28
         public bool PlayerAttack(Player player, List<Monster> monsters, int monsterNumber, bool b)
         {
             Monster targetMonster = monsters[monsterNumber - 1];
+            Random random = new Random();
+            int miss = random.Next(1, 100);
 
             if (targetMonster.isDead == false)
             {
@@ -19,22 +21,29 @@ namespace TextRPG_28
                 Console.WriteLine("Battle!!\n\n");
                 Console.WriteLine($"{player.Name} 의 공격!");
 
-                int damage = isAttack(targetMonster, player);
-                int maxHp = targetMonster.Hp;
-                string deadMark = targetMonster.Hp - damage <= 0 ? "Dead" : $"{targetMonster.Hp - damage}";
-
-                monsters[monsterNumber - 1].Hp = targetMonster.Hp - damage;
-
-                if (monsters[monsterNumber - 1].Hp <= 0)
+                if (miss > 10)
                 {
-                    monsters[monsterNumber - 1].isDead = true;
-                }
+                    Console.WriteLine($"{targetMonster.Name} 을(를) 공격 했지만 아무도 일어나지 않았습니다.");
 
-                Console.WriteLine($"Lv.{targetMonster.Level} {targetMonster.Name} 을(를) 맞췄습니다. [데미지 : {damage}]");
-                Console.WriteLine("\n");
-                Console.WriteLine($"Lv. {targetMonster.Level} {targetMonster.Name}");
-                Console.WriteLine($"HP {maxHp}  -> {deadMark}");
-                Console.WriteLine("\n");
+                }
+                else
+                {
+                    int damage = isAttack(targetMonster, player);
+                    int maxHp = targetMonster.Hp;
+                    string deadMark = targetMonster.Hp - damage <= 0 ? "Dead" : $"{targetMonster.Hp - damage}";
+
+                    monsters[monsterNumber - 1].Hp = targetMonster.Hp - damage;
+                    if (monsters[monsterNumber - 1].Hp <= 0)
+                    {
+                        monsters[monsterNumber - 1].isDead = true;
+                    }
+
+                    Console.WriteLine($"Lv.{targetMonster.Level} {targetMonster.Name} 을(를) 맞췄습니다. [데미지 : {damage}]");
+                    Console.WriteLine("\n");
+                    Console.WriteLine($"Lv. {targetMonster.Level} {targetMonster.Name}");
+                    Console.WriteLine($"HP {maxHp}  -> {deadMark}");
+                    Console.WriteLine("\n");
+                }
                 Console.WriteLine("0. 다음");
                 Console.Write(">> ");
                 b = false;
@@ -86,5 +95,7 @@ namespace TextRPG_28
             int currentAttack = random.Next(min, max + 1);
             return currentAttack;
         }
+
+
     }
 }

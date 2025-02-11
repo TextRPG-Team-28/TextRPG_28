@@ -14,14 +14,14 @@ public class Battle
 
         gm.MonsterSetting();
 
-        Console.WriteLine("\n\n\n[³» Á¤º¸]");
+        Console.WriteLine("\n\n\n[ë‚´ì •ë³´]");
         Console.WriteLine($"Lv.{player.Level}   {player.Name} ({player.Job})");
         Console.WriteLine($"HP {player.Hp} / {player.MaxHp}");
         Console.WriteLine();
         Console.WriteLine();
-        Console.WriteLine("1. °ø°Ý\n0. ¸¶À»·Î µ¹¾Æ°¡±â");
+        Console.WriteLine("1. ê³µê²©\n 2.ìŠ¤í‚¬ \n0. ë„ë§ì¹˜ê¸°");
         Console.WriteLine();
-        Console.WriteLine("¿øÇÏ½Ã´Â Çàµ¿À» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+        Console.WriteLine("ëŒ€ìƒì„ ì„ íƒí•´ì£¼ì„¸ìš”.");
         Console.Write(">> ");
     }
 
@@ -41,13 +41,13 @@ public class Battle
             }
         }
 
-        Console.WriteLine("\n\n[³» Á¤º¸]");
+        Console.WriteLine("\n\n[ë‚´ì •ë³´]");
         Console.WriteLine($"Lv.{player.Level}   {player.Name} ({player.Job})");
         Console.WriteLine($"HP {player.Hp} / {player.MaxHp}");
         Console.WriteLine();
         Console.WriteLine();
-        Console.WriteLine("0. µµ¸ÁÄ¡±â\n\n");
-        Console.Write("´ë»óÀ» ¼±ÅÃÇØÁÖ¼¼¿ä\n>> ");
+        Console.WriteLine("0. ë„ë§ì¹˜ê¸°\n\n");
+        Console.Write("ëŒ€ìƒì„ ì„ íƒí•´ ì£¼ì„¸ìš”.\n>> ");
     }
 }
 
