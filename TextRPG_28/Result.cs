@@ -11,16 +11,16 @@ namespace TextRPG_28
         public void  ShowBattleResult(Player player, List<Monster> monsters)
         {
             Console.Clear();
-            Console.WriteLine("Battle!! - Result\n");
+            Console.WriteLine("Battle!! - Result\n\n");
 
-            if (player.Hp <= 0)
+            if (player.isDead == true)
             {
                 Console.WriteLine("You Lose\n");
             }
             else
             {
-                Console.WriteLine("Victory\n");
-                Console.WriteLine($"던전에서 {monsters.Count}마리의 몬스터를 잡았습니다.");
+                Console.WriteLine("Victory\n\n");
+                Console.WriteLine($"던전에서 {monsters.Count}마리의 몬스터를 잡았습니다.\n");
                 Console.WriteLine("⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿");
                 Console.WriteLine("⣿⣿⣿⣿⣿⣿⡟⠏⠇⠇⠇⠫⡛⣿⣿⣿⣿⣿⣿");
                 Console.WriteLine("⣿⣿⣿⣿⣿⣿⣮⠐⠌⢌⠢⠳⢶⣿⣿⣿⣿⣿⣿");
@@ -29,14 +29,14 @@ namespace TextRPG_28
                 Console.WriteLine("⣿⣿⣿⡬⠨⣴⣌⡂⢂⠪⢟⠯⠇⣤⣷⢸⣿⣿⣿");
                 Console.WriteLine("⣿⣿⣿⣿⣿⣿⣿⢇⢇⣧⣇⡕⢼⣿⣿⣿⣿⣿⣿");
                 Console.WriteLine("⣿⣿⣿⣿⣿⣿⣿⣸⣪⡯⢗⣛⣾⣿⣿⣿⣿⣿⣿");
-                Console.WriteLine("⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿");
+                Console.WriteLine("⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿\n");
+                int plusGold = monsters.Count * 300;
+                player.Gold += plusGold;
 
+                Console.WriteLine($"{plusGold} gold를 획득하였습니다.");
             }
-
             Console.WriteLine($"\nLv.{player.Level} {player.Name}");
-            Console.WriteLine($"HP {Math.Max(0, player.Hp)}\n");
-            Console.WriteLine("0. 다음\n>>");
-            Console.ReadLine(); // 사용자가 다음으로 진행하도록 대기
+            Console.WriteLine($"HP {Math.Max(0, player.Hp)}");
         }
 
         public bool CheckBattleEnd(Player player, List<Monster> monsters)
