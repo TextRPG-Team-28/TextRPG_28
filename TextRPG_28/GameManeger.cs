@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Dynamic;
 using System.Security.Cryptography.X509Certificates;
 using static System.Formats.Asn1.AsnWriter;
@@ -623,7 +623,7 @@ namespace TextRPG_28
         {
             while (player.isDead == false)
             {
-                battle.AttackField(player, this);
+                battle.AttackField(player, this); // skill필드로 변경할것
 
                 bool isMonsterLive = true;
 
@@ -637,9 +637,8 @@ namespace TextRPG_28
                             BattleScene();
                             break;
                         default:
-                            isMonsterLive = skill.Skill_1();
+                            isMonsterLive = skill.Skill_1();    // 스킬선택    3개 예정
                             break;
-
                     }
                 }
 
