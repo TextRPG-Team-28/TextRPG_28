@@ -189,42 +189,47 @@ namespace TextRPG_28
             }
         }
 
-        public void AttackScene(int count)
+        public void AttackScene(int count)      // 공격 화면
         {
+            player.isDead = false;
             while (player.isDead == false)
             {
                 battle.AttackField(player, this);
-
-                bool isMonsterLive = true;
-
-                while (isMonsterLive)
+                int monsterDeadCount = count;
+                bool isMonsterDead = true;
+                while (isMonsterDead)
                 {
                     int yourChoice = Select.Input(0, count);
-                    Console.WriteLine("확인용 게임메니저어택신입니다.");
-
                     switch (yourChoice)
                     {
                         case 0:
-                            battle.BattelField(player, monsters, this);
+                            BattleScene();
                             break;
                         default:
-                            isMonsterLive = attack.PlayerAttack(player, currentMonsters, yourChoice, isMonsterLive);
+                            isMonsterDead = attack.PlayerAttack(player, currentMonsters, yourChoice, isMonsterDead);
                             break;
-                        
                     }
-
-                    break;
                 }
-
                 Select.Input(0, 0);
-                attack.MonsterAttack(player, currentMonsters);
-
-                Console.WriteLine();
-                Console.WriteLine("원하시는 행동을 입력해주세요.");
-                Console.Write(">> "); 
+                monsterDeadCount = attack.MonsterAttack(player, currentMonsters, count);
+                if (monsterDeadCount <= 0 || player.isDead == true)
+                {
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("원하시는 행동을 입력해주세요.");
+                    Console.Write(">> ");
+                    Select.Input(0, 0);
+                    ResultScene();
+                }
+                else
+                {
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("원하시는 행동을 입력해주세요.");
+                    Console.Write(">> ");
+                    Select.Input(0, 0);
+                }
             }
-            Select.Input(0, 0);
-            ResultScene();
         }
 
         public void SkillScene(int count)
@@ -242,7 +247,7 @@ namespace TextRPG_28
                     switch (yourChoice)
                     {
                         case 0:
-                            battle.BattelField(player, currentMonsters, this);
+                            BattleScene();
                             break;
                         default:
                             isMonsterLive = skill.Skil_1();
@@ -252,7 +257,7 @@ namespace TextRPG_28
                 }
 
                 Select.Input(0, 1);
-                attack.MonsterAttack(player, currentMonsters);
+                attack.MonsterAttack(player, currentMonsters, count);
 
                 Console.WriteLine();
                 Console.WriteLine("원하시는 행동을 입력해주세요.");

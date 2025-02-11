@@ -59,28 +59,54 @@ namespace TextRPG_28
             return b;
         }
 
-        public void MonsterAttack(Player player, List<Monster> monsters)
+        public int MonsterAttack(Player player, List<Monster> monsters, int deadCount)      // 몬스터의 공격
         {
             Console.Clear();
-            Console.WriteLine("Battle!!\n\n");
-
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("던전\n");
+            Console.ResetColor();
             int currentPlayerHP = player.Hp;
-
             for (int i = 0; i < monsters.Count; i++)
             {
                 if (monsters[i].Hp > 0)
                 {
                     Console.WriteLine($"Lv.{monsters[i].Level} {monsters[i].Name}의 공격!");
-                    Console.WriteLine($"{player.Name} 을(를) 맞췄습니다.  [데미지 : {monsters[i].Attack}]");
-                    Console.WriteLine("\n");
-
+                    Console.WriteLine($"{player.Name} 을(를) 맞췄습니다. [데미지 : {monsters[i].Attack}]");
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
                     Console.WriteLine($"Lv.{player.Level} {player.Name}");
-                    player.Hp -= monsters[i].Attack;
+                    if (player.Hp > 0)
+                        player.Hp -= monsters[i].Attack;
+                    else
+                        player.Hp = 0;
                     Console.WriteLine($"HP {currentPlayerHP} -> {player.Hp}");
-                    Console.WriteLine("\n");
+                    Console.WriteLine();
+                    Console.ResetColor();
+                    if (player.Hp <= 0)
+                    {
+                        player.isDead = true;
+                        player.Hp = 0;
+                    }
+                }
+                else
+                {
+                    deadCount--;
                 }
             }
-            Console.WriteLine("0. 다음");
+            if (deadCount > 0)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.WriteLine("0. 다음");
+            }
+            else
+            {
+                Console.ResetColor();
+                Console.WriteLine("모든 몬스터를 죽였습니다!!!");
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.WriteLine("0. 다음");
+            }
+            return deadCount;
         }
 
         public int isAttack(Monster monster, Player player)
