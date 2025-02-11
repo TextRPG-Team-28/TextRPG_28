@@ -38,11 +38,7 @@ namespace TextRPG_28
                 Console.WriteLine($"Lv. {targetMonster.Level} {targetMonster.Name}");
                 Console.WriteLine($"HP {maxHp}  -> {deadMark}");
                 Console.WriteLine("\n");
-                Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.WriteLine("0. 다음");
-                Console.WriteLine();
-                Console.ForegroundColor = ConsoleColor.DarkGreen;
-                Console.WriteLine("원하시는 행동을 입력해주세요.");
                 Console.Write(">> ");
                 b = false;
             }
@@ -107,17 +103,33 @@ namespace TextRPG_28
 
         public int isAttack(Monster monster, Player player)
         {
-            int max;
-            int min;
-            float x = player.Attack * 0.9f;
-            float y = player.Attack * 1.1f;
+            int critical;
+            Random criticalDamage = new Random();
+            critical = criticalDamage.Next(1, 101);
+            if (critical <= 15)
+            {
+                float criticalAttack = player.Attack * 1.6f;
+                int cA = (int)criticalAttack;
+                return cA;
+            }
+            else if (critical > 90)
+            {
+                return 0;
+            }
+            else
+            {
+                int max;
+                int min;
+                float x = player.Attack * 0.9f;
+                float y = player.Attack * 1.1f;
 
-            min = (int)(x + 0.5f);
-            max = (int)(y + 0.5f);
+                min = (int)(x + 0.5f);
+                max = (int)(y + 0.5f);
 
-            Random random = new Random();
-            int currentAttack = random.Next(min, max + 1);
-            return currentAttack;
+                Random random = new Random();
+                int currentAttack = random.Next(min, max + 1);
+                return currentAttack;
+            }
         }
     }
 }
