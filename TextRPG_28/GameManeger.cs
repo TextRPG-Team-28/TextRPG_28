@@ -1,5 +1,6 @@
 using System;
 using System.Dynamic;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 using static System.Formats.Asn1.AsnWriter;
 
@@ -537,7 +538,7 @@ namespace TextRPG_28
                         AttackScene(currentMonsters.Count);
                         break;
                     case 2:
-                        SkillScene();
+                        SkillScene(currentMonsters.Count);
                         break;
                 }
             }
@@ -615,31 +616,68 @@ namespace TextRPG_28
                     Console.WriteLine("원하시는 행동을 입력해주세요.");
                     Console.Write(">> ");
                     Utility.Input(0, 0);
+                    BattleScene();
                 }
             }
         }
-        public void SkillScene()
+        public void SkillScene(int count)    // 스킬 화면
         {
+            battle.SkillField(player, this);
+            int skillNumber = 0;
+
+            int skillChoice = Utility.Input(0, 3);
+
+            switch (skillChoice)
+            {
+                case 0:
+                    BattleScene();
+                    break;
+                default:
+                    skillNumber = skill.SelectSkill(skillChoice);
+                    break;
+            }
+
+            player.isDead = false;
+
             while (player.isDead == false)
             {
-                battle.SkillField(player, this);
+                battle.AttackField(player, this);
+                int monsterDeadCount = count;
+                bool isMonsterDead = true;
 
-                int yourChoice = Utility.Input(0, 3);
-
-                switch (yourChoice)
+                while (isMonsterDead)
                 {
-                    case 0:
-                        BattleScene();
-                        break;
-                    case 1:
-                        skill.Skill_1();    // 스킬1 
-                        break;
-                    case 2:
-                        skill.Skill_2();    // 스킬2
-                        break;
-                    case 3:
-                        skill.Skill_3();    // 스킬3
-                        break;
+                    int yourChoice = Utility.Input(0, count);
+
+                    switch (yourChoice)
+                    {
+                        case 0:
+                            BattleScene();
+                            break;
+                        default:
+                            isMonsterDead = skill.SkillAttack(player, currentMonsters, yourChoice, skillNumber, isMonsterDead);
+                            break;
+                    }
+                }
+                Utility.Input(0, 0);
+                monsterDeadCount = attack.MonsterAttack(player, currentMonsters, count);
+
+                if (monsterDeadCount <= 0 || player.isDead == true)
+                {
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("원하시는 행동을 입력해주세요.");
+                    Console.Write(">> ");
+                    Utility.Input(0, 0);
+                    ResultScene();
+                }
+                else
+                {
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("원하시는 행동을 입력해주세요.");
+                    Console.Write(">> ");
+                    Utility.Input(0, 0);
                 }
             }
         }
