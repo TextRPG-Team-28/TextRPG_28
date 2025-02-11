@@ -9,15 +9,17 @@ namespace TextRPG_28
     public class Monster
     {
         public int Level { get; }
+        public int Exp { get; }
         public string Name { get; }
         public int Attack { get; }
         public int Hp { get; set; }
         public int MaxHp {  get; set; }
         public bool isDead { get; set; }
 
-        public Monster(int level, string name, int maxhp, int attack, bool dead)
+        public Monster(int level, int exp, string name, int maxhp, int attack, bool dead)
         {
             Level = level;
+            Exp = exp;
             Name = name;
             Attack = attack;
             Hp = maxhp;

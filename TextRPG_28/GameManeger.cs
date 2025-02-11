@@ -12,15 +12,19 @@ namespace TextRPG_28
         public List<Monster> currentMonsters = new List<Monster>();
         Battle battle = new Battle();
         Attack attack = new Attack();
-        
+        LevelUp levelUp;
+
+
+  
         public void MonsterSetting()
         {
             monsters = new List<Monster>
             {
-                new Monster(2, "미니언", 15, 5, false),
-                new Monster(3, "공허충", 10, 9, false),
-                new Monster(5, "대포미니언", 25, 8, false)
+                new Monster(2, 2 ,"미니언", 15, 5, false),
+                new Monster(3,3 ,"공허충", 10, 9, false),
+                new Monster(5, 5,"대포미니언", 25, 8, false)
             };
+            
 
             Random random = new Random();
             int number = random.Next(1, 4);
@@ -30,12 +34,12 @@ namespace TextRPG_28
             for (int i = 0; i < number; i++)
             {
                 int stageMonster = random.Next(0, monsters.Count);
-                Monster newMonster = new Monster(monsters[stageMonster].Level, monsters[stageMonster].Name, monsters[stageMonster].Hp, monsters[stageMonster].Attack, false);
+                Monster newMonster = new Monster(monsters[stageMonster].Level, monsters[stageMonster].Exp,monsters[stageMonster].Name, monsters[stageMonster].Hp, monsters[stageMonster].Attack, false);
                 Console.WriteLine($"Lv.{newMonster.Level}  {newMonster.Name}  HP {newMonster.Hp}");
                 currentMonsters.Add(newMonster);
             }
         }
-
+        
         public void IntroScene()            // 이름 입력 화면
         {
             Console.Clear();
@@ -86,10 +90,10 @@ namespace TextRPG_28
             switch (jobNum)
             {
                 case 1:
-                    player = new Player(1, player.Name, "전사", 10, 10, 150, 1000, false);
+                    player = new Player(1,0, player.Name, "전사", 10, 10, 150, 1000, false);
                     break;
                 case 2:
-                    player = new Player(1, player.Name, "도적", 15, 5, 100, 1500, false);
+                    player = new Player(1,0,player.Name, "도적", 15, 5, 100, 1500, false);
                     break;
             }
 
@@ -114,6 +118,7 @@ namespace TextRPG_28
                     break;
             }
         }
+        
 
         public void StartScene()            // 처음 시작 화면
         {
@@ -154,6 +159,7 @@ namespace TextRPG_28
 
         public void BattleScene()           // 전투 화면
         {
+            player.Leveling();
             battle.BattelField(player, monsters, this);
 
             int yourChoice = Select.Input(0, 1);

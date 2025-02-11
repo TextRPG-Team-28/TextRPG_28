@@ -37,13 +37,13 @@ namespace TextRPG_28
                     if (monsters[monsterNumber - 1].Hp <= 0)
                     {
                         monsters[monsterNumber - 1].isDead = true;
+                        player.Exp += targetMonster.Exp;
                     }
                     Console.WriteLine($"Lv.{targetMonster.Level} {targetMonster.Name} 을(를) 맞췄습니다. [데미지 : {damage}]");
                     Console.WriteLine("\n");
                     Console.WriteLine($"Lv. {targetMonster.Level} {targetMonster.Name}");
                     Console.WriteLine($"HP {maxHp}  -> {deadMark}");
                     Console.WriteLine("\n");
-                    player.Exp += targetMonster.Exp;
                 }
                 Console.WriteLine("0. 다음");
                 Console.Write(">> ");
@@ -73,7 +73,7 @@ namespace TextRPG_28
                     Console.WriteLine($"{player.Name} 을(를) 맞췄습니다.  [데미지 : {monsters[i].Attack}]");
                     Console.WriteLine("\n");
 
-                    Console.WriteLine($"Lv.{levelUp.Level} {player.Name}");
+                    Console.WriteLine($"Lv.{player.Level} {player.Name}");
                     player.Hp -= monsters[i].Attack;
                     Console.WriteLine($"HP {currentPlayerHP} -> {player.Hp}");
                     Console.WriteLine("\n");

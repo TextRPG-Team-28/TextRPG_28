@@ -7,6 +7,7 @@ namespace TextRPG_28;
 
 public class Battle
 {
+    LevelUp levelUp;
     public void BattelField(Player player, List<Monster> monsters, GameManeger gm)
     {
         Console.Clear();
@@ -17,6 +18,7 @@ public class Battle
         Console.WriteLine("\n\n\n[내정보]");
         Console.WriteLine($"Lv.{player.Level}   {player.Name} ({player.Job})");
         Console.WriteLine($"HP {player.Hp} / {player.MaxHp}");
+        Console.WriteLine($"EXP {player.Exp} / {player.MaxExp}");
         Console.WriteLine();
         Console.WriteLine();
         Console.WriteLine("1. 공격\n 2.스킬 \n0. 도망치기");
@@ -44,10 +46,11 @@ public class Battle
         Console.WriteLine("\n\n[내정보]");
         Console.WriteLine($"Lv.{player.Level}   {player.Name} ({player.Job})");
         Console.WriteLine($"HP {player.Hp} / {player.MaxHp}");
+        Console.WriteLine($"EXP {player.Exp} / {player.MaxExp}");
         Console.WriteLine();
         Console.WriteLine();
         Console.WriteLine("0. 도망치기\n\n");
-        Console.Write("대상을 선택해 주세요.\n>> ");
+        Console.Write("대상을 선택해 주세요  .\n>> ");
     }
 }
 
