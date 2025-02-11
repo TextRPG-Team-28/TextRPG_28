@@ -39,22 +39,27 @@ namespace TextRPG_28
         public void IntroScene()            // 이름 입력 화면
         {
             Console.Clear();
-
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다.");
             Console.WriteLine("원하시는 이름을 설정해주세요.");
             Console.WriteLine();
+            Console.ResetColor();
             Console.Write(">> ");
             string name = Console.ReadLine();
 
             player = new Player(name);
 
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine();
             Console.WriteLine($"입력하신 이름은 '{player.Name}' 입니다.");
             Console.WriteLine();
+            Console.ResetColor();
             Console.WriteLine("1. 결정 하기");
             Console.WriteLine("2. 다시 입력");
             Console.WriteLine();
+            Console.ForegroundColor= ConsoleColor.Green;
             Console.WriteLine("원하시는 행동을 입력해주세요.");
+            Console.ResetColor();
             Console.Write(">> ");
 
             int nameNum = Select.Input(1, 2);
@@ -73,12 +78,16 @@ namespace TextRPG_28
         public void SelectJobScene()            // 직업 선택 화면
         {
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("직업을 선택해주세요.");
             Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("1. 전사   ->   공격력  10   방어력  10   체력  150   기초자금  1000 gold");
             Console.WriteLine("2. 도적   ->   공격력  15   방어력  05   체력  100   기초자금  1500 gold");
             Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("원하시는 행동을 입력해주세요.");
+            Console.ResetColor();
             Console.Write(">> ");
 
             int jobNum = Select.Input(1, 2);
@@ -94,12 +103,16 @@ namespace TextRPG_28
             }
 
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"선택하신 직업은 '{player.Job}' 입니다.");
             Console.WriteLine();
+            Console.ResetColor();
             Console.WriteLine("1. 결정 하기");
             Console.WriteLine("2. 다시 선택");
             Console.WriteLine();
+            Console.ForegroundColor= ConsoleColor.Green;
             Console.WriteLine("원하시는 행동을 입력해주세요.");
+            Console.ResetColor();
             Console.Write(">> ");
 
             int selectNum = Select.Input(1, 2);
@@ -118,13 +131,17 @@ namespace TextRPG_28
         public void StartScene()            // 처음 시작 화면
         {
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("스파르타 던전에 오신 여러분 환영합니다 .");
             Console.WriteLine("이제 전투를 시작할 수 있습니다.");
             Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("1. 상태 보기");
             Console.WriteLine("2. 전투 시작");
             Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("원하시는 행동을 입력해주세요.");
+            Console.ResetColor();
             Console.Write(">> ");
 
             int startNum = Select.Input(1, 2);
@@ -145,7 +162,9 @@ namespace TextRPG_28
             player.PlayerStats();
 
             Console.WriteLine();
+            Console.ForegroundColor= ConsoleColor.Green;
             Console.WriteLine("원하시는 행동을 입력해주세요.");
+            Console.ResetColor();
             Console.Write(">> ");
 
             Select.Input(0, 0);
@@ -192,7 +211,9 @@ namespace TextRPG_28
                 attack.MonsterAttack(player, currentMonsters);
 
                 Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("원하시는 행동을 입력해주세요.");
+                Console.ResetColor();
                 Console.Write(">> ");
 
                 Select.Input(0, 0);
