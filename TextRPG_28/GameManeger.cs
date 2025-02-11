@@ -15,6 +15,23 @@ namespace TextRPG_28
         LevelUp levelUp;
 
 
+        public void Leveling()
+        {
+            int[] maxexp = new[] { 10, 30, 65, 100 } ;
+            
+            if (player.Exp >= maxexp[player.Level -1])
+            {
+                while (player.Exp >= maxexp[player.Level-1])
+                {
+                    player.Exp = player.Exp - maxexp[player.Level - 1];
+                    player.Level++;
+                    player.Attack += 0.5f;
+                    player.Defense += 1;
+                    maxexp[0]++;
+                    break;
+                }
+            }
+        }
   
         public void MonsterSetting()
         {
@@ -147,7 +164,7 @@ namespace TextRPG_28
 
         public void StatsScene ()           // 상태 보기 화면
         {
-            player.PlayerStats();
+            player.PlayerStats(this);
 
             Console.WriteLine();
             Console.WriteLine("원하시는 행동을 입력해주세요.");
@@ -159,7 +176,7 @@ namespace TextRPG_28
 
         public void BattleScene()           // 전투 화면
         {
-            player.Leveling();
+            Leveling();
             
             battle.BattelField(player, monsters, this);
             
