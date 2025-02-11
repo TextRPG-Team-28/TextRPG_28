@@ -57,6 +57,7 @@ public class Battle
         Console.WriteLine();
         Console.ForegroundColor = ConsoleColor.DarkCyan;
         Console.WriteLine("0. 돌아가기\n");
+        Console.WriteLine("0. 돌아가기\n");
         Console.ForegroundColor = ConsoleColor.DarkGreen;
         Console.Write("대상을 선택해주세요\n>> ");
     }
