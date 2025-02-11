@@ -95,10 +95,9 @@ public class Battle
         Console.ForegroundColor = ConsoleColor.DarkCyan;
         Console.WriteLine("0. 돌아가기\n");
         Console.ForegroundColor = ConsoleColor.DarkGreen;
-        Console.Write("원하시는 행동을 입력해주세요.\n>> ");
+        Console.Write("대상을 선택해주세요\n>> ");
     }
 
-    
     public void SkillField(Player player, GameManeger gm)      // 공격 시 필드
     {
         Console.Clear();
