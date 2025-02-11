@@ -47,7 +47,10 @@ namespace TextRPG_28
             {
                 for (int i = 0; i < currentMonsters.Count; i++)
                 {
-                    Console.WriteLine($"Lv.{currentMonsters[i].Level}  {currentMonsters[i].Name}  HP {currentMonsters[i].Hp}");
+                    if(currentMonsters[i].isDead == false)
+                        Console.WriteLine($"Lv.{currentMonsters[i].Level}  {currentMonsters[i].Name}  HP {currentMonsters[i].Hp}");
+                    else
+                        Utility.ColorWrite($"Lv.{currentMonsters[i].Level}  {currentMonsters[i].Name}  Dead", ConsoleColor.DarkGray);
                 }
             }
         }
