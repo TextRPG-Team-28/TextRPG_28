@@ -76,7 +76,7 @@ namespace TextRPG_28
         {  
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Battle!!\n\n");
+            Console.WriteLine("Battle!!\n");
             Console.ResetColor();
 
             int currentPlayerHP = player.Hp;
@@ -87,15 +87,19 @@ namespace TextRPG_28
                 {
                     Console.WriteLine($"Lv.{monsters[i].Level} {monsters[i].Name}의 공격!");
                     Console.WriteLine($"{player.Name} 을(를) 맞췄습니다.  [데미지 : {monsters[i].Attack}]");
-                    Console.WriteLine("\n");
+                    Console.WriteLine("");
 
                     Console.WriteLine($"Lv.{player.Level} {player.Name}");
-                    player.Hp -= monsters[i].Attack;
+                    if(player.Hp > 0)
+                        player.Hp -= monsters[i].Attack;
+                    else
+                        player.Hp = 0;
                     Console.WriteLine($"HP {currentPlayerHP} -> {player.Hp}");
-                    Console.WriteLine("\n");
+                    Console.WriteLine("");
                     if (player.Hp <= 0)
                     {
                         player.isDead = true;
+                        player.Hp = 0;
                     }
                 }
                 else

@@ -11,15 +11,14 @@ public class Battle
     {
         Console.ForegroundColor = ConsoleColor.Green;
         Console.Clear();
-        Console.WriteLine("Battle!!\n\n");
+        Console.WriteLine("Battle!!\n");
         Console.ResetColor();
 
         gm.MonsterSetting();
 
-        Console.WriteLine("\n\n[내 정보]");
+        Console.WriteLine("\n[내 정보]");
         Console.WriteLine($"Lv.{player.Level}   {player.Name} ({player.Job})");
         Console.WriteLine($"HP {player.Hp} / {player.MaxHp}");
-        Console.WriteLine();
         Console.WriteLine();
         Console.ForegroundColor = ConsoleColor.DarkCyan;
         Console.WriteLine("1. 공격\n0. 마을로 돌아가기");
@@ -34,7 +33,7 @@ public class Battle
     {
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine("Battle!!\n\n");
+        Console.WriteLine("Battle!!\n");
         for (int i = 0; i < gm.currentMonsters.Count; i++)
         {
             if (gm.currentMonsters[i].isDead == false)
@@ -49,13 +48,12 @@ public class Battle
             }
         }
         Console.ResetColor();
-        Console.WriteLine("\n\n[내 정보]");
+        Console.WriteLine("\n[내 정보]");
         Console.WriteLine($"Lv.{player.Level}   {player.Name} ({player.Job})");
         Console.WriteLine($"HP {player.Hp} / {player.MaxHp}");
         Console.WriteLine();
-        Console.WriteLine();
         Console.ForegroundColor = ConsoleColor.DarkCyan;
-        Console.WriteLine("0. 도망치기\n\n");
+        Console.WriteLine("0. 도망치기\n");
         Console.ForegroundColor = ConsoleColor.DarkGreen;
         Console.Write("대상을 선택해주세요\n>> ");
     }

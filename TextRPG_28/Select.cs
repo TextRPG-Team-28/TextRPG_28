@@ -22,17 +22,17 @@ public class Select
         Console.ResetColor();
     }
 
-    public static void Loading()
+    public static void Loading(string str)
     {
         Console.ForegroundColor = ConsoleColor.Gray;
         Console.Clear();
-        Console.Write("Loading");
-        string str = ".";
+        Console.Write(str);
+        string dot = ".";
 
         for (int i = 0; i < 10; i++)
         {
             Thread.Sleep(75); //시간을 지연시킴
-            Console.Write(str);
+            Console.Write(dot);
         }
         Console.ResetColor();
     }

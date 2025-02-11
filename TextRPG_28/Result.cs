@@ -12,7 +12,7 @@ namespace TextRPG_28
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Battle!! - Result\n\n");
+            Console.WriteLine("Battle!! - Result\n");
 
             if (player.isDead == true)
             {
@@ -25,7 +25,7 @@ namespace TextRPG_28
             else
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("Victory\n\n");
+                Console.WriteLine("Victory\n");
                 Console.ResetColor();
                 Console.WriteLine($"던전에서 {monsters.Count}마리의 몬스터를 잡았습니다.\n");
                 Console.WriteLine("⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿");

@@ -13,7 +13,9 @@ namespace TextRPG_28
         public string Name { get; }
         public string Job { get; }
         public int Attack { get; }
+        public int EquipAttack { get; set; }
         public int Defense { get; }
+        public int EquipDefense { get; set; }
         public int Gold { get; set; }
         public int Hp { get; set; }
         public int MaxHp { get; }
@@ -30,7 +32,9 @@ namespace TextRPG_28
             Name = name;
             Job = job;
             Attack = attak;
+            EquipAttack = 0;
             Defense = defense;
+            EquipDefense = 0;
             Gold = gold;
             Hp = maxHp;
             MaxHp = maxHp;
@@ -42,19 +46,49 @@ namespace TextRPG_28
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("상태 보기");
-            Console.WriteLine("캐릭터의 정보가 표시됩니다.");
             Console.WriteLine();
             Console.ResetColor();
             Console.WriteLine($"Lv. {Level.ToString("00")}");
             Console.WriteLine($"{Name} ( {Job} )");
-            Console.WriteLine($"공격력 : {Attack}");
-            Console.WriteLine($"방어력 : {Defense}");
+
+            string str = EquipAttack == 0 ? $"공격력 : {Attack}" : $"공격력 : {Attack + EquipAttack} (+{EquipAttack})";
+            Console.WriteLine(str);
+            str = EquipDefense == 0 ? $"방어력 : {Defense}" : $"방어력 : {Defense + EquipDefense} (+{EquipDefense})";
+            Console.WriteLine(str);
+
             Console.WriteLine($"체력 : {Hp} / {MaxHp}");
             Console.WriteLine($"Gold : {Gold} gold");
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine("0. 나가기");
             Console.ResetColor();
+        }
+
+        public void EquipItem(Item item)
+        {
+            if (item.IsEquip)
+            {
+                UnEquip(item);
+            }
+            else
+            {
+                item.IsEquip = true;
+
+                if (item.Type == ItemType.Weapon)
+                    EquipAttack += item.Value;
+                else
+                    EquipDefense += item.Value;
+            }
+        }
+
+        public void UnEquip(Item item)
+        {
+            item.IsEquip = false;
+
+            if (item.Type == ItemType.Weapon)
+                EquipAttack -= item.Value;
+            else
+                EquipDefense -= item.Value;
         }
     }
 }
