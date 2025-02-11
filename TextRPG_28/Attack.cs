@@ -9,7 +9,6 @@ namespace TextRPG_28
 {
     public class Attack
     {
-        LevelUp levelUp;
         public bool PlayerAttack(Player player, List<Monster> monsters, int monsterNumber, bool b)
         {
             Monster targetMonster = monsters[monsterNumber - 1];

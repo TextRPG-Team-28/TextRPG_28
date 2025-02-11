@@ -11,10 +11,6 @@ namespace TextRPG_28
     
     public class Player         // 플레이어 관련 클래스
     {
-    
-            
-
-
         public int Level { get; set; }
         public int Exp { get; set; }
         public int MaxExp { get; set; }
@@ -32,16 +28,13 @@ namespace TextRPG_28
         {
             Name = name;
         }
-
-        public Player(int maxExp)
-        {
-            MaxExp = maxExp;
-        }
         
-        public Player(int level,int exp, string name, string job, float attak, int defense, int maxHp,int gold, bool dead)  // 생성시 플레이어 초기 설정, 직업은 추가 예정이 아직 없기때문에 아직은 고정
+        
+        public Player(int level,int exp,int maxexp, string name, string job, float attak, int defense, int maxHp,int gold, bool dead)  // 생성시 플레이어 초기 설정, 직업은 추가 예정이 아직 없기때문에 아직은 고정
         {
             Level = level;
             Exp = exp;
+            MaxExp = maxexp;
             Name = name;
             Job = job;
             Attack = attak;
@@ -64,7 +57,7 @@ namespace TextRPG_28
             Console.WriteLine($"공격력 : {Attack}");
             Console.WriteLine($"방어력 : {Defense}");
             Console.WriteLine($"체력 : {Hp} / {MaxHp}");
-            Console.WriteLine($"경험치 :  {Exp} / {MaxExp}" );
+            Console.WriteLine($"경험치 :  {Exp} / {MaxExp}");
             Console.WriteLine($"Gold : {Gold} gold");
             Console.WriteLine();
             Console.WriteLine("0. 나가기");

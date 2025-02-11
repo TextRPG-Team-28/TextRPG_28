@@ -12,24 +12,20 @@ namespace TextRPG_28
         public List<Monster> currentMonsters = new List<Monster>();
         Battle battle = new Battle();
         Attack attack = new Attack();
-        LevelUp levelUp;
 
 
         public void Leveling()
         {
             int[] maxexp = new[] { 10, 30, 65, 100 } ;
             
-            if (player.Exp >= maxexp[player.Level -1])
+            while (player.Exp >= maxexp[player.Level - 1])
             {
-                while (player.Exp >= maxexp[player.Level-1])
-                {
-                    player.Exp = player.Exp - maxexp[player.Level - 1];
-                    player.Level++;
-                    player.Attack += 0.5f;
-                    player.Defense += 1;
-                    maxexp[0]++;
-                    break;
-                }
+                player.Exp = player.Exp - maxexp[player.Level - 1];
+                player.Level++;
+                player.Attack += 0.5f;
+                player.Defense += 1;
+                maxexp[0]++;
+                break;
             }
         }
   
@@ -107,10 +103,10 @@ namespace TextRPG_28
             switch (jobNum)
             {
                 case 1:
-                    player = new Player(1,0, player.Name, "전사", 10, 10, 150, 1000, false);
+                    player = new Player(1,0,0, player.Name, "전사", 10, 10, 150, 1000, false);
                     break;
                 case 2:
-                    player = new Player(1,0,player.Name, "도적", 15, 5, 100, 1500, false);
+                    player = new Player(1,0,0,player.Name, "도적", 15, 5, 100, 1500, false);
                     break;
             }
 

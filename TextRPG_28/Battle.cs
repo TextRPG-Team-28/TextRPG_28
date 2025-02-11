@@ -7,7 +7,6 @@ namespace TextRPG_28;
 
 public class Battle
 {
-    LevelUp levelUp;
     public void BattelField(Player player, List<Monster> monsters, GameManeger gm)
     {
         Console.Clear();
