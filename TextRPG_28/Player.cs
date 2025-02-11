@@ -19,9 +19,11 @@ namespace TextRPG_28
         public int Gold { get; set; }
         public int Hp { get; set; }
         public int MaxHp { get; set; }
+        public int Mp {  get; set; }
+        public int MaxMp { get; set; }
         public bool isDead { get; set; }
         public int Exp { get; set; }
-        public int TotalExp { get; set; } 
+        public int TotalExp { get; set; }
 
         public int[] ExpLevelUp = { 0, 10, 35, 65, 100 };
 
@@ -30,7 +32,7 @@ namespace TextRPG_28
             Name = name;
         }
 
-        public Player(int level, string name, string job, int attak, int defense, int maxHp, int gold, bool dead ,int exp)  
+        public Player(int level, string name, string job, int attak, int defense, int maxHp, int maxMp, int gold, bool dead ,int exp)  
         {
             Level = level;
             Name = name;
@@ -42,6 +44,8 @@ namespace TextRPG_28
             Gold = gold;
             Hp = maxHp;
             MaxHp = maxHp;
+            Mp = maxMp;
+            MaxMp = maxMp;
             isDead = dead;
             Exp = exp;
         }     
@@ -63,6 +67,7 @@ namespace TextRPG_28
             Console.WriteLine(str);
 
             Console.WriteLine($"체력 : {Hp} / {MaxHp}");
+            Console.WriteLine($"마나 : {Mp} / {MaxMp}");
             Console.WriteLine($"Gold : {Gold} gold");
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.DarkCyan;
@@ -113,14 +118,18 @@ namespace TextRPG_28
             Attack = (int)(Attack + 1);
             Defense += 1;
             MaxHp += 10;
+            MaxMp += 10;
             Hp = MaxHp;
+            Mp = MaxMp;
             Console.WriteLine($"레벨업! {Level}레벨이 되었습니다.");
             Console.WriteLine();
             Console.WriteLine($"공격력 +1");
             Console.WriteLine($"방어력 +1");
             Console.WriteLine($"체력 +10");
+            Console.WriteLine($"마나 +10");
             Console.WriteLine();
             Console.WriteLine($"체력이 최대치로 회복 되었습니다.");
+            Console.WriteLine($"마나가 최대치로 회복 되었습니다.");
             Console.WriteLine();
         }
     }
