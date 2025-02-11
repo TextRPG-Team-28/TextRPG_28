@@ -160,7 +160,9 @@ namespace TextRPG_28
         public void BattleScene()           // 전투 화면
         {
             player.Leveling();
+            
             battle.BattelField(player, monsters, this);
+            
 
             int yourChoice = Select.Input(0, 1);
 
@@ -213,5 +215,6 @@ namespace TextRPG_28
         {
             Console.WriteLine("die");
         }
+        
     }
 }

@@ -2,17 +2,13 @@ namespace TextRPG_28;
 
 public class LevelUp
 {
-    Player player;
+    Player Player;
     List<LevelUp> levelUps;
     public List<LevelUp> currentLevelUps = new List<LevelUp>();
-    public int Level {get; set; }
-    public int Exp { get; set; }
-    public int MaxExp { get; set; }
-
-    public LevelUp(int level, int exp, int maxexp)
+    
+    public LevelUp( int exp, int maxexp)
     {
-        Level = level;
-        Exp = exp; 
-        MaxExp = maxexp;
+        Player.Exp = exp; 
+        Player.MaxExp = maxexp;
     }
 }

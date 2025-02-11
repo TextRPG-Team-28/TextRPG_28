@@ -10,7 +10,25 @@ namespace TextRPG_28
     
     public class Player         // 플레이어 관련 클래스
     {
-        LevelUp levelUp;
+
+        public void Leveling()
+        {
+            int[] maxexp = new[] { 10, 30, 65, 100 } ;
+            
+            if (Exp >= maxexp[Level -1])
+            {
+                while (Exp >= maxexp[Level-1])
+                {
+                    Exp = Exp - maxexp[Level - 1];
+                    Level++;
+                    Attack += 0.5f;
+                    Defense += 1;
+                    maxexp[0]++;
+                    break;
+                }
+            }
+        }
+
         public int Level { get; set; }
         public int Exp { get; set; }
         public int MaxExp { get; set; }
@@ -45,7 +63,7 @@ namespace TextRPG_28
 
         public void PlayerStats()            // 플레이어 정보 화면 메서드
         {
-            
+            Leveling();
             Console.Clear();
             Console.WriteLine("상태 보기");
             Console.WriteLine("캐릭터의 정보가 표시됩니다.");
@@ -55,32 +73,17 @@ namespace TextRPG_28
             Console.WriteLine($"공격력 : {Attack}");
             Console.WriteLine($"방어력 : {Defense}");
             Console.WriteLine($"체력 : {Hp} / {MaxHp}");
-            Console.WriteLine($"경험치 :  {Exp} / {MaxExp}");
+            Console.WriteLine($"경험치 :  {Exp} / {MaxExp}" );
             Console.WriteLine($"Gold : {Gold} gold");
             Console.WriteLine();
             Console.WriteLine("0. 나가기");
         }
-        List<LevelUp> levelUps;
-        public List<LevelUp> currentLevelUps = new List<LevelUp>();
+        
 
-        public void Leveling()
-        {
-            levelUps = new List<LevelUp>
-            {
-                new LevelUp(1, 0 , 10),
-                new LevelUp(2, 0 , 30),
-                new LevelUp(3, 0 , 65),
-                new LevelUp(4, 0 , 100),
-            };
 
-            if(Exp >=  MaxExp)
-            {
-                Level++;
-                Attack += 0.5f;
-                Defense += 1;
-                Exp = 0;
-            }
-        }
+            
+
     }
 }
+
 

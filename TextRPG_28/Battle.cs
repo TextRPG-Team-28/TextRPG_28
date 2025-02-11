@@ -46,7 +46,6 @@ public class Battle
         Console.WriteLine("\n\n[내정보]");
         Console.WriteLine($"Lv.{player.Level}   {player.Name} ({player.Job})");
         Console.WriteLine($"HP {player.Hp} / {player.MaxHp}");
-        Console.WriteLine($"EXP {player.Exp} / {player.MaxExp}");
         Console.WriteLine();
         Console.WriteLine();
         Console.WriteLine("0. 도망치기\n\n");
