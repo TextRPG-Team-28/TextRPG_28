@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,33 +9,49 @@ namespace TextRPG_28
 {
     public class Attack
     {
-        public void PlayerAttack(Player player, List<Monster> monsters, int monsterNumber)
+        public bool PlayerAttack(Player player, List<Monster> monsters, int monsterNumber, bool b)
         {
-            Console.Clear();
-            Console.WriteLine("Battle!!\n\n");
-            Console.WriteLine($"{player.Name} 의 공격!");
-
             Monster targetMonster = monsters[monsterNumber - 1];
-            int damage = isAttack(targetMonster, player);
 
-            string deadMark = targetMonster.Hp - damage <= 0 ? "Dead" : $"{targetMonster.Hp - damage}";
-            monsters[monsterNumber - 1].Hp = targetMonster.Hp - damage;
-            if(monsters[monsterNumber - 1].Hp <= 0)
+            if (targetMonster.isDead == false)
             {
-                monsters[monsterNumber - 1].isDead = true;
-            }
+                Console.Clear();
+                Console.WriteLine("Battle!!\n\n");
+                Console.WriteLine($"{player.Name} 의 공격!");
 
-            Console.WriteLine($"Lv.{targetMonster.Level} {targetMonster.Name} 을(를) 맞췄습니다. [데미지 : {damage}]");
-            Console.WriteLine("\n");
-            Console.WriteLine($"Lv. {targetMonster.Level} {targetMonster.Name}");
-            Console.WriteLine($"HP {targetMonster.Hp}  -> {deadMark}");
-            Console.WriteLine("\n");
-            Console.WriteLine("0. 다음");
-            Console.Write(">> ");
+                int damage = isAttack(targetMonster, player);
+                int maxHp = targetMonster.Hp;
+                string deadMark = targetMonster.Hp - damage <= 0 ? "Dead" : $"{targetMonster.Hp - damage}";
+
+                monsters[monsterNumber - 1].Hp = targetMonster.Hp - damage;
+
+                if (monsters[monsterNumber - 1].Hp <= 0)
+                {
+                    monsters[monsterNumber - 1].isDead = true;
+                    b = true;
+                }
+
+                Console.WriteLine($"Lv.{targetMonster.Level} {targetMonster.Name} 을(를) 맞췄습니다. [데미지 : {damage}]");
+                Console.WriteLine("\n");
+                Console.WriteLine($"Lv. {targetMonster.Level} {targetMonster.Name}");
+                Console.WriteLine($"HP {maxHp}  -> {deadMark}");
+                Console.WriteLine("\n");
+                Console.WriteLine("0. 다음");
+                Console.Write(">> ");
+                b = false;
+            }
+            else
+            {
+                b = true;
+                Console.WriteLine("이미 죽엇음");
+                Console.WriteLine("다시 선택해주세요");
+                Console.Write(">> ");
+            }
+            return b;
         }
 
-        public void MonsterAttack(Player player, List<Monster> monsters)
-        {
+        public int MonsterAttack(Player player, List<Monster> monsters, int deadCount)
+        {  
             Console.Clear();
             Console.WriteLine("Battle!!\n\n");
 
@@ -52,9 +69,28 @@ namespace TextRPG_28
                     player.Hp -= monsters[i].Attack;
                     Console.WriteLine($"HP {currentPlayerHP} -> {player.Hp}");
                     Console.WriteLine("\n");
+                    if (player.Hp <= 0)
+                    {
+                        player.isDead = true;
+                    }
+                }
+                else
+                {
+                    deadCount--;
                 }
             }
-            Console.WriteLine("0. 다음");
+            if (deadCount > 0)
+            {
+                Console.WriteLine("0. 다음");
+            }
+            else 
+            {
+                Console.WriteLine("몬스터를 다 죽였습니다!!!");
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine("0. 다음");
+            }
+            return deadCount;
         }
 
         public int isAttack(Monster monster, Player player)

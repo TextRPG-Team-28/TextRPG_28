@@ -12,16 +12,16 @@ namespace TextRPG_28
         public string Name { get; }
         public int Attack { get; }
         public int Hp { get; set; }
-        public int MaxHp { get; }
+        public int MaxHp {  get; set; }
         public bool isDead { get; set; }
 
-        public Monster(int level, string name, int maxHp, int attack, bool dead)
+        public Monster(int level, string name, int maxhp, int attack, bool dead)
         {
             Level = level;
             Name = name;
             Attack = attack;
-            Hp = maxHp;
-            MaxHp = maxHp;
+            Hp = maxhp;
+            MaxHp = maxhp;
             Attack = attack;
             isDead = dead;
         }

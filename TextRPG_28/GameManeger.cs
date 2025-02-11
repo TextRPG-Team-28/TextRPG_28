@@ -12,14 +12,15 @@ namespace TextRPG_28
         public List<Monster> currentMonsters = new List<Monster>();
         Battle battle = new Battle();
         Attack attack = new Attack();
-        
+        Result result = new Result();
+
         public void MonsterSetting()
         {
             monsters = new List<Monster>
             {
                 new Monster(2, "미니언", 15, 5, false),
                 new Monster(3, "공허충", 10, 9, false),
-                new Monster(5, "대포미니언", 25, 8, false)
+                new Monster(5, "대포미니언", 25, 100, false)
             };
 
             Random random = new Random();
@@ -30,10 +31,10 @@ namespace TextRPG_28
             for (int i = 0; i < number; i++)
             {
                 int stageMonster = random.Next(0, monsters.Count);
-                Console.WriteLine($"Lv.{monsters[stageMonster].Level}  {monsters[stageMonster].Name}  HP {monsters[stageMonster].Hp}");
-                currentMonsters.Add(monsters[stageMonster]);
+                Monster newMonster = new Monster(monsters[stageMonster].Level, monsters[stageMonster].Name, monsters[stageMonster].Hp, monsters[stageMonster].Attack, false);
+                Console.WriteLine($"Lv.{newMonster.Level}  {newMonster.Name}  HP {newMonster.Hp}");
+                currentMonsters.Add(newMonster);
             }
-
         }
 
         public void IntroScene()            // 이름 입력 화면
@@ -154,8 +155,6 @@ namespace TextRPG_28
 
         public void BattleScene()           // 전투 화면
         {
-            //MonsterSetting();
-
             battle.BattelField(player, monsters, this);
 
             int yourChoice = Select.Input(0, 1);
@@ -176,37 +175,53 @@ namespace TextRPG_28
             while (player.isDead == false)
             {
                 battle.AttackField(player, this);
+                int monsterDeadCount = count;
+                bool isMonsterDead = true;
 
-                int yourChoice = Select.Input(0, count);
-
-                switch (yourChoice)
+                while (isMonsterDead)
                 {
-                    case 0:
-                        StartScene();
-                        break;
-                    default:
-                        attack.PlayerAttack(player, currentMonsters, yourChoice);
-                        break;
+                    int yourChoice = Select.Input(0, count);
+
+                    switch (yourChoice)
+                    {
+                        case 0:
+                            StartScene();
+                            break;
+                        default:
+                            isMonsterDead = attack.PlayerAttack(player, currentMonsters, yourChoice, isMonsterDead);
+                            break;
+                    }
                 }
                 Select.Input(0, 0);
-                attack.MonsterAttack(player, currentMonsters);
+                monsterDeadCount = attack.MonsterAttack(player, currentMonsters, count);
 
-                Console.WriteLine();
-                Console.WriteLine("원하시는 행동을 입력해주세요.");
-                Console.Write(">> ");
-
-                Select.Input(0, 0);
-            } 
-
-            if(player.isDead == true)
-            {
-                ResultScene();
+                if (monsterDeadCount <= 0 || player.isDead == true)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("원하시는 행동을 입력해주세요.");
+                    Console.Write(">> ");
+                    Select.Input(0, 0);
+                    ResultScene();
+                }
+                else
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("원하시는 행동을 입력해주세요.");
+                    Console.Write(">> ");
+                    Select.Input(0, 0);
+                }
             }
         }
 
         public void ResultScene()
         {
-            Console.WriteLine("die");
+            result.ShowBattleResult(player, currentMonsters);
+
+            Console.WriteLine();
+            Console.WriteLine("0. 마을로 돌아가기.");
+            Console.Write(">> ");
+            Select.Input(0, 0);
+            StartScene();
         }
     }
 }
