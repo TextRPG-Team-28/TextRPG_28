@@ -28,6 +28,7 @@ namespace TextRPG_28
                 if (monsters[monsterNumber - 1].Hp <= 0)
                 {
                     monsters[monsterNumber - 1].isDead = true;
+                    b = true;
                 }
 
                 Console.WriteLine($"Lv.{targetMonster.Level} {targetMonster.Name} 을(를) 맞췄습니다. [데미지 : {damage}]");
@@ -40,7 +41,8 @@ namespace TextRPG_28
                 b = false;
             }
             else
-            {  
+            {
+                b = true;
                 Console.WriteLine("이미 죽엇음");
                 Console.WriteLine("다시 선택해주세요");
                 Console.Write(">> ");
@@ -48,8 +50,8 @@ namespace TextRPG_28
             return b;
         }
 
-        public void MonsterAttack(Player player, List<Monster> monsters)
-        {
+        public int MonsterAttack(Player player, List<Monster> monsters, int deadCount)
+        {  
             Console.Clear();
             Console.WriteLine("Battle!!\n\n");
 
@@ -67,9 +69,28 @@ namespace TextRPG_28
                     player.Hp -= monsters[i].Attack;
                     Console.WriteLine($"HP {currentPlayerHP} -> {player.Hp}");
                     Console.WriteLine("\n");
+                    if (player.Hp <= 0)
+                    {
+                        player.isDead = true;
+                    }
+                }
+                else
+                {
+                    deadCount--;
                 }
             }
-            Console.WriteLine("0. 다음");
+            if (deadCount > 0)
+            {
+                Console.WriteLine("0. 다음");
+            }
+            else 
+            {
+                Console.WriteLine("몬스터를 다 죽였습니다!!!");
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine("0. 다음");
+            }
+            return deadCount;
         }
 
         public int isAttack(Monster monster, Player player)

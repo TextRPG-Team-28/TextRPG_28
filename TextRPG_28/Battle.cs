@@ -14,7 +14,7 @@ public class Battle
 
         gm.MonsterSetting();
 
-        Console.WriteLine("\n\n\n[내 정보]");
+        Console.WriteLine("\n\n[내 정보]");
         Console.WriteLine($"Lv.{player.Level}   {player.Name} ({player.Job})");
         Console.WriteLine($"HP {player.Hp} / {player.MaxHp}");
         Console.WriteLine();
