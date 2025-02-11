@@ -23,7 +23,7 @@ namespace TextRPG_28
         public int Exp { get; set; }
         public int TotalExp { get; set; } 
 
-        private int[] ExpLevelUp = { 0, 10, 35, 65, 100 };
+        public int[] ExpLevelUp = { 0, 10, 35, 65, 100 };
 
         public Player(string name)
         {
@@ -55,6 +55,7 @@ namespace TextRPG_28
             Console.ResetColor();
             Console.WriteLine($"Lv. {Level.ToString("00")}");
             Console.WriteLine($"{Name} ( {Job} )");
+            Console.WriteLine($"경험치 : {Exp}/{ExpLevelUp[Level]}");
 
             string str = EquipAttack == 0 ? $"공격력 : {Attack}" : $"공격력 : {Attack + EquipAttack} (+{EquipAttack})";
             Console.WriteLine(str);
@@ -109,11 +110,18 @@ namespace TextRPG_28
         private void LevelUp()      // 레벨업 관리
         {
             Level++;
-            Attack = (int)(Attack + 0.5);
+            Attack = (int)(Attack + 1);
             Defense += 1;
             MaxHp += 10;
             Hp = MaxHp;
             Console.WriteLine($"레벨업! {Level}레벨이 되었습니다.");
+            Console.WriteLine();
+            Console.WriteLine($"공격력 +1");
+            Console.WriteLine($"방어력 +1");
+            Console.WriteLine($"체력 +10");
+            Console.WriteLine();
+            Console.WriteLine($"체력이 최대치로 회복 되었습니다.");
+            Console.WriteLine();
         }
     }
 }
