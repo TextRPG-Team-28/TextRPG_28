@@ -73,6 +73,8 @@ namespace TextRPG_28
 
         public void SelectJobScene()            // 직업 선택 화면
         {
+            Select.Loading();
+
             Console.Clear();
             Select.ColorWrite("직업을 선택해주세요.", ConsoleColor.Green);
             Console.WriteLine();
@@ -122,6 +124,8 @@ namespace TextRPG_28
 
         public void StartScene()            // 처음 시작 화면
         {
+            Select.Loading();
+
             Console.Clear();
             Select.ColorWrite("스파르타 던전에 오신 여러분 환영합니다 .", ConsoleColor.Green);
             Select.ColorWrite("이제 전투를 시작할 수 있습니다.", ConsoleColor.Green);
@@ -151,6 +155,8 @@ namespace TextRPG_28
 
         public void StatsScene ()           // 상태 보기 화면
         {
+            Select.Loading();
+
             player.PlayerStats();
 
             Console.WriteLine();
@@ -164,11 +170,13 @@ namespace TextRPG_28
 
         public void RestScene()
         {
-
+            Select.Loading();
         }
 
         public void BattleScene()           // 전투 화면
         {
+            Select.Loading();
+
             battle.BattelField(player, monsters, this);
 
             int yourChoice = Select.Input(0, 1);
@@ -231,6 +239,8 @@ namespace TextRPG_28
 
         public void ResultScene()
         {
+            Select.Loading();
+
             result.ShowBattleResult(player, currentMonsters);
 
             Console.WriteLine();

@@ -24,6 +24,7 @@ public class Select
 
     public static void Loading()
     {
+        Console.ForegroundColor = ConsoleColor.Gray;
         Console.Clear();
         Console.Write("Loading");
         string str = ".";
@@ -33,5 +34,6 @@ public class Select
             Thread.Sleep(75); //시간을 지연시킴
             Console.Write(str);
         }
+        Console.ResetColor();
     }
 }
