@@ -685,6 +685,7 @@ namespace TextRPG_28
                             Console.Write(">> ");
                             Utility.Input(0, 0);
                             ResultScene();
+                            break;
                         }
                         else if (monsterDeadCount > 0)
                         {
@@ -712,6 +713,7 @@ namespace TextRPG_28
                         Console.Write(">> ");
                         Utility.Input(0, 0);
                         ResultScene();
+                        break;
                     }
                     else if (monsterDeadCount > 0)
                     {
@@ -738,6 +740,7 @@ namespace TextRPG_28
                         Console.Write(">> ");
                         Utility.Input(0, 0);
                         ResultScene();
+                        break;
                     }
                     else if (monsterDeadCount > 0)
                     {
@@ -764,6 +767,27 @@ namespace TextRPG_28
                     Console.Write(">> ");
 
                     Utility.Input(0, 0);
+
+                    monsterDeadCount = attack.MonsterAttack(player, currentMonsters, count);
+
+                    if (monsterDeadCount <= 0 || player.isDead == true)
+                    {
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        Console.WriteLine("원하시는 행동을 입력해주세요.");
+                        Console.Write(">> ");
+                        Utility.Input(0, 0);
+                        ResultScene();
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        Console.WriteLine("원하시는 행동을 입력해주세요.");
+                        Console.Write(">> ");
+                        Utility.Input(0, 0);
+                    }
                 }
             }   
         }
