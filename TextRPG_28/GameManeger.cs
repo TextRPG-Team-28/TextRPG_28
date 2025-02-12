@@ -20,28 +20,51 @@ namespace TextRPG_28
         Attack attack = new Attack();
         Result result = new Result();
         Skill skill = new Skill();
+
+        public int stageLevel = 1; // 추가 스테이지 레벨
         
-        public void MonsterSetting()    // 몬스터 세팅 및 랜덤하게 생성
+        public void MonsterSetting(int stageLevel)    // 몬스터 세팅 및 랜덤하게 생성 // 추가한 부분!!! 스
         {
             monsters = new List<Monster>
             {
                 new Monster(1, "미니언", 15, 3, false),
                 new Monster(2, "공허충", 10, 6, false),
-                new Monster(3, "대포미니언", 25, 7, false)
+                new Monster(3, "대포미니언", 25, 7, false),
+                new Monster(4, "엄~청 강한 몬스터", 40, 20, false)
             };
 
             Random random = new Random();
-            int number = random.Next(1, 5);
+            float x = (stageLevel + 3) * 1.2f;
+            
+            int numberOfMonsters = (int)x;
+            int maxstageLevel = (numberOfMonsters > 10) ? 10 : numberOfMonsters;
+
+            int number = random.Next(maxstageLevel - 3, maxstageLevel);
+            
 
             if (currentMonsters.Count < 1)
             {
-                for (int i = 0; i < number; i++)
+                if(stageLevel <= 3)
                 {
-                    int stageMonster = random.Next(0, monsters.Count);
-                    Monster newMonster = new Monster(monsters[stageMonster].Level, monsters[stageMonster].Name, monsters[stageMonster].Hp, monsters[stageMonster].Attack, false);
-                    Console.WriteLine($"Lv.{newMonster.Level}  {newMonster.Name}  HP {newMonster.Hp}");
-                    currentMonsters.Add(newMonster);
+                    for (int i = 0; i < number; i++)
+                    {
+                        int stageMonster = random.Next(0, monsters.Count - 1);
+                        Monster newMonster = new Monster(monsters[stageMonster].Level, monsters[stageMonster].Name, monsters[stageMonster].Hp, monsters[stageMonster].Attack, false);
+                        Console.WriteLine($"Lv.{newMonster.Level}  {newMonster.Name}  HP {newMonster.Hp}");
+                        currentMonsters.Add(newMonster);
+                    }
                 }
+                else
+                {
+                    for (int i = 0; i < number; i++)
+                    {
+                        int stageMonster = random.Next(1, monsters.Count);
+                        Monster newMonster = new Monster(monsters[stageMonster].Level, monsters[stageMonster].Name, monsters[stageMonster].Hp, monsters[stageMonster].Attack, false);
+                        Console.WriteLine($"Lv.{newMonster.Level}  {newMonster.Name}  HP {newMonster.Hp}");
+                        currentMonsters.Add(newMonster);
+                    }
+                }
+                
             }
             else
             {
@@ -165,7 +188,7 @@ namespace TextRPG_28
             Utility.ColorWrite("2. 인벤토리", ConsoleColor.DarkCyan);
             Utility.ColorWrite("3. 상점", ConsoleColor.DarkCyan);
             Utility.ColorWrite("4. 휴식 하기", ConsoleColor.DarkCyan);
-            Utility.ColorWrite("5. 던전 입장", ConsoleColor.DarkCyan);
+            Utility.ColorWrite($"5. 던전 입장  (현재 진행 : {stageLevel} 층) ",ConsoleColor.DarkCyan); // 수정
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("원하시는 행동을 입력해주세요.");
@@ -535,7 +558,7 @@ namespace TextRPG_28
             
             if(player.Hp >= 20)
             {
-                battle.BattelField(player, monsters, this);
+                battle.BattelField(player, monsters, this, stageLevel);
 
                 int yourChoice = Utility.Input(0, 2);
 
@@ -794,8 +817,9 @@ namespace TextRPG_28
         public void ResultScene()       // 결과 화면
         {
             Utility.Loading("결과 화면 생성 중");
+            Console.Clear();
 
-            result.ShowBattleResult(player, currentMonsters);
+            result.ShowBattleResult(player, currentMonsters, this);
 
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.DarkCyan;
