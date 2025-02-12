@@ -67,6 +67,7 @@ namespace TextRPG_28
                 {
                     player.Mp = player.MaxMp;
                 }
+                
 
                 Console.WriteLine($"{player.Exp} 경험치를 획득하였습니다.");
                 Console.WriteLine($"{plusGold} gold를 획득하였습니다.");

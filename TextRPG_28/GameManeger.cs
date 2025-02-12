@@ -15,6 +15,8 @@ namespace TextRPG_28
 
         List<Item> itemList;
         List<Item> inventory = new List<Item>();
+        List<DungeonItem> dungeonItems;
+        List<DungeonItem> currentDungeon = new List<DungeonItem>();
 
         Battle battle = new Battle();
         Attack attack = new Attack();
@@ -57,16 +59,59 @@ namespace TextRPG_28
 
         public void ItemSetting()   // 아이템 세팅
         {
-            itemList = new List<Item>
+            itemList = new List<Item>()
             {
                 new Item("수련자의 갑옷", ItemType.Amor, 4, "수련에 도움을 주는 갑옷입니다. ", 1000),
                 new Item("무쇠갑옷", ItemType.Amor, 9, "무쇠로 만들어져 튼튼한 갑옷입니다. ", 2000),
                 new Item("스파르타의 갑옷", ItemType.Amor, 15, "스파르타의 전사들이 사용했다는 전설의 갑옷입니다. ", 3500),
                 new Item("낡은 검", ItemType.Weapon, 5, "쉽게 볼 수 있는 낡은 검 입니다. ", 600),
                 new Item("청동 도끼", ItemType.Weapon, 10, "어디선가 사용됐던거 같은 도끼입니다. ", 1500),
-                new Item("스파르타의 창", ItemType.Weapon, 20, "스파르타의 전사들이 사용했다는 전설의 창입니다. ", 2500),
+                new Item("스파르타의 창", ItemType.Weapon, 20, "스파르타의 전사들이 사용했다는 전설의 창입니다. ", 2500)
             };
         }
+        public void dungeonitemSetting()// 던전아이템
+        {
+            dungeonItems = new List<DungeonItem>
+            {
+                new DungeonItem("아무렇게나버린 쓰래기 ",ItemType.MonsterItem,0,100),
+                new DungeonItem("씹다뱉은 껌", ItemType.MonsterItem,0,50),
+                new DungeonItem("몬스터의 정수 ",ItemType.MonsterItem,0,500),
+                new DungeonItem("영웅의 칼",ItemType.Weapon,50,1500)
+            };
+            
+            Random random = new Random();
+            currentDungeon = new List<DungeonItem>();
+            int number = random.Next(0, 3);
+            int iemnumber = random.Next(1, 100);
+            int itemnumbering = random.Next(1, 100);
+            
+            if (iemnumber < 90)
+            {
+                if (itemnumbering < 90)
+                {
+                    Console.WriteLine("던전 전리품");
+                    for (int i = 0; i < number; i++)
+                    {
+                        int dungeonitem = random.Next(0, dungeonItems.Count);
+                        DungeonItem newdungeon = new DungeonItem(dungeonItems[dungeonitem].Name,
+                            dungeonItems[dungeonitem].Type,
+                            dungeonItems[dungeonitem].Value, dungeonItems[dungeonitem].Cost);
+                        newdungeon = new DungeonItem(dungeonItems[dungeonitem].Name, dungeonItems[dungeonitem].Type,
+                            dungeonItems[dungeonitem].Value, dungeonItems[dungeonitem].Cost);
+                        Console.WriteLine($"{newdungeon.Name}   cost {newdungeon.Cost}");
+                        currentDungeon.Add(newdungeon);
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("아무것도 얻지 못하셨습니다 .....");
+            }
+            
+        }
+
+
+
 
         public void IntroScene()    // 이름 입력 화면
         {
@@ -793,9 +838,11 @@ namespace TextRPG_28
 
         public void ResultScene()       // 결과 화면
         {
+            
             Utility.Loading("결과 화면 생성 중");
 
             result.ShowBattleResult(player, currentMonsters);
+            dungeonitemSetting();
 
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.DarkCyan;

@@ -9,7 +9,8 @@ namespace TextRPG_28
     public enum ItemType
     {
         Weapon,
-        Amor
+        Amor,
+        MonsterItem
     }
 
     public class Item
@@ -51,5 +52,34 @@ namespace TextRPG_28
             string str = IsPurchase ? "구매완료" : $"{Cost}";
             return str;
         }
+        
+
+    }  
+    public class DungeonItem
+    {
+        public enum DungenItemType
+        {
+            monsteritem,
+            Weapon,
+            Amor
+        }
+
+        public string Name { get; }
+        public ItemType Type { get; }
+        public int Value { get; }
+        public int Cost { get; } 
+        public bool IsPurchase { get; set; }
+        public bool IsEquip { get; set; }
+
+        public DungeonItem(string name, ItemType type, int value, int cost)
+        {
+            Name = name;
+            Type = type;
+            Value = value;
+            Cost = cost;
+            IsPurchase = false;
+            IsEquip = false;
+        }
     }
+    
 }
