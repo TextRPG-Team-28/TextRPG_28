@@ -28,15 +28,15 @@ namespace TextRPG_28
                 Console.WriteLine("Victory\n");
                 Console.ResetColor();
                 Console.WriteLine($"던전에서 {monsters.Count}마리의 몬스터를 잡았습니다.\n");
-                Console.WriteLine("⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿");
-                Console.WriteLine("⣿⣿⣿⣿⣿⣿⡟⠏⠇⠇⠇⠫⡛⣿⣿⣿⣿⣿⣿");
-                Console.WriteLine("⣿⣿⣿⣿⣿⣿⣮⠐⠌⢌⠢⠳⢶⣿⣿⣿⣿⣿⣿");
-                Console.WriteLine("⣿⣿⣿⣿⣿⣿⠡⠡⠡⠡⠡⠡⡑⢹⣿⣿⣿⣿⣿");
-                Console.WriteLine("⣿⣿⡿⣛⢙⢛⠡⠡⡹⣥⢡⣡⡑⡸⡿⣿⣿⣿⣿");
-                Console.WriteLine("⣿⣿⣿⡬⠨⣴⣌⡂⢂⠪⢟⠯⠇⣤⣷⢸⣿⣿⣿");
-                Console.WriteLine("⣿⣿⣿⣿⣿⣿⣿⢇⢇⣧⣇⡕⢼⣿⣿⣿⣿⣿⣿");
-                Console.WriteLine("⣿⣿⣿⣿⣿⣿⣿⣸⣪⡯⢗⣛⣾⣿⣿⣿⣿⣿⣿");
-                Console.WriteLine("⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿\n");
+                Console.WriteLine("  .oooooo.                              .o8  .o. ");
+                Console.WriteLine(" d8P'  `Y8b                             888  888 ");
+                Console.WriteLine("888            .ooooo.   .ooooo.   .oooo888  888 ");
+                Console.WriteLine("888           d88' `88b d88' `88b d88' `888  Y8P ");
+                Console.WriteLine("888     ooooo 888   888 888   888 888   888  `8' ");
+                Console.WriteLine("`88.    .88'  888   888 888   888 888   888  .o. ");
+                Console.WriteLine(" `Y8bood8P'   `Y8bod8P' `Y8bod8P' `Y8bod88P  Y8P ");
+                Console.WriteLine("");
+                Console.WriteLine("\n");
 
                 int plusGold = monsters.Count * 300;
                 player.Gold += plusGold;
