@@ -25,9 +25,9 @@ namespace TextRPG_28
         {
             monsters = new List<Monster>
             {
-                new Monster(1, "미니언", 15, 3, false),
-                new Monster(2, "공허충", 10, 6, false),
-                new Monster(3, "대포미니언", 25, 7, false)
+                new Monster(1, "고블린", 15, 3, false),
+                new Monster(2, "스켈레톤", 10, 6, false),
+                new Monster(3, "오크", 25, 7, false)
             };
 
             Random random = new Random();
@@ -59,12 +59,12 @@ namespace TextRPG_28
         {
             itemList = new List<Item>
             {
-                new Item("수련자의 갑옷", ItemType.Amor, 4, "수련에 도움을 주는 갑옷입니다. ", 1000),
-                new Item("무쇠갑옷", ItemType.Amor, 9, "무쇠로 만들어져 튼튼한 갑옷입니다. ", 2000),
-                new Item("스파르타의 갑옷", ItemType.Amor, 15, "스파르타의 전사들이 사용했다는 전설의 갑옷입니다. ", 3500),
-                new Item("낡은 검", ItemType.Weapon, 5, "쉽게 볼 수 있는 낡은 검 입니다. ", 600),
-                new Item("청동 도끼", ItemType.Weapon, 10, "어디선가 사용됐던거 같은 도끼입니다. ", 1500),
-                new Item("스파르타의 창", ItemType.Weapon, 20, "스파르타의 전사들이 사용했다는 전설의 창입니다. ", 2500),
+                new Item("가죽 갑옷", ItemType.Amor, 4, "뻣뻣하지만 그래도 튼튼한 갑옷이다. ", 1000),
+                new Item("판금 갑옷", ItemType.Amor, 9, "무겁고 튼튼하다.혼자 입기도 힘들지만 그래도 목숨 값으로는 충분하다. ", 2000),
+                new Item("생물형 갑옷", ItemType.Amor, 15, "어느 미지의 생물체의 갑각으로 만든 갑옷이다.징그럽다. ", 3500),
+                new Item("롱소드", ItemType.Weapon, 5, "쉽게 보이지만 어려운 것이 검술이다. ", 600),
+                new Item("나무꾼의 도끼", ItemType.Weapon, 10, "중고품이지만 단순하며 강력하다. ", 1500),
+                new Item("할버드", ItemType.Weapon, 20, "보병으로 기병을 쓰러뜨리기 위해서는 이것이 제격이다. ", 2500),
             };
         }
 
