@@ -266,17 +266,6 @@ namespace TextRPG_28
                     Console.WriteLine($"HP {maxHp}  -> {deadMark}");
                     Console.WriteLine();
                 }
-                else
-                {
-                    Console.WriteLine($"Lv.{aliveMonsters[i].Level} {aliveMonsters[i].Name} 을(를) 공격했지만 아무일도 일어나지 않았습니다.");
-                    Console.WriteLine();
-                    Console.ForegroundColor = ConsoleColor.DarkCyan;
-                    Console.WriteLine("0. 다음");
-                    Console.WriteLine();
-                    Console.ForegroundColor = ConsoleColor.DarkGreen;
-                    Console.WriteLine("원하시는 행동을 입력해주세요.");
-                    Console.Write(">> ");
-                }
                 b = false;
             }
             Console.WriteLine($"Lv. {player.Level}  {player.Name}");
