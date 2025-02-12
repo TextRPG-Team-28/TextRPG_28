@@ -30,7 +30,7 @@ namespace TextRPG_28
             };
 
             Random random = new Random();
-            int number = random.Next(1, monsters.Count);
+            int number = random.Next(1, 5);
 
             if (currentMonsters.Count < 1)
             {
@@ -621,6 +621,7 @@ namespace TextRPG_28
 
         public void SkillScene()
         {
+<<<<<<< HEAD
             while (player.isDead == false)
             {
                 battle.SkillField(player, this);
@@ -641,8 +642,123 @@ namespace TextRPG_28
                     case 3:
                         skill.Skill_3();    // 스킬3
                         break;
+=======
+            while (true) 
+            {
+                battle.SkillField(player, this);
+                int skillNumber = 0;
+
+                int skillChoice = Utility.Input(0, 3);
+
+                switch (skillChoice)
+                {
+                    case 0:
+                        BattleScene();
+                        break;
+                    default:
+                        skillNumber = skill.SelectSkill(skillChoice);
+                        break;
                 }
-            }
+
+                player.isDead = false;
+                bool isMonsterDead = true;
+                int monsterDeadCount = count;
+
+                if (skillNumber == 1)
+                {
+                    while (player.isDead == false)
+                    {
+                        battle.AttackField(player, this);
+
+                        while (isMonsterDead)
+                        {
+                            int yourChoice = Utility.Input(0, count);
+
+                            switch (yourChoice)
+                            {
+                                case 0:
+                                    BattleScene();
+                                    break;
+                                default:
+                                    isMonsterDead = skill.SkillAttack1(player, currentMonsters, yourChoice, skillNumber, isMonsterDead);
+                                    break;
+                            }
+                        }
+
+                        Utility.Input(0, 0);
+                        monsterDeadCount = attack.MonsterAttack(player, currentMonsters, count);
+
+                        if (monsterDeadCount <= 0 || player.isDead == true)
+                        {
+                            Console.WriteLine();
+                            Console.ForegroundColor = ConsoleColor.DarkGreen;
+                            Console.WriteLine("원하시는 행동을 입력해주세요.");
+                            Console.Write(">> ");
+                            Utility.Input(0, 0);
+                            ResultScene();
+                        }
+                        else
+                        {
+                            Console.WriteLine();
+                            Console.ForegroundColor = ConsoleColor.DarkGreen;
+                            Console.WriteLine("원하시는 행동을 입력해주세요.");
+                            Console.Write(">> ");
+                            Utility.Input(0, 0);
+                        }
+                    }
+                }
+                else if(skillNumber == 2)
+                {
+                    isMonsterDead = skill.SkillAttack2(player, currentMonsters, skillNumber, isMonsterDead);
+
+                    Utility.Input(0, 0);
+                    monsterDeadCount = attack.MonsterAttack(player, currentMonsters, count);
+
+                    if (monsterDeadCount <= 0 || player.isDead == true)
+                    {
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        Console.WriteLine("원하시는 행동을 입력해주세요.");
+                        Console.Write(">> ");
+                        Utility.Input(0, 0);
+                        ResultScene();
+                    }
+                    else
+                    {
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        Console.WriteLine("원하시는 행동을 입력해주세요.");
+                        Console.Write(">> ");
+                        Utility.Input(0, 0);
+                    }
+                }
+                else
+                {
+                    isMonsterDead = skill.SkillAttack3(player, currentMonsters, skillNumber, isMonsterDead);
+
+                    Utility.Input(0, 0);
+                    monsterDeadCount = attack.MonsterAttack(player, currentMonsters, count);
+
+                    if (monsterDeadCount <= 0 || player.isDead == true)
+                    {
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        Console.WriteLine("원하시는 행동을 입력해주세요.");
+                        Console.Write(">> ");
+                        Utility.Input(0, 0);
+                        ResultScene();
+                    }
+                    else
+                    {
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        Console.WriteLine("원하시는 행동을 입력해주세요.");
+                        Console.Write(">> ");
+                        Utility.Input(0, 0);
+                    }
+>>>>>>> ae96db6 ([Refactor] 스킬 3개 구현 완료)
+                }
+            }   
         }
 
         public void ResultScene()       // 결과 화면
