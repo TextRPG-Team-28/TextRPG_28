@@ -8,7 +8,7 @@ namespace TextRPG_28
 {
     public class Result
     {
-        public void  ShowBattleResult(Player player, List<Monster> monsters)    // 결과 화면
+        public void  ShowBattleResult(Player player, List<Monster> monsters, GameManeger gm)    // 결과 화면 . 매개변수 gm추가!!!
         {
             int plusGold = 0;
             int plusEXP = 0;
@@ -31,15 +31,7 @@ namespace TextRPG_28
                 Console.WriteLine("Victory\n");
                 Console.ResetColor();
                 Console.WriteLine($"던전에서 {monsters.Count}마리의 몬스터를 잡았습니다.\n");
-                Console.WriteLine("⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿");
-                Console.WriteLine("⣿⣿⣿⣿⣿⣿⡟⠏⠇⠇⠇⠫⡛⣿⣿⣿⣿⣿⣿");
-                Console.WriteLine("⣿⣿⣿⣿⣿⣿⣮⠐⠌⢌⠢⠳⢶⣿⣿⣿⣿⣿⣿");
-                Console.WriteLine("⣿⣿⣿⣿⣿⣿⠡⠡⠡⠡⠡⠡⡑⢹⣿⣿⣿⣿⣿");
-                Console.WriteLine("⣿⣿⡿⣛⢙⢛⠡⠡⡹⣥⢡⣡⡑⡸⡿⣿⣿⣿⣿");
-                Console.WriteLine("⣿⣿⣿⡬⠨⣴⣌⡂⢂⠪⢟⠯⠇⣤⣷⢸⣿⣿⣿");
-                Console.WriteLine("⣿⣿⣿⣿⣿⣿⣿⢇⢇⣧⣇⡕⢼⣿⣿⣿⣿⣿⣿");
-                Console.WriteLine("⣿⣿⣿⣿⣿⣿⣿⣸⣪⡯⢗⣛⣾⣿⣿⣿⣿⣿⣿");
-                Console.WriteLine("⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿\n");
+         
 
                 for (int i = 0; i < monsters.Count; i++)
                 {
@@ -67,6 +59,17 @@ namespace TextRPG_28
                 {
                     player.Mp = player.MaxMp;
                 }
+
+                if(gm.stageLevel < 5)
+                {
+                    gm.stageLevel++; //추가된 부분
+                }
+                else
+                {
+                    gm.stageLevel = 5;
+                }
+                
+                
 
                 Console.WriteLine($"{player.Exp} 경험치를 획득하였습니다.");
                 Console.WriteLine($"{plusGold} gold를 획득하였습니다.");

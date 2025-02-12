@@ -7,14 +7,14 @@ namespace TextRPG_28;
 
 public class Battle
 {
-    public void BattelField(Player player, List<Monster> monsters, GameManeger gm)      // 던전의 필드
+    public void BattelField(Player player, List<Monster> monsters, GameManeger gm, int stageLevel)      // 던전의 필드
     {
         Console.ForegroundColor = ConsoleColor.Green;
         Console.Clear();
         Console.WriteLine("던전\n");
         Console.ResetColor();
 
-        gm.MonsterSetting();
+        gm.MonsterSetting(stageLevel);
 
         Console.ForegroundColor = ConsoleColor.DarkYellow;
         Console.WriteLine("\n[내 정보]");

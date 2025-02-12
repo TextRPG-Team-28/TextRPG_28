@@ -25,7 +25,7 @@ namespace TextRPG_28
         public int Exp { get; set; }
         public int TotalExp { get; set; }
 
-        public int[] ExpLevelUp = { 0, 10, 35, 65, 100 };
+        public int[] ExpLevelUp = { 0, 10, 35, 65, 10000 };
 
         public Player(string name)
         {
