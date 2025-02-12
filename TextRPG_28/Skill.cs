@@ -43,13 +43,16 @@ namespace TextRPG_28
             {
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("던전\n");
+                Console.WriteLine($"던전 - {player.Name} 의 턴\n");
                 Console.ResetColor();
                 Console.WriteLine($"{player.Name} 의 스킬!");
+                Console.WriteLine();
+                
+                int maxHp = monsters[monsterNumber - 1].Hp;
+                int maxMp = player.Mp;
 
                 int damage = isSkillDamage(player, skillNumber);
 
-                int maxHp = monsters[monsterNumber - 1].Hp;
                 string deadMark = monsters[monsterNumber - 1].Hp - damage <= 0 ? "Dead" : $"{monsters[monsterNumber - 1].Hp - damage}";
 
                 monsters[monsterNumber - 1].Hp = monsters[monsterNumber - 1].Hp - damage;
@@ -62,13 +65,17 @@ namespace TextRPG_28
 
                 if (damage > 0)
                 {
+
+                    Console.ResetColor();
                     Console.WriteLine($"Lv.{monsters[monsterNumber - 1].Level} {monsters[monsterNumber - 1].Name} 을(를) 맞췄습니다. [데미지 : {damage}]");
                     Console.WriteLine();
                     Console.ForegroundColor = ConsoleColor.DarkYellow;
                     Console.WriteLine($"Lv. {monsters[monsterNumber - 1].Level} {monsters[monsterNumber - 1].Name}");
                     Console.WriteLine($"HP {maxHp}  -> {deadMark}");
                     Console.WriteLine();
-                    Console.WriteLine($"MP {player.MaxMp}  -> {player.Mp}");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine($"Lv. {player.Level}  {player.Name}");
+                    Console.WriteLine($"MP {maxMp}  -> {player.Mp}");
                     Console.WriteLine();
                     Console.ForegroundColor = ConsoleColor.DarkCyan;
                     Console.WriteLine("0. 다음");
@@ -104,11 +111,16 @@ namespace TextRPG_28
         public bool SkillAttack2(Player player, List<Monster> monsters, int skillNumber, bool b)
         {
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"던전 - {player.Name} 의 턴\n");
+            Console.ResetColor();
+            Console.WriteLine($"{player.Name} 의 스킬!");
+            Console.WriteLine();
 
             Random random = new Random();
-            int randomNumber;
             int randomNumber1 = 0;
             int randomNumber2 = 0;
+            int maxMp = player.Mp;
             bool isRandom = true;
 
             List<Monster> aliveMonsters = new List<Monster>();
@@ -120,137 +132,147 @@ namespace TextRPG_28
                 {
                     aliveMonsters.Add(monsters[i]);
                 }
-            }
+            } 
 
-            while (isRandom)
+            if (aliveMonsters.Count >= 2)
             {
-                if (aliveMonsters.Count >= 2)
+                while (isRandom)
                 {
                     randomNumber1 = random.Next(0, aliveMonsters.Count);
                     randomNumber2 = random.Next(0, aliveMonsters.Count);
 
-                    int damage = isSkillDamage(player, skillNumber);
-
-                    int maxHp1 = aliveMonsters[randomNumber1].Hp;
-                    int maxHp2 = aliveMonsters[randomNumber2].Hp;
-
-                    string deadMark1 = aliveMonsters[randomNumber1].Hp - damage <= 0 ? "Dead" : $"{aliveMonsters[randomNumber1].Hp - damage}";
-                    string deadMark2 = aliveMonsters[randomNumber2].Hp - damage <= 0 ? "Dead" : $"{aliveMonsters[randomNumber2].Hp - damage}";
-
-                    aliveMonsters[randomNumber1].Hp = aliveMonsters[randomNumber1].Hp - damage;
-                    aliveMonsters[randomNumber2].Hp = aliveMonsters[randomNumber2].Hp - damage;
-
-                    if (aliveMonsters[randomNumber1].Hp <= 0)
+                    if (randomNumber2 != randomNumber1)
                     {
-                        aliveMonsters[randomNumber1].isDead = true;
-                        b = true;
+                        isRandom = false;
+                        break;
                     }
+                }
 
-                    if (aliveMonsters[randomNumber2].Hp <= 0)
-                    {
-                        aliveMonsters[randomNumber2].isDead = true;
-                        b = true;
-                    }
+                int damage = isSkillDamage(player, skillNumber);
 
-                    if (damage > 0)
-                    {
-                        Console.WriteLine($"Lv.{aliveMonsters[randomNumber1].Level} {aliveMonsters[randomNumber1].Name} 을(를) 맞췄습니다. [데미지 : {damage}]");
-                        Console.WriteLine();
-                        Console.WriteLine($"Lv.{aliveMonsters[randomNumber2].Level} {aliveMonsters[randomNumber2].Name} 을(를) 맞췄습니다. [데미지 : {damage}]");
-                        Console.WriteLine();
-                        Console.ForegroundColor = ConsoleColor.DarkYellow;
-                        Console.WriteLine($"Lv. {aliveMonsters[randomNumber1].Level} {aliveMonsters[randomNumber1].Name}");
-                        Console.WriteLine($"HP {maxHp1}  -> {deadMark1}");
-                        Console.WriteLine();
-                        Console.WriteLine($"Lv. {aliveMonsters[randomNumber2].Level} {aliveMonsters[randomNumber2].Name}");
-                        Console.WriteLine($"HP {maxHp2}  -> {deadMark2}");
-                        Console.WriteLine();
-                        Console.WriteLine($"MP {player.MaxMp}  -> {player.Mp}");
-                        Console.WriteLine();
-                        Console.ForegroundColor = ConsoleColor.DarkCyan;
-                        Console.WriteLine("0. 다음");
-                        Console.WriteLine();
-                        Console.ForegroundColor = ConsoleColor.DarkGreen;
-                        Console.WriteLine("원하시는 행동을 입력해주세요.");
-                        Console.Write(">> ");
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Lv.{aliveMonsters[randomNumber1].Level} {aliveMonsters[randomNumber1].Name} 을(를) 공격했지만 아무일도 일어나지 않았습니다.");
-                        Console.WriteLine($"Lv.{aliveMonsters[randomNumber2].Level} {aliveMonsters[randomNumber2].Name} 을(를) 공격했지만 아무일도 일어나지 않았습니다.");
-                        Console.WriteLine();
-                        Console.ForegroundColor = ConsoleColor.DarkCyan;
-                        Console.WriteLine("0. 다음");
-                        Console.WriteLine();
-                        Console.ForegroundColor = ConsoleColor.DarkGreen;
-                        Console.WriteLine("원하시는 행동을 입력해주세요.");
-                        Console.Write(">> ");
-                    }
-                    b = false;
+                int maxHp1 = aliveMonsters[randomNumber1].Hp;
+                int maxHp2 = aliveMonsters[randomNumber2].Hp;
+
+                string deadMark1 = aliveMonsters[randomNumber1].Hp - damage <= 0 ? "Dead" : $"{aliveMonsters[randomNumber1].Hp - damage}";
+                string deadMark2 = aliveMonsters[randomNumber2].Hp - damage <= 0 ? "Dead" : $"{aliveMonsters[randomNumber2].Hp - damage}";
+
+                aliveMonsters[randomNumber1].Hp = aliveMonsters[randomNumber1].Hp - damage;
+                aliveMonsters[randomNumber2].Hp = aliveMonsters[randomNumber2].Hp - damage;
+
+                if (aliveMonsters[randomNumber1].Hp <= 0)
+                {
+                    aliveMonsters[randomNumber1].isDead = true;
+                    b = true;
+                }
+
+                if (aliveMonsters[randomNumber2].Hp <= 0)
+                {
+                    aliveMonsters[randomNumber2].isDead = true;
+                    b = true;
+                }
+
+                if (damage > 0)
+                {
+                    Console.ResetColor();
+                    Console.WriteLine($"Lv.{aliveMonsters[randomNumber1].Level} {aliveMonsters[randomNumber1].Name} 을(를) 맞췄습니다. [데미지 : {damage}]");
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine($"Lv. {aliveMonsters[randomNumber1].Level} {aliveMonsters[randomNumber1].Name}");
+                    Console.WriteLine($"HP {maxHp1}  -> {deadMark1}");
+                    Console.WriteLine();
+                    Console.ResetColor();
+                    Console.WriteLine($"Lv.{aliveMonsters[randomNumber2].Level} {aliveMonsters[randomNumber2].Name} 을(를) 맞췄습니다. [데미지 : {damage}]");
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine($"Lv. {aliveMonsters[randomNumber2].Level} {aliveMonsters[randomNumber2].Name}");
+                    Console.WriteLine($"HP {maxHp2}  -> {deadMark2}");
+                    Console.WriteLine();
+                    Console.WriteLine($"Lv. {player.Level}  {player.Name}");
+                    Console.WriteLine($"MP {maxMp}  -> {player.Mp}");
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    Console.WriteLine("0. 다음");
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("원하시는 행동을 입력해주세요.");
+                    Console.Write(">> ");
                 }
                 else
                 {
-                    randomNumber = random.Next(0, aliveMonsters.Count);
-
-                    int damage = isSkillDamage(player, skillNumber);
-
-                    int maxHp1 = aliveMonsters[randomNumber].Hp;
-
-                    string deadMark1 = aliveMonsters[randomNumber].Hp - damage <= 0 ? "Dead" : $"{aliveMonsters[randomNumber].Hp - damage}";
-
-                    aliveMonsters[randomNumber].Hp = aliveMonsters[randomNumber].Hp - damage;
-
-                    if (aliveMonsters[randomNumber].Hp <= 0)
-                    {
-                        aliveMonsters[randomNumber].isDead = true;
-                        b = true;
-                    }
-
-                    if (damage > 0)
-                    {
-                        Console.WriteLine($"Lv.{aliveMonsters[randomNumber1].Level} {aliveMonsters[randomNumber1].Name} 을(를) 맞췄습니다. [데미지 : {damage}]");
-                        Console.WriteLine();
-                        Console.WriteLine();
-                        Console.ForegroundColor = ConsoleColor.DarkYellow;
-                        Console.WriteLine($"Lv. {aliveMonsters[randomNumber].Level} {aliveMonsters[randomNumber].Name}");
-                        Console.WriteLine($"HP {maxHp1}  -> {deadMark1}");
-                        Console.WriteLine();
-                        Console.WriteLine($"MP {player.MaxMp}  -> {player.Mp}");
-                        Console.WriteLine();
-                        Console.ForegroundColor = ConsoleColor.DarkCyan;
-                        Console.WriteLine("0. 다음");
-                        Console.WriteLine();
-                        Console.ForegroundColor = ConsoleColor.DarkGreen;
-                        Console.WriteLine("원하시는 행동을 입력해주세요.");
-                        Console.Write(">> ");
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Lv.{aliveMonsters[randomNumber].Level} {aliveMonsters[randomNumber].Name} 을(를) 공격했지만 아무일도 일어나지 않았습니다.");
-                        Console.WriteLine();
-                        Console.ForegroundColor = ConsoleColor.DarkCyan;
-                        Console.WriteLine("0. 다음");
-                        Console.WriteLine();
-                        Console.ForegroundColor = ConsoleColor.DarkGreen;
-                        Console.WriteLine("원하시는 행동을 입력해주세요.");
-                        Console.Write(">> ");
-                    }
-                    b = false;
-                    break;
+                    Console.WriteLine($"Lv.{aliveMonsters[randomNumber1].Level} {aliveMonsters[randomNumber1].Name} 을(를) 공격했지만 아무일도 일어나지 않았습니다.");
+                    Console.WriteLine($"Lv.{aliveMonsters[randomNumber2].Level} {aliveMonsters[randomNumber2].Name} 을(를) 공격했지만 아무일도 일어나지 않았습니다.");
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    Console.WriteLine("0. 다음");
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("원하시는 행동을 입력해주세요.");
+                    Console.Write(">> ");
                 }
-                if (randomNumber2 != randomNumber1)
-                {
-                    isRandom = false;
-                    break;
-                }
+                b = false;
             }
-            return b;
+            else if (aliveMonsters.Count < 2)
+            {
+                int damage = isSkillDamage(player, skillNumber);
+                int maxHp1 = aliveMonsters[0].Hp;
+                string deadMark1 = aliveMonsters[0].Hp - damage <= 0 ? "Dead" : $"{aliveMonsters[0].Hp - damage}";
+
+                aliveMonsters[0].Hp = aliveMonsters[0].Hp - damage;
+
+                if (aliveMonsters[0].Hp <= 0)
+                {
+                    aliveMonsters[0].isDead = true;
+                    b = true;
+                }
+
+                if (damage > 0)
+                {
+                    Console.ResetColor();
+                    Console.WriteLine($"Lv.{aliveMonsters[0].Level} {aliveMonsters[0].Name} 을(를) 맞췄습니다. [데미지 : {damage}]");
+                    Console.WriteLine();
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine($"Lv. {aliveMonsters[0].Level} {aliveMonsters[0].Name}");
+                    Console.WriteLine($"HP {maxHp1}  -> {deadMark1}");
+                    Console.WriteLine();
+                    Console.WriteLine($"Lv. {player.Level}  {player.Name}");
+                    Console.WriteLine($"MP {maxMp}  -> {player.Mp}");
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    Console.WriteLine("0. 다음");
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("원하시는 행동을 입력해주세요.");
+                    Console.Write(">> ");
+                }
+                else
+                {
+                    Console.WriteLine($"Lv.{aliveMonsters[0].Level} {aliveMonsters[0].Name} 을(를) 공격했지만 아무일도 일어나지 않았습니다.");
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    Console.WriteLine("0. 다음");
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("원하시는 행동을 입력해주세요.");
+                    Console.Write(">> ");
+                }
+                b = false;
+            } 
+        return b;
         }
 
         public bool SkillAttack3(Player player, List<Monster> monsters, int skillNumber, bool b)
         {
+            int maxMp = player.Mp;
             List<Monster> aliveMonsters = new List<Monster>();
             aliveMonsters.Clear();
+          
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"던전 - {player.Name} 의 턴\n");
+            Console.ResetColor();
+            Console.WriteLine($"{player.Name} 의 스킬!");
+            Console.WriteLine();
 
             for (int i = 0; i < monsters.Count; i++)
             {
@@ -277,20 +299,13 @@ namespace TextRPG_28
 
                 if (damage > 0)
                 {
+                    Console.ResetColor();
                     Console.WriteLine($"Lv.{aliveMonsters[i].Level} {aliveMonsters[i].Name} 을(를) 맞췄습니다. [데미지 : {damage}]");
                     Console.WriteLine();
                     Console.ForegroundColor = ConsoleColor.DarkYellow;
                     Console.WriteLine($"Lv. {aliveMonsters[i].Level} {aliveMonsters[i].Name}");
                     Console.WriteLine($"HP {maxHp}  -> {deadMark}");
                     Console.WriteLine();
-                    Console.WriteLine($"MP {player.MaxMp}  -> {player.Mp}");
-                    Console.WriteLine();
-                    Console.ForegroundColor = ConsoleColor.DarkCyan;
-                    Console.WriteLine("0. 다음");
-                    Console.WriteLine();
-                    Console.ForegroundColor = ConsoleColor.DarkGreen;
-                    Console.WriteLine("원하시는 행동을 입력해주세요.");
-                    Console.Write(">> ");
                 }
                 else
                 {
@@ -305,6 +320,15 @@ namespace TextRPG_28
                 }
                 b = false;
             }
+            Console.WriteLine($"Lv. {player.Level}  {player.Name}");
+            Console.WriteLine($"MP {maxMp}  -> {player.Mp}");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.WriteLine("0. 다음");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("원하시는 행동을 입력해주세요.");
+            Console.Write(">> ");
             return b;
         }
     }
