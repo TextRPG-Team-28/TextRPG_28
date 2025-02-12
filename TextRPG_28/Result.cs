@@ -68,19 +68,28 @@ namespace TextRPG_28
                 {
                     gm.stageLevel = 5;
                 }
-                
-                
 
                 Console.WriteLine($"{player.Exp} 경험치를 획득하였습니다.");
                 Console.WriteLine($"{plusGold} gold를 획득하였습니다.");
                 Console.WriteLine($"Hp를 10 회복하였습니다.");
                 Console.WriteLine($"Mp를 10 회복하였습니다.");
+                Random random = new Random();
+
+                if (random.Next(0, 100) < 10)
+                {
+                    Item droppedItem = GameManeger.dropItems[random.Next(GameManeger.dropItems.Count)];
+
+
+                    GameManeger.inventory.Add(droppedItem);
+
+                    Console.WriteLine($"{droppedItem.Name} 을(를) 획득했습니다!");
+                }
             }
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine($"\nLv.{player.Level} {player.Name} ({player.Job})");
-            Console.WriteLine($"경험치 : {player.Exp}/{player.ExpLevelUp[player.Level]} (+{plusEXP})");
-            Console.WriteLine($"남은 체력 : {Math.Max(0, player.Hp)} (+10)");
-            Console.WriteLine($"남은 마나 : {Math.Max(0, player.Mp)} (+10)");
+            Console.WriteLine($"경험치 : {player.Exp}/{player.ExpLevelUp[player.Level]})");
+            Console.WriteLine($"남은 체력 : {Math.Max(0, player.Hp)}");
+            Console.WriteLine($"남은 마나 : {Math.Max(0, player.Mp)}");
             Console.WriteLine($"소지금 : {player.Gold} gold (+{plusGold})");
             Console.ResetColor ();
         }
