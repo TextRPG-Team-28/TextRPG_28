@@ -8,7 +8,7 @@ namespace TextRPG_28
 {
     public class Result
     {
-        public void  ShowBattleResult(Player player, List<Monster> monsters)    // 결과 화면
+         public void  ShowBattleResult(Player player, List<Monster> monsters)    // 결과 화면
         {
             int plusGold = 0;
             int plusEXP = 0;
@@ -72,6 +72,19 @@ namespace TextRPG_28
                 Console.WriteLine($"{plusGold} gold를 획득하였습니다.");
                 Console.WriteLine($"Hp를 10 회복하였습니다.");
                 Console.WriteLine($"Mp를 10 회복하였습니다.");
+                Random random = new Random();
+
+                if (random.Next(0, 100) < 90)
+                {
+                    Item droppedItem = GameManeger.dropItems[random.Next(GameManeger.dropItems.Count)];
+
+                    // 그대로 inventory에 추가 가능
+
+                    GameManeger.inventory.Add(droppedItem);
+
+                    Console.WriteLine($"{droppedItem.Name}을(를) 획득했습니다!");
+                }
+
             }
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine($"\nLv.{player.Level} {player.Name} ({player.Job})");
