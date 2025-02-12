@@ -7,6 +7,7 @@ namespace TextRPG_28;
 
 public class Battle
 {
+    Skill skill = new Skill();
     public void BattelField(Player player, List<Monster> monsters, GameManeger gm)      // 던전의 필드
     {
         Console.ForegroundColor = ConsoleColor.Green;
@@ -95,6 +96,45 @@ public class Battle
         Console.WriteLine("0. 돌아가기\n");
         Console.ForegroundColor = ConsoleColor.DarkGreen;
         Console.Write("원하시는 행동을 입력해주세요.\n>> ");
+    }
+
+    public void SkillFieldForSkillOne(Player player, GameManeger gm)
+    {
+        Console.Clear();
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("던전\n");
+        for (int i = 0; i < gm.currentMonsters.Count; i++)
+        {
+            if (gm.currentMonsters[i].isDead == false)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.WriteLine($"{i + 1}.  Lv.{gm.currentMonsters[i].Level} {gm.currentMonsters[i].Name}  HP {gm.currentMonsters[i].Hp} ");
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.WriteLine($"{i + 1}.  Lv.{gm.currentMonsters[i].Level} {gm.currentMonsters[i].Name}  Dead ");
+            }
+        }
+        Console.ForegroundColor = ConsoleColor.DarkYellow;
+        Console.WriteLine("\n[내 정보]");
+        Console.WriteLine($"Lv.{player.Level}   {player.Name} ({player.Job})");
+        Console.WriteLine($"HP {player.Hp} / {player.MaxHp}");
+        Console.WriteLine($"MP {player.Mp} / {player.MaxMp}");
+        Console.WriteLine();
+        Console.ForegroundColor = ConsoleColor.DarkCyan;
+        Console.WriteLine("0. 돌아가기\n");
+        Console.ForegroundColor = ConsoleColor.DarkGreen;
+        Console.Write("대상을 선택해주세요\n>> ");
+
+        int yourChoice = Utility.Input(0, gm.currentMonsters.Count);
+
+        bool isDead = (gm.currentMonsters[yourChoice - 1].Hp >= 0) ? false : true;
+
+        if (yourChoice == 0)
+            SkillField(player, gm);
+        else
+            skill.PlayerSkill(player, gm.currentMonsters, yourChoice);
     }
 
 

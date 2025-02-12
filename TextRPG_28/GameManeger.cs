@@ -46,7 +46,8 @@ namespace TextRPG_28
             {
                 for (int i = 0; i < currentMonsters.Count; i++)
                 {
-                    Console.WriteLine($"Lv.{currentMonsters[i].Level}  {currentMonsters[i].Name}  HP {currentMonsters[i].Hp}");
+                    string deadMark = (currentMonsters[i].Hp <= 0) ? "Dead" : $"{currentMonsters[i].Hp}";
+                    Console.WriteLine($"Lv.{currentMonsters[i].Level}  {currentMonsters[i].Name}  HP {deadMark}");
                 }
             }
         }
@@ -620,6 +621,7 @@ namespace TextRPG_28
         }
         public void SkillScene()
         {
+            bool isMonsterDead = true;
             while (player.isDead == false)
             {
                 battle.SkillField(player, this);
@@ -632,16 +634,38 @@ namespace TextRPG_28
                         BattleScene();
                         break;
                     case 1:
-                        skill.Skill_1();    // 스킬1 
+                        battle.SkillFieldForSkillOne(player, this);
                         break;
                     case 2:
-                        skill.Skill_2();    // 스킬2
+                        
                         break;
-                    case 3:
-                        skill.Skill_3();    // 스킬3
-                        break;
+                        
                 }
+
+                Utility.Input(0, 0);
+                int monsterDeadCount = attack.MonsterAttack(player, currentMonsters, currentMonsters.Count);
+
+                if (monsterDeadCount <= 0 || player.isDead == true)
+                {
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("원하시는 행동을 입력해주세요.");
+                    Console.Write(">> ");
+                    Utility.Input(0, 0);
+                    ResultScene();
+                }
+                else
+                {
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("원하시는 행동을 입력해주세요.");
+                    Console.Write(">> ");
+                    Utility.Input(0, 0);
+                }
+
+
             }
+           
         }
 
         public void ResultScene()       // 결과 화면
