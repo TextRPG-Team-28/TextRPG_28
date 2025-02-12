@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,21 +38,26 @@ namespace TextRPG_28
                 Console.WriteLine("");
                 Console.WriteLine("\n");
 
-                int plusGold = monsters.Count * 300;
+                int plusGold = 0;
+
+                for (int i = 0; i < monsters.Count; i++)
+                {
+                    plusGold = monsters[i].Level * 100;
+                }
                 player.Gold += plusGold;
 
                 for (int i = 0; i < monsters.Count; i++) 
                 {
                     player.AddExp(monsters[i].Level);
                 }
-
-                Console.WriteLine();
                 Console.WriteLine($"{player.Exp} 경험치를 획득하였습니다.");
                 Console.WriteLine($"{plusGold} gold를 획득하였습니다.");
             }
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine($"\nLv.{player.Level} {player.Name} ({player.Job})");
+            Console.WriteLine($"경험치 : {player.Exp}/{player.ExpLevelUp[player.Level]}");
             Console.WriteLine($"남은 체력 : {Math.Max(0, player.Hp)}");
+            Console.WriteLine($"남은 마나 : {Math.Max(0, player.Mp)}");
             Console.WriteLine($"소지금 : {player.Gold} gold");
             Console.ResetColor ();
         }

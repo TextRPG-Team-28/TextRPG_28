@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -19,18 +19,20 @@ namespace TextRPG_28
         public int Gold { get; set; }
         public int Hp { get; set; }
         public int MaxHp { get; set; }
+        public int Mp {  get; set; }
+        public int MaxMp { get; set; }
         public bool isDead { get; set; }
         public int Exp { get; set; }
-        public int TotalExp { get; set; } 
+        public int TotalExp { get; set; }
 
-        private int[] ExpLevelUp = { 0, 10, 35, 65, 100 };
+        public int[] ExpLevelUp = { 0, 10, 35, 65, 100 };
 
         public Player(string name)
         {
             Name = name;
         }
 
-        public Player(int level, string name, string job, int attak, int defense, int maxHp, int gold, bool dead ,int exp)  
+        public Player(int level, string name, string job, int attak, int defense, int maxHp, int maxMp, int gold, bool dead ,int exp)  
         {
             Level = level;
             Name = name;
@@ -42,6 +44,8 @@ namespace TextRPG_28
             Gold = gold;
             Hp = maxHp;
             MaxHp = maxHp;
+            Mp = maxMp;
+            MaxMp = maxMp;
             isDead = dead;
             Exp = exp;
         }     
@@ -55,6 +59,7 @@ namespace TextRPG_28
             Console.ResetColor();
             Console.WriteLine($"Lv. {Level.ToString("00")}");
             Console.WriteLine($"{Name} ( {Job} )");
+            Console.WriteLine($"경험치 : {Exp} / {ExpLevelUp[Level]}");
 
             string str = EquipAttack == 0 ? $"공격력 : {Attack}" : $"공격력 : {Attack + EquipAttack} (+{EquipAttack})";
             Console.WriteLine(str);
@@ -62,6 +67,7 @@ namespace TextRPG_28
             Console.WriteLine(str);
 
             Console.WriteLine($"체력 : {Hp} / {MaxHp}");
+            Console.WriteLine($"마나 : {Mp} / {MaxMp}");
             Console.WriteLine($"Gold : {Gold} gold");
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.DarkCyan;
@@ -109,11 +115,22 @@ namespace TextRPG_28
         private void LevelUp()      // 레벨업 관리
         {
             Level++;
-            Attack = (int)(Attack + 0.5);
+            Attack = (int)(Attack + 1);
             Defense += 1;
             MaxHp += 10;
+            MaxMp += 10;
             Hp = MaxHp;
+            Mp = MaxMp;
             Console.WriteLine($"레벨업! {Level}레벨이 되었습니다.");
+            Console.WriteLine();
+            Console.WriteLine($"공격력 +1");
+            Console.WriteLine($"방어력 +1");
+            Console.WriteLine($"체력 +10");
+            Console.WriteLine($"마나 +10");
+            Console.WriteLine();
+            Console.WriteLine($"체력이 최대치로 회복 되었습니다.");
+            Console.WriteLine($"마나가 최대치로 회복 되었습니다.");
+            Console.WriteLine();
         }
     }
 }
