@@ -7,35 +7,35 @@ namespace TextRPG_28;
 
 public class Battle
 {
-    public void BattelField(Player player, List<Monster> monsters, GameManeger gm)      // ´øÀüÀÇ ÇÊµå
+    public void BattelField(Player player, List<Monster> monsters, GameManeger gm)      // ë˜ì „ì˜ í•„ë“œ
     {
         Console.ForegroundColor = ConsoleColor.Green;
         Console.Clear();
-        Console.WriteLine("´øÀü\n");
+        Console.WriteLine("ë˜ì „\n");
         Console.ResetColor();
 
         gm.MonsterSetting();
 
         Console.ForegroundColor = ConsoleColor.DarkYellow;
-        Console.WriteLine("\n[³» Á¤º¸]");
+        Console.WriteLine("\n[ë‚´ ì •ë³´]");
         Console.WriteLine($"Lv.{player.Level}   {player.Name} ({player.Job})");
         Console.WriteLine($"HP {player.Hp} / {player.MaxHp}");
         Console.WriteLine($"MP {player.Mp} / {player.MaxMp}");
         Console.WriteLine();
         Console.ForegroundColor = ConsoleColor.DarkCyan;
-        Console.WriteLine("1. °ø°İ\n2. ½ºÅ³\n0. ¸¶À»·Î µ¹¾Æ°¡±â");
+        Console.WriteLine("1. ê³µê²©\n2. ìŠ¤í‚¬\n0. ë§ˆì„ë¡œ ëŒì•„ê°€ê¸°");
         Console.ResetColor();
         Console.WriteLine();
         Console.ForegroundColor = ConsoleColor.DarkGreen;
-        Console.WriteLine("¿øÇÏ½Ã´Â Çàµ¿À» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+        Console.WriteLine("ì›í•˜ì‹œëŠ” í–‰ë™ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
         Console.Write(">> ");
     }
 
-    public void AttackField(Player player, GameManeger gm)      // °ø°İ ½Ã ÇÊµå
+    public void AttackField(Player player, GameManeger gm)      // ê³µê²© ì‹œ í•„ë“œ
     {
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine("´øÀü\n");
+        Console.WriteLine("ë˜ì „\n");
         for (int i = 0; i < gm.currentMonsters.Count; i++)
         {
             if (gm.currentMonsters[i].isDead == false)
@@ -50,15 +50,52 @@ public class Battle
             }
         }
         Console.ForegroundColor = ConsoleColor.DarkYellow;
-        Console.WriteLine("\n[³» Á¤º¸]");
+        Console.WriteLine("\n[ë‚´ ì •ë³´]");
         Console.WriteLine($"Lv.{player.Level}   {player.Name} ({player.Job})");
         Console.WriteLine($"HP {player.Hp} / {player.MaxHp}");
         Console.WriteLine($"MP {player.Mp} / {player.MaxMp}");
         Console.WriteLine();
         Console.ForegroundColor = ConsoleColor.DarkCyan;
-        Console.WriteLine("0. µ¹¾Æ°¡±â\n");
+        Console.WriteLine("0. ëŒì•„ê°€ê¸°\n");
         Console.ForegroundColor = ConsoleColor.DarkGreen;
-        Console.Write("´ë»óÀ» ¼±ÅÃÇØÁÖ¼¼¿ä\n>> ");
+        Console.Write("ëŒ€ìƒì„ ì„ íƒí•´ì£¼ì„¸ìš”\n>> ");
     }
-}
 
+    public void SkillField(Player player, GameManeger gm)      // ê³µê²© ì‹œ í•„ë“œ
+    {
+        Console.Clear();
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("ë˜ì „\n");
+        for (int i = 0; i < gm.currentMonsters.Count; i++)
+        {
+            if (gm.currentMonsters[i].isDead == false)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.WriteLine($"Lv.{gm.currentMonsters[i].Level} {gm.currentMonsters[i].Name}  HP {gm.currentMonsters[i].Hp} ");
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.WriteLine($"Lv.{gm.currentMonsters[i].Level} {gm.currentMonsters[i].Name}  Dead ");
+            }
+        }
+        Console.ForegroundColor = ConsoleColor.DarkYellow;
+        Console.WriteLine("\n[ë‚´ ì •ë³´]");
+        Console.WriteLine($"Lv.{player.Level}   {player.Name} ({player.Job})");
+        Console.WriteLine($"HP {player.Hp} / {player.MaxHp}");
+        Console.WriteLine($"MP {player.Mp} / {player.MaxMp}");
+        Console.WriteLine("\n");
+        Console.WriteLine("1. ì•ŒíŒŒ ìŠ¤íŠ¸ë¼ì´í¬ - MP 10");
+        Console.WriteLine(" -> ê³µê²©ë ¥ * 2 ë¡œ í•˜ë‚˜ì˜ ì ì„ ê³µê²©í•©ë‹ˆë‹¤.");
+        Console.WriteLine("2. ë”ë¸” ìŠ¤íŠ¸ë¼ì´í¬ - MP 15");
+        Console.WriteLine(" -> ê³µê²©ë ¥ * 1.5 ë¡œ 2ëª…ì˜ ì ì„ ëœë¤ìœ¼ë¡œ ê³µê²©í•©ë‹ˆë‹¤.");
+        Console.WriteLine("3. ì•„ë§ˆê²Ÿëˆ - MP 20");
+        Console.WriteLine(" -> ê³µê²©ë ¥ * 1.2ë¡œ ëª¨ë“  ì ì„ ê³µê²©í•©ë‹ˆë‹¤.\n\n");
+        Console.ForegroundColor = ConsoleColor.DarkCyan;
+        Console.WriteLine("0. ëŒì•„ê°€ê¸°\n");
+        Console.ForegroundColor = ConsoleColor.DarkGreen;
+        Console.Write("ì›í•˜ì‹œëŠ” í–‰ë™ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.\n>> ");
+    }
+
+
+}
