@@ -86,15 +86,17 @@ namespace TextRPG_28
             {
                 if (monsters[i].Hp > 0)
                 {
+                    float defenseValue = monsters[i].Attack - (player.Defense * 0.1f);
+
                     Console.WriteLine($"Lv.{monsters[i].Level} {monsters[i].Name}의 공격!");
                     Console.WriteLine();
-                    Console.WriteLine($"{player.Name} 을(를) 맞췄습니다. [데미지 : {monsters[i].Attack}]");
+                    Console.WriteLine($"{player.Name} 을(를) 맞췄습니다. [데미지 : {defenseValue}]");
                     Console.WriteLine();
-
                     Console.ForegroundColor = ConsoleColor.DarkYellow;
                     Console.WriteLine($"Lv.{player.Level} {player.Name}");
-                    if(player.Hp > 0)
-                        player.Hp -= monsters[i].Attack;
+
+                    if (player.Hp > 0)
+                        player.Hp -= (int)defenseValue;
                     else
                         player.Hp = 0;
                     Console.WriteLine($"HP {currentPlayerHP} -> {player.Hp}");

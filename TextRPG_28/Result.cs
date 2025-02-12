@@ -30,8 +30,7 @@ namespace TextRPG_28
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Victory\n");
                 Console.ResetColor();
-                Console.WriteLine($"던전에서 {monsters.Count}마리의 몬스터를 잡았습니다.\n");
-         
+                Console.WriteLine($"던전에서 {monsters.Count}마리의 몬스터를 잡았습니다.\n");        
 
                 for (int i = 0; i < monsters.Count; i++)
                 {
@@ -79,7 +78,6 @@ namespace TextRPG_28
                 {
                     Item droppedItem = GameManeger.dropItems[random.Next(GameManeger.dropItems.Count)];
 
-
                     GameManeger.inventory.Add(droppedItem);
 
                     Console.WriteLine($"{droppedItem.Name} 을(를) 획득했습니다!");
@@ -87,7 +85,7 @@ namespace TextRPG_28
             }
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine($"\nLv.{player.Level} {player.Name} ({player.Job})");
-            Console.WriteLine($"경험치 : {player.Exp}/{player.ExpLevelUp[player.Level]})");
+            Console.WriteLine($"경험치 : {player.Exp} / {player.ExpLevelUp[player.Level]}");
             Console.WriteLine($"남은 체력 : {Math.Max(0, player.Hp)}");
             Console.WriteLine($"남은 마나 : {Math.Max(0, player.Mp)}");
             Console.WriteLine($"소지금 : {player.Gold} gold (+{plusGold})");

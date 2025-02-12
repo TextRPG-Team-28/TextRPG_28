@@ -28,10 +28,10 @@ namespace TextRPG_28
         {
             monsters = new List<Monster>
             {
-                new Monster(1, "고블린", 15, 3, false),
-                new Monster(2, "홉 고블린", 20, 6, false),
-                new Monster(3, "오크", 25, 7, false),
-                new Monster(4, "오우거", 40, 20, false)
+                new Monster(1, "고블린", 15, 5, false),
+                new Monster(2, "홉 고블린", 20, 8, false),
+                new Monster(3, "오크", 25, 12, false),
+                new Monster(4, "오우거", 40, 30, false)
             };
 
             Random random = new Random();
