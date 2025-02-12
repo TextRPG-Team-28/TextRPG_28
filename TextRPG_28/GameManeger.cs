@@ -27,10 +27,10 @@ namespace TextRPG_28
         {
             monsters = new List<Monster>
             {
-                new Monster(1, "미니언", 15, 3, false),
-                new Monster(2, "공허충", 10, 6, false),
-                new Monster(3, "대포미니언", 25, 7, false),
-                new Monster(4, "엄~청 강한 몬스터", 40, 20, false)
+                new Monster(1, "고블린", 15, 3, false),
+                new Monster(2, "홉 고블린", 20, 6, false),
+                new Monster(3, "오크", 25, 7, false),
+                new Monster(4, "오우거", 40, 20, false)
             };
 
             Random random = new Random();
@@ -82,12 +82,12 @@ namespace TextRPG_28
         {
             itemList = new List<Item>
             {
-                new Item("수련자의 갑옷", ItemType.Amor, 4, "수련에 도움을 주는 갑옷입니다. ", 1000),
-                new Item("무쇠갑옷", ItemType.Amor, 9, "무쇠로 만들어져 튼튼한 갑옷입니다. ", 2000),
-                new Item("스파르타의 갑옷", ItemType.Amor, 15, "스파르타의 전사들이 사용했다는 전설의 갑옷입니다. ", 3500),
-                new Item("낡은 검", ItemType.Weapon, 5, "쉽게 볼 수 있는 낡은 검 입니다. ", 600),
-                new Item("청동 도끼", ItemType.Weapon, 10, "어디선가 사용됐던거 같은 도끼입니다. ", 1500),
-                new Item("스파르타의 창", ItemType.Weapon, 20, "스파르타의 전사들이 사용했다는 전설의 창입니다. ", 2500),
+                new Item("가죽 갑옷", ItemType.Amor, 4, "뻣뻣하지만 그래도 튼튼한 갑옷이다.", 1000),
+                new Item("판금 갑옷", ItemType.Amor, 9, "무겁고 튼튼하다.혼자 입기도 힘들지만 그래도 목숨 값으로는 충분하다.", 2000),
+                new Item("생물형 갑옷", ItemType.Amor, 15, "어느 미지의 생물체의 갑각으로 만든 갑옷이다.징그럽다.", 3500),
+                new Item("롱소드", ItemType.Weapon, 5, "게 보이지만 어려운 것이 검술이다.", 1000),
+                new Item("나무꾼의 도끼", ItemType.Weapon, 10, "중고품이지만 단순하며 강력하다.", 3000),
+                new Item("할버드", ItemType.Weapon, 20, "보병으로 기병을 쓰러뜨리기 위해서는 이것이 제격이다.", 5000),
             };
         }
 
@@ -128,34 +128,38 @@ namespace TextRPG_28
 
         public void SelectJobScene()    // 직업 선택 화면
         {
-            Utility.Loading("직업 목록 생성 중");
+            Utility.Loading("종족 목록 생성 중");
 
             Console.Clear();
-            Utility.ColorWrite("직업을 선택해주세요.", ConsoleColor.Green);
+            Utility.ColorWrite("종족을 선택해주세요.", ConsoleColor.Green);
             Console.WriteLine();
-            Utility.ColorWrite("1. 전사  :  체력과 방어력이 높고 밸런스가 좋습니다.", ConsoleColor.DarkCyan);
-            Utility.ColorWrite("2. 도적  :  공격력이 높고 기초 자금이 많지만 낮은 체력, 방어력을 가지고 있습니다.", ConsoleColor.DarkCyan);
+            Utility.ColorWrite("1. 인간  :  전체적으로 밸런스가 좋습니다.", ConsoleColor.DarkCyan);
+            Utility.ColorWrite("2. 드워프  :  기초 자금이 많고 기본 마나가 적지만 높은 체력가지고 있습니다.", ConsoleColor.DarkCyan);
+            Utility.ColorWrite("2. 엘프  :  공격력이 높고 기본 마나가 높지만 낮은 체력을 가지고 있습니다.", ConsoleColor.DarkCyan);
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("원하시는 행동을 입력해주세요.");
             Console.Write(">> ");
 
-            int jobNum = Utility.Input(1, 2);
+            int jobNum = Utility.Input(1, 3);
 
             switch (jobNum)
             {
                 case 1:
-                    player = new Player(1, player.Name, "전사", 10, 10, 150, 50, 500, false, 0);
+                    player = new Player(1, player.Name, "인간", 12, 10, 150, 40, 600, false, 0);
                     break;
                 case 2:
-                    player = new Player(1, player.Name, "도적", 12, 5, 100, 50, 800, false, 0);
+                    player = new Player(1, player.Name, "드워프", 10, 15, 200, 20, 1200, false, 0);
+                    break;
+                case 3:
+                    player = new Player(1, player.Name, "엘프", 15, 5, 100, 60, 600, false, 0);
                     break;
             }
 
             Console.Clear();
-            Utility.ColorWrite("직업 선택", ConsoleColor.Green);
+            Utility.ColorWrite("종족 선택", ConsoleColor.Green);
             Console.WriteLine();
-            Console.WriteLine($"선택하신 직업은 '{player.Job}' 입니다.");
+            Console.WriteLine($"선택하신 종족은 '{player.Job}' 입니다.");
             Console.WriteLine();
             Utility.ColorWrite("1. 결정 하기", ConsoleColor.DarkCyan);
             Utility.ColorWrite("2. 다시 선택", ConsoleColor.DarkCyan);
