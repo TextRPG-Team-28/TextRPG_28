@@ -17,7 +17,7 @@ namespace TextRPG_28
             {
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("던전\n");
+                Console.WriteLine($"던전 - {player.Name} 의 턴\n");
                 Console.ResetColor();
                 Console.WriteLine($"{player.Name} 의 공격!");
 
@@ -77,7 +77,7 @@ namespace TextRPG_28
         {  
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("던전\n");
+            Console.WriteLine("던전 - 몬스터의 턴\n");
             Console.ResetColor();
 
             int currentPlayerHP = player.Hp;
@@ -87,6 +87,7 @@ namespace TextRPG_28
                 if (monsters[i].Hp > 0)
                 {
                     Console.WriteLine($"Lv.{monsters[i].Level} {monsters[i].Name}의 공격!");
+                    Console.WriteLine();
                     Console.WriteLine($"{player.Name} 을(를) 맞췄습니다. [데미지 : {monsters[i].Attack}]");
                     Console.WriteLine();
 

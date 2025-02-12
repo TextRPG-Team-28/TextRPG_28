@@ -31,7 +31,7 @@ namespace TextRPG_28
             };
 
             Random random = new Random();
-            int number = random.Next(1, monsters.Count);
+            int number = random.Next(1, 5);
 
             if (currentMonsters.Count < 1)
             {
@@ -421,8 +421,8 @@ namespace TextRPG_28
             Console.WriteLine();
             Console.WriteLine("이곳에서 휴식을 취해 체력을 회복할 수 있습니다.");
             Console.WriteLine();
-            Utility.ColorWrite("1. 짧은 휴식 하기 ( 300 gold 소모, 체력 30 회복 )", ConsoleColor.DarkCyan);
-            Utility.ColorWrite("2. 충분한 휴식 하기 ( 600 gold 소모, 체력 60 회복 )", ConsoleColor.DarkCyan);
+            Utility.ColorWrite("1. 짧은 휴식 하기 ( 300 gold 소모, 체력 30, 마나 20 회복 )", ConsoleColor.DarkCyan);
+            Utility.ColorWrite("2. 충분한 휴식 하기 ( 600 gold 소모, 체력 60, 마나 40 회복 )", ConsoleColor.DarkCyan);
             Console.WriteLine();
             Console.WriteLine($"현재 체력 : {player.Hp}");
             Console.WriteLine($"소지금 : {player.Gold}");
@@ -450,14 +450,20 @@ namespace TextRPG_28
             if (player.Hp != player.MaxHp && player.Gold >= 300 * price)
             {
                 int currentHp = player.Hp;
+                int currentMp = player.Mp;
                 int currentGold = player.Gold;
 
                 player.Hp += 30 * price;
+                player.Mp += 20 * price;
                 player.Gold -= 300 *price;
 
                 if (player.Hp >= player.MaxHp)
                 {
                     player.Hp = player.MaxHp;
+                }
+                if (player.Mp >= player.MaxMp)
+                {
+                    player.Mp = player.MaxMp;
                 }
 
                 for (int i = 0; i < price; i++)
@@ -469,6 +475,7 @@ namespace TextRPG_28
                 Utility.ColorWrite("휴식 완료!", ConsoleColor.Green);
                 Console.WriteLine();
                 Console.WriteLine($"{player.Name} 님의 체력이 회복 되었습니다.\n{currentHp} -> {player.Hp}");
+                Console.WriteLine($"{player.Name} 님의 마나가 회복 되었습니다.\n{currentMp} -> {player.Mp}");
                 Console.WriteLine();
                 Utility.ColorWrite("1. 한번 더 휴식 하기", ConsoleColor.DarkCyan);
                 Utility.ColorWrite("0. 마을로 돌아가기", ConsoleColor.DarkCyan);
@@ -489,12 +496,12 @@ namespace TextRPG_28
                         break;
                 }
             }
-            else if(player.Hp == player.MaxHp)
+            else if(player.Hp == player.MaxHp && player.Mp == player.MaxMp)
             {
                 Console.Clear();
                 Utility.ColorWrite("휴식 불가", ConsoleColor.Red);
                 Console.WriteLine();
-                Console.WriteLine("이미 체력이 가득 차있습니다.");
+                Console.WriteLine("이미 가득 차있습니다.");
                 Console.WriteLine();
                 Utility.ColorWrite("0. 마을로 돌아가기", ConsoleColor.DarkCyan);
                 Console.WriteLine();
@@ -584,9 +591,9 @@ namespace TextRPG_28
             {
                 battle.AttackField(player, this);
                 int monsterDeadCount = count;
-                bool isMonsterDead = true;
+                bool isMonsterLive = true;
 
-                while (isMonsterDead)
+                while (isMonsterLive)
                 {
                     int yourChoice = Utility.Input(0, count);
 
@@ -596,7 +603,7 @@ namespace TextRPG_28
                             BattleScene();
                             break;
                         default:
-                            isMonsterDead = attack.PlayerAttack(player, currentMonsters, yourChoice, isMonsterDead);
+                            isMonsterLive = attack.PlayerAttack(player, currentMonsters, yourChoice, isMonsterLive);
                             break;
                     }
                 }
@@ -612,7 +619,7 @@ namespace TextRPG_28
                     Utility.Input(0, 0);
                     ResultScene();
                 }
-                else
+                else if(monsterDeadCount > 0)
                 {
                     Console.WriteLine();
                     Console.ForegroundColor = ConsoleColor.DarkGreen;
@@ -625,64 +632,163 @@ namespace TextRPG_28
         }
         public void SkillScene(int count)    // 스킬 화면
         {
-            battle.SkillField(player, this);
-            int skillNumber = 0;
-
-            int skillChoice = Utility.Input(0, 3);
-
-            switch (skillChoice)
+            while (player.isDead == false) 
             {
-                case 0:
-                    BattleScene();
-                    break;
-                default:
-                    skillNumber = skill.SelectSkill(skillChoice);
-                    break;
-            }
-
-            player.isDead = false;
-
-            while (player.isDead == false)
-            {
-                battle.AttackField(player, this);
+                player.isDead = false;
+                bool isMonsterLive = true;
                 int monsterDeadCount = count;
-                bool isMonsterDead = true;
+                int skillNumber = 0;
 
-                while (isMonsterDead)
+                battle.SkillField(player, this);
+
+                int skillChoice = Utility.Input(0, 3);
+
+                switch (skillChoice)
                 {
-                    int yourChoice = Utility.Input(0, count);
+                    case 0:
+                        BattleScene();
+                        break;
+                    default:
+                        skillNumber = skill.SelectSkill(skillChoice);
+                        break;
+                }
 
-                    switch (yourChoice)
+                if (skillNumber == 1 && player.Mp >= 10)
+                {
+                    while (player.isDead == false)
                     {
-                        case 0:
+                        battle.AttackField(player, this);
+
+                        while (isMonsterLive)
+                        {
+                            int yourChoice = Utility.Input(0, count);
+
+                            switch (yourChoice)
+                            {
+                                case 0:
+                                    BattleScene();
+                                    break;
+                                default:
+                                    isMonsterLive = skill.SkillAttack1(player, currentMonsters, yourChoice, skillNumber, isMonsterLive);
+                                    break;
+                            }
+                        }
+
+                        Utility.Input(0, 0);
+                        monsterDeadCount = attack.MonsterAttack(player, currentMonsters, count);
+
+                        if (monsterDeadCount <= 0 || player.isDead == true)
+                        {
+                            Console.WriteLine();
+                            Console.ForegroundColor = ConsoleColor.DarkGreen;
+                            Console.WriteLine("원하시는 행동을 입력해주세요.");
+                            Console.Write(">> ");
+                            Utility.Input(0, 0);
+                            ResultScene();
+                            break;
+                        }
+                        else if (monsterDeadCount > 0)
+                        {
+                            Console.WriteLine();
+                            Console.ForegroundColor = ConsoleColor.DarkGreen;
+                            Console.WriteLine("원하시는 행동을 입력해주세요.");
+                            Console.Write(">> ");
+                            Utility.Input(0, 0);
                             BattleScene();
-                            break;
-                        default:
-                            isMonsterDead = skill.SkillAttack(player, currentMonsters, yourChoice, skillNumber, isMonsterDead);
-                            break;
+                        }
                     }
                 }
-                Utility.Input(0, 0);
-                monsterDeadCount = attack.MonsterAttack(player, currentMonsters, count);
-
-                if (monsterDeadCount <= 0 || player.isDead == true)
+                else if (skillNumber == 2 && player.Mp >= 15)
                 {
-                    Console.WriteLine();
-                    Console.ForegroundColor = ConsoleColor.DarkGreen;
-                    Console.WriteLine("원하시는 행동을 입력해주세요.");
-                    Console.Write(">> ");
+                    isMonsterLive = skill.SkillAttack2(player, currentMonsters, skillNumber, isMonsterLive);
+
                     Utility.Input(0, 0);
-                    ResultScene();
+                    monsterDeadCount = attack.MonsterAttack(player, currentMonsters, count);
+
+                    if (monsterDeadCount <= 0 || player.isDead == true)
+                    {
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        Console.WriteLine("원하시는 행동을 입력해주세요.");
+                        Console.Write(">> ");
+                        Utility.Input(0, 0);
+                        ResultScene();
+                        break;
+                    }
+                    else if (monsterDeadCount > 0)
+                    {
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        Console.WriteLine("원하시는 행동을 입력해주세요.");
+                        Console.Write(">> ");
+                        Utility.Input(0, 0);
+                        BattleScene();
+                    }
+                }
+                else if (skillNumber == 3 && player.Mp >= 30)
+                {
+                    isMonsterLive = skill.SkillAttack3(player, currentMonsters, skillNumber, isMonsterLive);
+
+                    Utility.Input(0, 0);
+                    monsterDeadCount = attack.MonsterAttack(player, currentMonsters, count);
+
+                    if (monsterDeadCount <= 0 || player.isDead == true)
+                    {
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        Console.WriteLine("원하시는 행동을 입력해주세요.");
+                        Console.Write(">> ");
+                        Utility.Input(0, 0);
+                        ResultScene();
+                        break;
+                    }
+                    else if (monsterDeadCount > 0)
+                    {
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        Console.WriteLine("원하시는 행동을 입력해주세요.");
+                        Console.Write(">> ");
+                        Utility.Input(0, 0);
+                        BattleScene();
+                    }
                 }
                 else
                 {
+                    Console.Clear();
+                    Utility.ColorWrite($"스킬 사용 불가", ConsoleColor.Red);
+                    Console.WriteLine();
+                    Console.WriteLine($"스킬 사용에 필요한 {player.Name} 님의 마나가 부족합니다.");
+                    Console.WriteLine($"남은 마나 : {player.Mp}");
+                    Console.WriteLine();
+                    Utility.ColorWrite("0. 돌아가기", ConsoleColor.DarkCyan);
                     Console.WriteLine();
                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                     Console.WriteLine("원하시는 행동을 입력해주세요.");
                     Console.Write(">> ");
+
                     Utility.Input(0, 0);
+                    monsterDeadCount = attack.MonsterAttack(player, currentMonsters, count);
+
+                    if (monsterDeadCount <= 0 || player.isDead == true)
+                    {
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        Console.WriteLine("원하시는 행동을 입력해주세요.");
+                        Console.Write(">> ");
+                        Utility.Input(0, 0);
+                        ResultScene();
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        Console.WriteLine("원하시는 행동을 입력해주세요.");
+                        Console.Write(">> ");
+                        Utility.Input(0, 0);
+                    }
                 }
-            }
+            }   
         }
 
         public void ResultScene()       // 결과 화면
