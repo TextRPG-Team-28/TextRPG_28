@@ -84,7 +84,7 @@ namespace TextRPG_28
             new Item("더러운 누더기", ItemType.Amor, 3, "냄새가 나고 보잘것 없어보이지만 없는 것보다는 좋다.", 0),
             new Item("판금 갑옷", ItemType.Amor, 12, "겉보기엔 평범한 갑옷이지만 내구성이 뛰어나다.", 0),
             new Item("태양 불꽃 방패", ItemType.Amor, 20,"전설의 대장장이가 만든 방패다.", 0),
-            new Item("부러진 단검", ItemType.Amor, 4, "부러져있지만, 칼날은 아직 살아있어 사용하는데 문제는 없다.", 0),
+            new Item("부러진 단검", ItemType.Weapon, 4, "부러져있지만, 칼날은 아직 살아있어 사용하는데 문제는 없다.", 0),
             new Item("기사의 대검", ItemType.Weapon, 15, "어느 무명 기사가 사용하던 강력한 대검이다.", 0),
             new Item("무한의 대검", ItemType.Weapon,30,"전설의 대장장이가 만든 검이다.", 0),
             
