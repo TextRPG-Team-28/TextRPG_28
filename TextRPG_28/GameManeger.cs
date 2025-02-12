@@ -685,6 +685,7 @@ namespace TextRPG_28
                             Console.Write(">> ");
                             Utility.Input(0, 0);
                             ResultScene();
+                            break;
                         }
                         else if (monsterDeadCount > 0)
                         {
@@ -712,6 +713,7 @@ namespace TextRPG_28
                         Console.Write(">> ");
                         Utility.Input(0, 0);
                         ResultScene();
+                        break;
                     }
                     else if (monsterDeadCount > 0)
                     {
@@ -738,6 +740,7 @@ namespace TextRPG_28
                         Console.Write(">> ");
                         Utility.Input(0, 0);
                         ResultScene();
+                        break;
                     }
                     else if (monsterDeadCount > 0)
                     {
@@ -774,6 +777,7 @@ namespace TextRPG_28
                         Console.Write(">> ");
                         Utility.Input(0, 0);
                         ResultScene();
+                        break;
                     }
                     else
                     {
