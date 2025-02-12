@@ -9,52 +9,111 @@ namespace TextRPG_28
 {
     public class Player         // 플레이어 관련 클래스
     {
-        public int Level { get; }
+        public int Level { get; set; }
         public string Name { get; }
         public string Job { get; }
-        public int Attack { get; }
-        public int Defense { get; }
+        public int Attack { get; set; }
+        public int EquipAttack { get; set; }
+        public int Defense { get; set; }
+        public int EquipDefense { get; set; }
         public int Gold { get; set; }
         public int Hp { get; set; }
-        public int MaxHp { get; }
+        public int MaxHp { get; set; }
         public bool isDead { get; set; }
+        public int Exp { get; set; }
+        public int TotalExp { get; set; } 
+
+        private int[] ExpLevelUp = { 0, 10, 35, 65, 100 };
 
         public Player(string name)
         {
             Name = name;
         }
 
-        public Player(int level, string name, string job, int attak, int defense, int maxHp, int gold, bool dead)          // 생성시 플레이어 초기 설정, 직업은 추가 예정이 아직 없기때문에 아직은 고정
+        public Player(int level, string name, string job, int attak, int defense, int maxHp, int gold, bool dead ,int exp)  
         {
             Level = level;
             Name = name;
             Job = job;
             Attack = attak;
+            EquipAttack = 0;
             Defense = defense;
+            EquipDefense = 0;
             Gold = gold;
             Hp = maxHp;
             MaxHp = maxHp;
             isDead = dead;
-        }
+            Exp = exp;
+        }     
 
-        public void PlayerStats()            // 플레이어 정보 화면 메서드
+        public void PlayerStats()            // 플레이어 정보 화면
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("상태 보기");
-            Console.WriteLine("캐릭터의 정보가 표시됩니다.");
-            Console.WriteLine();
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine($"Lv. {Level.ToString("00")}");
-            Console.WriteLine($"{Name} ( {Job} )");
-            Console.WriteLine($"공격력 : {Attack}");
-            Console.WriteLine($"방어력 : {Defense}");
-            Console.WriteLine($"체력 : {Hp} / {MaxHp}");
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine($"Gold : {Gold} gold");
             Console.WriteLine();
             Console.ResetColor();
+            Console.WriteLine($"Lv. {Level.ToString("00")}");
+            Console.WriteLine($"{Name} ( {Job} )");
+
+            string str = EquipAttack == 0 ? $"공격력 : {Attack}" : $"공격력 : {Attack + EquipAttack} (+{EquipAttack})";
+            Console.WriteLine(str);
+            str = EquipDefense == 0 ? $"방어력 : {Defense}" : $"방어력 : {Defense + EquipDefense} (+{EquipDefense})";
+            Console.WriteLine(str);
+
+            Console.WriteLine($"체력 : {Hp} / {MaxHp}");
+            Console.WriteLine($"Gold : {Gold} gold");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine("0. 나가기");
+            Console.ResetColor();
+        }
+
+        public void EquipItem(Item item)        // 장착 했을때
+        {
+            if (item.IsEquip)
+            {
+                UnEquip(item);
+            }
+            else
+            {
+                item.IsEquip = true;
+
+                if (item.Type == ItemType.Weapon)
+                    EquipAttack += item.Value;
+                else
+                    EquipDefense += item.Value;
+            }
+        }
+
+        public void UnEquip(Item item)      // 장착 해제 할때
+        {
+            item.IsEquip = false;
+
+            if (item.Type == ItemType.Weapon)
+                EquipAttack -= item.Value;
+            else
+                EquipDefense -= item.Value;
+        }
+
+        public void AddExp(int totalExp)        // 경험치 관리
+        {
+            Exp += totalExp;
+
+            while (Exp >= ExpLevelUp[Level])
+            {
+                LevelUp();
+            }
+        }
+
+        private void LevelUp()      // 레벨업 관리
+        {
+            Level++;
+            Attack = (int)(Attack + 0.5);
+            Defense += 1;
+            MaxHp += 10;
+            Hp = MaxHp;
+            Console.WriteLine($"레벨업! {Level}레벨이 되었습니다.");
         }
     }
 }
