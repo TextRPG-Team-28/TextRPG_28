@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Linq;  
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,7 +18,8 @@ namespace TextRPG_28
 
             if (skillNumber == 2) 
             {
-
+                Random random = new Random();
+                int randomNumber = random.Next(0, monsters.Count);
             }
             else if (skillNumber == 3)
             {
@@ -47,12 +48,17 @@ namespace TextRPG_28
 
                 if (damage > 0)
                 {
-                    string criticalMark = damage > 15 ? "- 치명타 공격!!" : "";
+
+                    string criticalMark = damage > 15 ? "- 스킬 공격!!" : "";
+
                     Console.WriteLine($"Lv.{targetMonster.Level} {targetMonster.Name} 을(를) 맞췄습니다. [데미지 : {damage}] {criticalMark}");
                     Console.WriteLine();
                     Console.ForegroundColor = ConsoleColor.DarkYellow;
                     Console.WriteLine($"Lv. {targetMonster.Level} {targetMonster.Name}");
                     Console.WriteLine($"HP {maxHp}  -> {deadMark}");
+                    Console.WriteLine();
+
+                    Console.WriteLine($"MP {player.MaxMp}  -> {player.Mp}");
                     Console.WriteLine();
                     Console.ForegroundColor = ConsoleColor.DarkCyan;
                     Console.WriteLine("0. 다음");
@@ -92,6 +98,7 @@ namespace TextRPG_28
             if (skillNumber == 1)
             {
                 skillDamage = player.Attack * 2f;
+                player.Mp -= 10;
             }
             else if (skillNumber == 2)
             {
