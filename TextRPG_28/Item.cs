@@ -33,6 +33,7 @@ namespace TextRPG_28
             IsEquip = false;
         }
 
+
         public string ItemDisplay()
         {
             string str = IsEquip ? "[E] " : "";

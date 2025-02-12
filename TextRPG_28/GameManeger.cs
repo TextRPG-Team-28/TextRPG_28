@@ -12,9 +12,10 @@ namespace TextRPG_28
 
         List<Monster> monsters;
         public List<Monster> currentMonsters = new List<Monster>();
+      
 
         List<Item> itemList;
-        List<Item> inventory = new List<Item>();
+        public static List<Item> inventory = new List<Item>();
 
         Battle battle = new Battle();
         Attack attack = new Attack();
@@ -78,6 +79,15 @@ namespace TextRPG_28
             }
         }
 
+        static public List<Item> dropItems = new List<Item>
+             {
+                new Item("롱소드",ItemType.Weapon,12,"평범한 검이다",0),
+                new Item("천갑옷",ItemType.Amor,3,"평범한 옷이다",0),
+                new Item("무한의 대검",ItemType.Weapon,30,"전설의 대장장이 오른이 만든 검입니다",0),
+                new Item("태양 불꽃 방패",ItemType.Amor,20,"전설의 대장장이 오른이 만든 방패입니다",0),
+
+            };
+
         public void ItemSetting()   // 아이템 세팅
         {
             itemList = new List<Item>
@@ -89,6 +99,10 @@ namespace TextRPG_28
                 new Item("나무꾼의 도끼", ItemType.Weapon, 10, "중고품이지만 단순하며 강력하다.", 3000),
                 new Item("할버드", ItemType.Weapon, 20, "보병으로 기병을 쓰러뜨리기 위해서는 이것이 제격이다.", 5000),
             };
+
+            
+
+
         }
 
         public void IntroScene()    // 이름 입력 화면
