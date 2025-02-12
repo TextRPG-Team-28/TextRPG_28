@@ -31,7 +31,7 @@ namespace TextRPG_28
             else if (skillNumber == 3)
             {
                 skillDamage = player.Attack * 1.2f;
-                player.Mp -= 30;
+                player.Mp -= 20;
             }
 
             return (int)skillDamage;

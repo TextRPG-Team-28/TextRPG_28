@@ -87,12 +87,15 @@ public class Battle
         Console.WriteLine();
         Console.ForegroundColor = ConsoleColor.DarkCyan;
         Console.WriteLine("1. 알파 스트라이크 - MP 10");
+        Console.WriteLine("'강력한 마나를 담아 무기를 휘두른다.'");
         Console.WriteLine(" -> 공격력 * 2 로 하나의 대상을 공격합니다.");
         Console.WriteLine();
-        Console.WriteLine("2. 더블 스트라이크 - MP 15");
+        Console.WriteLine("2. 더블 스텝 - MP 15");
+        Console.WriteLine("'빠른 속도로 이동하며 적을 무차별하게 공격한다.'");
         Console.WriteLine(" -> 공격력 * 1.5 로 2명의 대상을 랜덤으로 공격합니다.");
         Console.WriteLine();
-        Console.WriteLine("3. 아마겟돈 - MP 20");
+        Console.WriteLine("3. 아케인 블라스트 - MP 20");
+        Console.WriteLine("'마나를 한곳에 응집시켜 거대한 폭발을 일으킨다.'");
         Console.WriteLine(" -> 공격력 * 1.2 로 모든 대상을 공격합니다.\n");
         Console.WriteLine("0. 돌아가기\n");
         Console.ForegroundColor = ConsoleColor.DarkGreen;

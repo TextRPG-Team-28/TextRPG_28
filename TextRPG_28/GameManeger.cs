@@ -79,30 +79,28 @@ namespace TextRPG_28
             }
         }
 
-        static public List<Item> dropItems = new List<Item>
-             {
-                new Item("롱소드",ItemType.Weapon,12,"평범한 검이다",0),
-                new Item("천갑옷",ItemType.Amor,3,"평범한 옷이다",0),
-                new Item("무한의 대검",ItemType.Weapon,30,"전설의 대장장이 오른이 만든 검입니다",0),
-                new Item("태양 불꽃 방패",ItemType.Amor,20,"전설의 대장장이 오른이 만든 방패입니다",0),
-
-            };
+        static public List<Item> dropItems = new List<Item>     // 던전 드랍 아이템 세팅
+        {
+            new Item("더러운 누더기", ItemType.Amor, 3, "냄새가 나고 보잘것 없어보이지만 없는 것보다는 좋다.", 0),
+            new Item("판금 갑옷", ItemType.Amor, 12, "겉보기엔 평범한 갑옷이지만 내구성이 뛰어나다.", 0),
+            new Item("태양 불꽃 방패", ItemType.Amor, 20,"전설의 대장장이가 만든 방패다.", 0),
+            new Item("부러진 단검", ItemType.Amor, 4, "부러져있지만, 칼날은 아직 살아있어 사용하는데 문제는 없다.", 0),
+            new Item("기사의 대검", ItemType.Weapon, 15, "어느 무명 기사가 사용하던 강력한 대검이다.", 0),
+            new Item("무한의 대검", ItemType.Weapon,30,"전설의 대장장이가 만든 검이다.", 0),
+            
+        };
 
         public void ItemSetting()   // 아이템 세팅
         {
             itemList = new List<Item>
             {
-                new Item("가죽 갑옷", ItemType.Amor, 4, "뻣뻣하지만 그래도 튼튼한 갑옷이다.", 1000),
-                new Item("판금 갑옷", ItemType.Amor, 9, "무겁고 튼튼하다.혼자 입기도 힘들지만 그래도 목숨 값으로는 충분하다.", 2000),
-                new Item("생물형 갑옷", ItemType.Amor, 15, "어느 미지의 생물체의 갑각으로 만든 갑옷이다.징그럽다.", 3500),
-                new Item("롱소드", ItemType.Weapon, 5, "게 보이지만 어려운 것이 검술이다.", 1000),
+                new Item("가죽 갑옷", ItemType.Amor, 5, "뻣뻣하지만 그래도 튼튼한 갑옷이다.", 1000),
+                new Item("쇠사슬 갑옷", ItemType.Amor, 10, "무겁고 튼튼하다.혼자 입기도 힘들지만 그래도 목숨 값으로는 충분하다.", 2000),
+                new Item("미지의 갑옷", ItemType.Amor, 15, "어느 미지의 생물체의 갑각으로 만든 갑옷이다.징그럽다.", 3000),
+                new Item("롱소드", ItemType.Weapon, 5, "쉽게 보이지만 어려운 것이 검술이다.", 1000),
                 new Item("나무꾼의 도끼", ItemType.Weapon, 10, "중고품이지만 단순하며 강력하다.", 3000),
                 new Item("할버드", ItemType.Weapon, 20, "보병으로 기병을 쓰러뜨리기 위해서는 이것이 제격이다.", 5000),
             };
-
-            
-
-
         }
 
         public void IntroScene()    // 이름 입력 화면
@@ -149,7 +147,7 @@ namespace TextRPG_28
             Console.WriteLine();
             Utility.ColorWrite("1. 인간  :  전체적으로 밸런스가 좋습니다.", ConsoleColor.DarkCyan);
             Utility.ColorWrite("2. 드워프  :  기초 자금이 많고 기본 마나가 적지만 높은 체력가지고 있습니다.", ConsoleColor.DarkCyan);
-            Utility.ColorWrite("2. 엘프  :  공격력이 높고 기본 마나가 높지만 낮은 체력을 가지고 있습니다.", ConsoleColor.DarkCyan);
+            Utility.ColorWrite("3. 엘프  :  공격력이 높고 기본 마나가 높지만 낮은 체력을 가지고 있습니다.", ConsoleColor.DarkCyan);
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("원하시는 행동을 입력해주세요.");
@@ -466,6 +464,7 @@ namespace TextRPG_28
             Utility.ColorWrite("2. 충분한 휴식 하기 ( 600 gold 소모, 체력 60, 마나 40 회복 )", ConsoleColor.DarkCyan);
             Console.WriteLine();
             Console.WriteLine($"현재 체력 : {player.Hp}");
+            Console.WriteLine($"현재 마나 : {player.Mp}");
             Console.WriteLine($"소지금 : {player.Gold}");
             Console.WriteLine();
             Utility.ColorWrite("0. 마을로 돌아가기", ConsoleColor.DarkCyan);
@@ -488,12 +487,13 @@ namespace TextRPG_28
 
         public void Rest(int price)     // 휴식 관리
         {
-            if (player.Hp != player.MaxHp && player.Gold >= 300 * price)
+            if (player.Gold >= 300 * price)
             {
                 int currentHp = player.Hp;
                 int currentMp = player.Mp;
                 int currentGold = player.Gold;
 
+                player.isDead = false;
                 player.Hp += 30 * price;
                 player.Mp += 20 * price;
                 player.Gold -= 300 *price;
@@ -574,7 +574,7 @@ namespace TextRPG_28
         public void BattleScene()           // 전투 화면
         {
             
-            if(player.Hp >= 20)
+            if(player.Hp > 0)
             {
                 battle.BattelField(player, monsters, this, stageLevel);
 
