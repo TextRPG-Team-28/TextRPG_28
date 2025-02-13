@@ -20,17 +20,17 @@ namespace TextRPG_28
 
             if (skillNumber == 1)
             {
-                skillDamage = player.Attack * 2f;
+                skillDamage = (player.Attack + player.EquipAttack) * 2f;
                 player.Mp -= 10;
             }
             else if (skillNumber == 2)
             {
-                skillDamage = player.Attack * 1.5f;
+                skillDamage = (player.Attack + player.EquipAttack) * 1.5f;
                 player.Mp -= 15;
             }
             else if (skillNumber == 3)
             {
-                skillDamage = player.Attack * 1.2f;
+                skillDamage = (player.Attack + player.EquipAttack) * 1.2f;
                 player.Mp -= 20;
             }
 

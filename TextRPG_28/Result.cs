@@ -32,7 +32,7 @@ namespace TextRPG_28
 
                 for (int i = 0; i < monsters.Count; i++)
                 {
-                    plusGold = monsters[i].Level * 100;
+                    plusGold += monsters[i].Level * 100;
                 }
 
                 player.Gold += plusGold;

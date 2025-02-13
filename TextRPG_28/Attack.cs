@@ -88,7 +88,7 @@ namespace TextRPG_28
             {
                 if (monsters[i].Hp > 0)
                 {
-                    float defenseValue = monsters[i].Attack - (player.Defense * 0.1f);
+                    float defenseValue = monsters[i].Attack - ((player.Defense + player.EquipDefense) * 0.1f);
 
                     Console.WriteLine($"Lv.{monsters[i].Level} {monsters[i].Name}의 공격!");
                     Console.WriteLine();
