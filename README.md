@@ -56,7 +56,7 @@
 
 # 시연
 
-[https://youtu.be/EYuhnkZsjWM?feature=shared]
+(https://youtu.be/EYuhnkZsjWM?feature=shared)
 
 
 
