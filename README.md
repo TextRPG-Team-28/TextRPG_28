@@ -56,7 +56,7 @@
 
 # 시연
 
-[https://nbcamp2024.slack.com/archives/D08D0589X1A/p1739411916595109](https://youtu.be/EYuhnkZsjWM?feature=shared)
+[https://youtu.be/EYuhnkZsjWM?feature=shared]
 
 
 
