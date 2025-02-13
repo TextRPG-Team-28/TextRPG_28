@@ -806,6 +806,7 @@ namespace TextRPG_28
                     Utility.ColorWrite($"스킬 사용 불가", ConsoleColor.Red);
                     Console.WriteLine();
                     Console.WriteLine($"스킬 사용에 필요한 {player.Name} 님의 마나가 부족합니다.");
+                    Console.WriteLine($"{player.Name} 님의 턴이 스킵됩니다.");
                     Console.WriteLine($"남은 마나 : {player.Mp}");
                     Console.WriteLine();
                     Utility.ColorWrite("0. 돌아가기", ConsoleColor.DarkCyan);
