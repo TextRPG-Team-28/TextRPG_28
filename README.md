@@ -55,7 +55,7 @@
 
 
 # 시연
-# ![image]([https://github.com/user-attachments/assets/2e4f5279-280b-40a1-8184-a92b74db94de])
+![image](https://github.com/user-attachments/assets/8fb4312e-1a49-4e3e-b568-74458711321a)
 
 (https://youtu.be/EYuhnkZsjWM?feature=shared)
 
