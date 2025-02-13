@@ -57,7 +57,7 @@
 # 시연
 ![image](https://github.com/user-attachments/assets/8fb4312e-1a49-4e3e-b568-74458711321a)
 
-(https://youtu.be/EYuhnkZsjWM?feature=shared)
+https://youtu.be/EYuhnkZsjWM?feature=shared
 
 # 발생한 문제점 및 해결
 
@@ -69,8 +69,8 @@
 - 공격 화면 종료 후 몬스터 증발
   - 얕은복사에서 생긴 문제여서, 새로운 객체를 생성하여 그곳에 데이터를 복사해 사용하는 방법으로 해결했다.
 - 죽은 몬스터 공격됨
-  -적절한 위치에 반복문과 조건문을 사용하여 조건에 만족할때만 가능하게 수정해주었더니 해결됬다.
+  - 적절한 위치에 반복문과 조건문을 사용하여 조건에 만족할때만 가능하게 수정해주었더니 해결됬다.
 
-# 끝
 
-  
+# 발표 자료
+https://prezi.com/view/U47oGorxH0oZQYq8Os2m/
