@@ -54,8 +54,7 @@ namespace TextRPG_28
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("상태 보기");
-            Console.WriteLine();
+            Console.WriteLine("   _____ _        _       \r\n  / ____| |      | |      \r\n | (___ | |_ __ _| |_ ___ \r\n  \\___ \\| __/ _` | __/ __|\r\n  ____) | || (_| | |_\\__ \\\r\n |_____/ \\__\\__,_|\\__|___/\r\n                          \r\n                          ");
             Console.ResetColor();
             Console.WriteLine($"Lv. {Level.ToString("00")}");
             Console.WriteLine($"{Name} ( {Job} )");

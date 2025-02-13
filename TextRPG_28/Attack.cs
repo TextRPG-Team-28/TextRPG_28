@@ -17,7 +17,8 @@ namespace TextRPG_28
             {
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"던전 - {player.Name} 의 턴\n");
+                Console.WriteLine("  _____                                     \r\n |  __ \\                                    \r\n | |  | |_   _ _ __   __ _  ___  ___  _ __  \r\n | |  | | | | | '_ \\ / _` |/ _ \\/ _ \\| '_ \\ \r\n | |__| | |_| | | | | (_| |  __/ (_) | | | |\r\n |_____/ \\__,_|_| |_|\\__, |\\___|\\___/|_| |_|\r\n                      __/ |                 \r\n                     |___/                  \n");
+                Console.WriteLine($"{player.Name} 의 턴\n");
                 Console.ResetColor();
                 Console.WriteLine($"{player.Name} 의 공격!");
 
@@ -77,7 +78,8 @@ namespace TextRPG_28
         {  
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("던전 - 몬스터의 턴\n");
+            Console.WriteLine("  _____                                     \r\n |  __ \\                                    \r\n | |  | |_   _ _ __   __ _  ___  ___  _ __  \r\n | |  | | | | | '_ \\ / _` |/ _ \\/ _ \\| '_ \\ \r\n | |__| | |_| | | | | (_| |  __/ (_) | | | |\r\n |_____/ \\__,_|_| |_|\\__, |\\___|\\___/|_| |_|\r\n                      __/ |                 \r\n                     |___/                  \n");
+            Console.WriteLine("몬스터의 턴\n");
             Console.ResetColor();
 
             int currentPlayerHP = player.Hp;

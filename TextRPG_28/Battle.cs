@@ -11,7 +11,7 @@ public class Battle
     {
         Console.ForegroundColor = ConsoleColor.Green;
         Console.Clear();
-        Console.WriteLine("던전\n");
+        Console.WriteLine("  _____                                     \r\n |  __ \\                                    \r\n | |  | |_   _ _ __   __ _  ___  ___  _ __  \r\n | |  | | | | | '_ \\ / _` |/ _ \\/ _ \\| '_ \\ \r\n | |__| | |_| | | | | (_| |  __/ (_) | | | |\r\n |_____/ \\__,_|_| |_|\\__, |\\___|\\___/|_| |_|\r\n                      __/ |                 \r\n                     |___/                  \n");
         Console.ResetColor();
 
         gm.MonsterSetting(stageLevel);
@@ -35,7 +35,8 @@ public class Battle
     {
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine("던전 - 공격 대상 선택\n");
+        Console.WriteLine("  _____                                     \r\n |  __ \\                                    \r\n | |  | |_   _ _ __   __ _  ___  ___  _ __  \r\n | |  | | | | | '_ \\ / _` |/ _ \\/ _ \\| '_ \\ \r\n | |__| | |_| | | | | (_| |  __/ (_) | | | |\r\n |_____/ \\__,_|_| |_|\\__, |\\___|\\___/|_| |_|\r\n                      __/ |                 \r\n                     |___/                  \n");
+        Console.WriteLine("공격 대상 선택\n");
         for (int i = 0; i < gm.currentMonsters.Count; i++)
         {
             if (gm.currentMonsters[i].isDead == false)
@@ -65,7 +66,8 @@ public class Battle
     {
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine("던전 - 스킬 선택\n");
+        Console.WriteLine("  _____                                     \r\n |  __ \\                                    \r\n | |  | |_   _ _ __   __ _  ___  ___  _ __  \r\n | |  | | | | | '_ \\ / _` |/ _ \\/ _ \\| '_ \\ \r\n | |__| | |_| | | | | (_| |  __/ (_) | | | |\r\n |_____/ \\__,_|_| |_|\\__, |\\___|\\___/|_| |_|\r\n                      __/ |                 \r\n                     |___/                  \n");
+        Console.WriteLine("스킬 선택\n");
         for (int i = 0; i < gm.currentMonsters.Count; i++)
         {
             if (gm.currentMonsters[i].isDead == false)
