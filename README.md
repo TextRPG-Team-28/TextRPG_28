@@ -55,8 +55,8 @@
 
 
 # 시연
-![image](https://github.com/user-attachments/assets/2e4f5279-280b-40a1-8184-a92b74db94de)
-(https://youtu.be/EYuhnkZsjWM?feature=shared)
+# ![image](https://github.com/user-attachments/assets/2e4f5279-280b-40a1-8184-a92b74db94de)
+https://youtu.be/EYuhnkZsjWM?feature=shared
 
 
 # 발생한 문제점 및 해결
