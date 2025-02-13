@@ -14,21 +14,19 @@ namespace TextRPG_28
             int plusEXP = 0;
 
             Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("결과 보기\n");
 
             if (player.isDead == true)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("You Die\n");
+                Console.WriteLine(" __     __           _____  _      \r\n \\ \\   / /          |  __ \\(_)     \r\n  \\ \\_/ /__  _   _  | |  | |_  ___ \r\n   \\   / _ \\| | | | | |  | | |/ _ \\\r\n    | | (_) | |_| | | |__| | |  __/\r\n    |_|\\___/ \\__,_| |_____/|_|\\___|\r\n                                   \r\n                                   \n");
                 Console.ResetColor();
                 Console.WriteLine($"마을로 돌아가 체력을 회복 하세요.");
                 Console.WriteLine($"(회복 하기 전까지 전투 불가능)\n");
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("Victory\n");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine(" __      ___      _                   \r\n \\ \\    / (_)    | |                  \r\n  \\ \\  / / _  ___| |_ ___  _ __ _   _ \r\n   \\ \\/ / | |/ __| __/ _ \\| '__| | | |\r\n    \\  /  | | (__| || (_) | |  | |_| |\r\n     \\/   |_|\\___|\\__\\___/|_|   \\__, |\r\n                                 __/ |\r\n                                |___/ \n");
                 Console.ResetColor();
                 Console.WriteLine($"던전에서 {monsters.Count}마리의 몬스터를 잡았습니다.\n");
          

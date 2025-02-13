@@ -106,6 +106,7 @@ namespace TextRPG_28
         public void IntroScene()    // 이름 입력 화면
         {
             Console.Clear();
+            Utility.ColorWrite("  _   _                      \r\n | \\ | |                     \r\n |  \\| | __ _ _ __ ___   ___ \r\n | . ` |/ _` | '_ ` _ \\ / _ \\\r\n | |\\  | (_| | | | | | |  __/\r\n |_| \\_|\\__,_|_| |_| |_|\\___|\r\n                             \r\n                             ", ConsoleColor.Green);
             Utility.ColorWrite("원하시는 이름을 설정해주세요.", ConsoleColor.Green);
             Console.WriteLine();
             Console.Write(">> ");
@@ -114,6 +115,7 @@ namespace TextRPG_28
             player = new Player(name);
 
             Console.Clear();
+            Utility.ColorWrite("  _   _                      \r\n | \\ | |                     \r\n |  \\| | __ _ _ __ ___   ___ \r\n | . ` |/ _` | '_ ` _ \\ / _ \\\r\n | |\\  | (_| | | | | | |  __/\r\n |_| \\_|\\__,_|_| |_| |_|\\___|\r\n                             \r\n                             ", ConsoleColor.Green);
             Utility.ColorWrite("이름 설정", ConsoleColor.Green);
             Console.WriteLine();
             Console.WriteLine($"입력하신 이름은 '{player.Name}' 입니다.");
@@ -143,6 +145,7 @@ namespace TextRPG_28
             Utility.Loading("종족 목록 생성 중");
 
             Console.Clear();
+            Utility.ColorWrite("  _____                     \r\n |  __ \\                    \r\n | |__) |__ _  ___ ___  ___ \r\n |  _  // _` |/ __/ _ \\/ __|\r\n | | \\ \\ (_| | (_|  __/\\__ \\\r\n |_|  \\_\\__,_|\\___\\___||___/\r\n                            \r\n                            ", ConsoleColor.Green);
             Utility.ColorWrite("종족을 선택해주세요.", ConsoleColor.Green);
             Console.WriteLine();
             Utility.ColorWrite("1. 인간  :  전체적으로 밸런스가 좋습니다.", ConsoleColor.DarkCyan);
@@ -169,6 +172,7 @@ namespace TextRPG_28
             }
 
             Console.Clear();
+            Utility.ColorWrite("  _____                     \r\n |  __ \\                    \r\n | |__) |__ _  ___ ___  ___ \r\n |  _  // _` |/ __/ _ \\/ __|\r\n | | \\ \\ (_| | (_|  __/\\__ \\\r\n |_|  \\_\\__,_|\\___\\___||___/\r\n                            \r\n                            ", ConsoleColor.Green);
             Utility.ColorWrite("종족 선택", ConsoleColor.Green);
             Console.WriteLine();
             Console.WriteLine($"선택하신 종족은 '{player.Job}' 입니다.");
@@ -198,7 +202,7 @@ namespace TextRPG_28
             Utility.Loading("마을로 가는 중");
 
             Console.Clear();
-            Utility.ColorWrite("마을", ConsoleColor.Green);
+            Utility.ColorWrite("        _ _ _                  \r\n       (_) | |                 \r\n __   ___| | | __ _  __ _  ___ \r\n \\ \\ / / | | |/ _` |/ _` |/ _ \\\r\n  \\ V /| | | | (_| | (_| |  __/\r\n   \\_/ |_|_|_|\\__,_|\\__, |\\___|\r\n                     __/ |     \r\n                    |___/      ", ConsoleColor.Green);
             Console.WriteLine();
             Utility.ColorWrite("1. 상태 보기", ConsoleColor.DarkCyan);
             Utility.ColorWrite("2. 인벤토리", ConsoleColor.DarkCyan);
@@ -254,7 +258,7 @@ namespace TextRPG_28
             Utility.Loading("인벤토리 여는 중");
 
             Console.Clear();
-            Utility.ColorWrite("인벤토리", ConsoleColor.Green);
+            Utility.ColorWrite("  _____                      _                   \r\n |_   _|                    | |                  \r\n   | |  _ ____   _____ _ __ | |_ ___  _ __ _   _ \r\n   | | | '_ \\ \\ / / _ \\ '_ \\| __/ _ \\| '__| | | |\r\n  _| |_| | | \\ V /  __/ | | | || (_) | |  | |_| |\r\n |_____|_| |_|\\_/ \\___|_| |_|\\__\\___/|_|   \\__, |\r\n                                            __/ |\r\n                                           |___/ ", ConsoleColor.Green);
             Console.WriteLine();
             Console.WriteLine("[아이템 목록]");
             Console.WriteLine();
@@ -290,7 +294,7 @@ namespace TextRPG_28
         public void EquipScene()    //장착 화면
         {
             Console.Clear();
-            Utility.ColorWrite("장착 관리", ConsoleColor.Green);
+            Utility.ColorWrite("  ______            _                      _ \r\n |  ____|          (_)                    | |\r\n | |__   __ _ _   _ _ _ __  _ __   ___  __| |\r\n |  __| / _` | | | | | '_ \\| '_ \\ / _ \\/ _` |\r\n | |___| (_| | |_| | | |_) | |_) |  __/ (_| |\r\n |______\\__, |\\__,_|_| .__/| .__/ \\___|\\__,_|\r\n           | |       | |   | |               \r\n           |_|       |_|   |_|               ", ConsoleColor.Green);
             Console.WriteLine();
             Console.WriteLine("[아이템 목록]");
             Console.WriteLine();
@@ -342,8 +346,7 @@ namespace TextRPG_28
             Utility.Loading("상점 들어가는 중");
 
             Console.Clear();
-            Utility.ColorWrite("상점", ConsoleColor.Green);
-            Console.WriteLine();
+            Utility.ColorWrite("   _____ _                 \r\n  / ____| |                \r\n | (___ | |_ ___  _ __ ___ \r\n  \\___ \\| __/ _ \\| '__/ _ \\\r\n  ____) | || (_) | | |  __/\r\n |_____/ \\__\\___/|_|  \\___|\r\n                           \r\n                           ", ConsoleColor.Green);
             Console.WriteLine("[아이템 목록]");
             Console.WriteLine();
 
@@ -379,8 +382,7 @@ namespace TextRPG_28
         public void BuyScreen(bool needGold = false, bool hasItem = false)      // 구매 화면 
         {
             Console.Clear();
-            Utility.ColorWrite("아이템 구매", ConsoleColor.Green);
-            Console.WriteLine();
+            Utility.ColorWrite("  _____                _                    \r\n |  __ \\              | |                   \r\n | |__) |   _ _ __ ___| |__   __ _ ___  ___ \r\n |  ___/ | | | '__/ __| '_ \\ / _` / __|/ _ \\\r\n | |   | |_| | | | (__| | | | (_| \\__ \\  __/\r\n |_|    \\__,_|_|  \\___|_| |_|\\__,_|___/\\___|\r\n                                            \r\n                                            ", ConsoleColor.Green);
             Console.WriteLine("[아이템 목록]");
             Console.WriteLine();
 
@@ -456,16 +458,15 @@ namespace TextRPG_28
             Utility.Loading("휴식 하러 가는 중");
 
             Console.Clear();
-            Utility.ColorWrite("휴식 하기", ConsoleColor.Green);
-            Console.WriteLine();
+            Utility.ColorWrite("  _____           _   \r\n |  __ \\         | |  \r\n | |__) |___  ___| |_ \r\n |  _  // _ \\/ __| __|\r\n | | \\ \\  __/\\__ \\ |_ \r\n |_|  \\_\\___||___/\\__|\r\n                      \r\n                      ", ConsoleColor.Green);
             Console.WriteLine("이곳에서 휴식을 취해 체력을 회복할 수 있습니다.");
             Console.WriteLine();
             Utility.ColorWrite("1. 짧은 휴식 하기 ( 300 gold 소모, 체력 30, 마나 20 회복 )", ConsoleColor.DarkCyan);
             Utility.ColorWrite("2. 충분한 휴식 하기 ( 600 gold 소모, 체력 60, 마나 40 회복 )", ConsoleColor.DarkCyan);
             Console.WriteLine();
-            Console.WriteLine($"현재 체력 : {player.Hp}");
-            Console.WriteLine($"현재 마나 : {player.Mp}");
-            Console.WriteLine($"소지금 : {player.Gold}");
+            Utility.ColorWrite($"현재 체력 : {player.Hp}", ConsoleColor.DarkYellow);
+            Utility.ColorWrite($"현재 마나 : {player.Mp}", ConsoleColor.DarkYellow);
+            Utility.ColorWrite($"소지금 : {player.Gold}", ConsoleColor.DarkYellow);
             Console.WriteLine();
             Utility.ColorWrite("0. 마을로 돌아가기", ConsoleColor.DarkCyan);
             Console.WriteLine();
@@ -513,6 +514,7 @@ namespace TextRPG_28
                 }
 
                 Console.Clear();
+                Utility.ColorWrite("   _____                      _      _       \r\n  / ____|                    | |    | |      \r\n | |     ___  _ __ ___  _ __ | | ___| |_ ___ \r\n | |    / _ \\| '_ ` _ \\| '_ \\| |/ _ \\ __/ _ \\\r\n | |___| (_) | | | | | | |_) | |  __/ ||  __/\r\n  \\_____\\___/|_| |_| |_| .__/|_|\\___|\\__\\___|\r\n                       | |                   \r\n                       |_|                   ", ConsoleColor.Green);
                 Utility.ColorWrite("휴식 완료!", ConsoleColor.Green);
                 Console.WriteLine();
                 Console.WriteLine($"{player.Name} 님의 체력이 회복 되었습니다.\n{currentHp} -> {player.Hp}");
@@ -540,6 +542,7 @@ namespace TextRPG_28
             else if(player.Hp == player.MaxHp && player.Mp == player.MaxMp)
             {
                 Console.Clear();
+                Utility.ColorWrite("  _____                               _ _     _      \r\n |_   _|                             (_) |   | |     \r\n   | |  _ __ ___  _ __   ___  ___ ___ _| |__ | | ___ \r\n   | | | '_ ` _ \\| '_ \\ / _ \\/ __/ __| | '_ \\| |/ _ \\\r\n  _| |_| | | | | | |_) | (_) \\__ \\__ \\ | |_) | |  __/\r\n |_____|_| |_| |_| .__/ \\___/|___/___/_|_.__/|_|\\___|\r\n                 | |                                 \r\n                 |_|                                 ", ConsoleColor.Red);
                 Utility.ColorWrite("휴식 불가", ConsoleColor.Red);
                 Console.WriteLine();
                 Console.WriteLine("이미 가득 차있습니다.");
@@ -556,6 +559,7 @@ namespace TextRPG_28
             else if(player.Gold < 300 * price)
             {
                 Console.Clear();
+                Utility.ColorWrite("  _____                               _ _     _      \r\n |_   _|                             (_) |   | |     \r\n   | |  _ __ ___  _ __   ___  ___ ___ _| |__ | | ___ \r\n   | | | '_ ` _ \\| '_ \\ / _ \\/ __/ __| | '_ \\| |/ _ \\\r\n  _| |_| | | | | | |_) | (_) \\__ \\__ \\ | |_) | |  __/\r\n |_____|_| |_| |_| .__/ \\___/|___/___/_|_.__/|_|\\___|\r\n                 | |                                 \r\n                 |_|                                 ", ConsoleColor.Red);
                 Utility.ColorWrite("휴식 불가", ConsoleColor.Red);
                 Console.WriteLine();
                 Console.WriteLine("소지금이 부족합니다.");
@@ -596,6 +600,8 @@ namespace TextRPG_28
             else
             {
                 Console.Clear();
+                Utility.ColorWrite("  _____                               _ _     _      \r\n |_   _|                             (_) |   | |     \r\n   | |  _ __ ___  _ __   ___  ___ ___ _| |__ | | ___ \r\n   | | | '_ ` _ \\| '_ \\ / _ \\/ __/ __| | '_ \\| |/ _ \\\r\n  _| |_| | | | | | |_) | (_) \\__ \\__ \\ | |_) | |  __/\r\n |_____|_| |_| |_| .__/ \\___/|___/___/_|_.__/|_|\\___|\r\n                 | |                                 \r\n                 |_|                                 ", ConsoleColor.Red);
+                Console.WriteLine();
                 Utility.ColorWrite($"던전 입장 조건 : 현재 체력 20 이상", ConsoleColor.Red);
                 Console.WriteLine();
                 Console.WriteLine($"{player.Name}님의 체력이 부족합니다.");
@@ -766,7 +772,7 @@ namespace TextRPG_28
                         BattleScene();
                     }
                 }
-                else if (skillNumber == 3 && player.Mp >= 30)
+                else if (skillNumber == 3 && player.Mp >= 20)
                 {
                     isMonsterLive = skill.SkillAttack3(player, currentMonsters, skillNumber, isMonsterLive);
 
@@ -796,6 +802,7 @@ namespace TextRPG_28
                 else
                 {
                     Console.Clear();
+                    Utility.ColorWrite("  _____                               _ _     _      \r\n |_   _|                             (_) |   | |     \r\n   | |  _ __ ___  _ __   ___  ___ ___ _| |__ | | ___ \r\n   | | | '_ ` _ \\| '_ \\ / _ \\/ __/ __| | '_ \\| |/ _ \\\r\n  _| |_| | | | | | |_) | (_) \\__ \\__ \\ | |_) | |  __/\r\n |_____|_| |_| |_| .__/ \\___/|___/___/_|_.__/|_|\\___|\r\n                 | |                                 \r\n                 |_|                                 ", ConsoleColor.Red);
                     Utility.ColorWrite($"스킬 사용 불가", ConsoleColor.Red);
                     Console.WriteLine();
                     Console.WriteLine($"스킬 사용에 필요한 {player.Name} 님의 마나가 부족합니다.");
